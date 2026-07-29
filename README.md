@@ -14,8 +14,6 @@ genre, release date, and a brief description.
 ## Technologies/Frameworks Used
 - Entity Framework Core
 - MSSQL
-- Bootstrap 5
-- CSS/HTML/JavaScript
 
 ## Possible Upcoming Features
 - Letting users add their own anime to the list
