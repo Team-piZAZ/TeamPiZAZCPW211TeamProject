@@ -6,23 +6,53 @@ using TeamPiZAZCPW211TeamProject.Models;
 
 namespace TeamPiZAZCPW211TeamProject.Database;
 
+/// <summary>
+/// Represents the Entity Framework Core database context for the Anime application.
+/// </summary>
 public class AnimeDbContext : DbContext
 {
+    /// <summary>
+    /// Gets the DbSet of Anime entities,
+    /// allowing CRUD operations on the Anime table in the database.
+    /// </summary>
     public DbSet<Anime> Animes => Set<Anime>();
 
+    /// <summary>
+    /// Gets the DbSet of Genre entities,
+    /// allowing CRUD operations on the Genre table in the database.
+    /// </summary>
     public DbSet<Genre> Genres => Set<Genre>();
 
+    /// <summary>
+    /// Gets the DbSet of Studio entities,
+    /// allowing CRUD operations on the Studio table in the database.
+    /// </summary>
     public DbSet<Studio> Studios => Set<Studio>();
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AnimeDbContext"/> class.
+    /// </summary>
     public AnimeDbContext()
     {
 
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AnimeDbContext"/> class with the specified options.
+    /// </summary>
+    /// <param name="options">
+    /// The options to be used for the database context.
+    /// </param>
     public AnimeDbContext(DbContextOptions<AnimeDbContext> options) : base(options)
     {
     }
 
+    /// <summary>
+    /// Configures the database context to use SQL Server with the specified connection string.
+    /// </summary>
+    /// <param name="optionsBuilder">
+    /// The builder used to configure the options for the database context.
+    /// </param>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
@@ -31,6 +61,12 @@ public class AnimeDbContext : DbContext
         }
     }
 
+    /// <summary>
+    /// Configures the model relationships and seeds initial data for the database.
+    /// </summary>
+    /// <param name="modelBuilder">
+    /// The builder used to configure the model for the database context.
+    /// </param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -45,12 +81,18 @@ public class AnimeDbContext : DbContext
             .HasForeignKey(a => a.StudioId)
             .OnDelete(DeleteBehavior.SetNull);
 
+        /// <summary>
+        /// Seeds initial data for the Studio table in the database.
+        /// </summary>
         modelBuilder.Entity<Studio>().HasData(
             new Studio { Id = 1, Name = "Studio Ghibli", Description = "A renowned Japanese animation studio." },
             new Studio { Id = 2, Name = "Madhouse", Description = "A Japanese animation studio known for its high-quality productions." },
             new Studio { Id = 3, Name = "Bones", Description = "A Japanese animation studio known for its diverse range of anime series." }
         );
 
+        /// <summary>
+        /// Seeds initial data for the Genre table in the database.
+        /// </summary>  
         modelBuilder.Entity<Genre>().HasData(
             new Genre { Id = 1, Name = "Action", Description = "Anime with intense action sequences and battles." },
             new Genre { Id = 2, Name = "Adventure", Description = "Anime that follows characters on exciting journeys and quests." },
