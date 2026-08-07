@@ -37,7 +37,7 @@ public class AnimeDbContextFactory : IDesignTimeDbContextFactory<AnimeDbContext>
         }
 
         // If the connection string is not found in appsettings.json, use a default connection string
-        connectionString ??= "Data Source=localhost;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False;Command Timeout=30";
+        connectionString ??= "Data Source=localhost;Database=AnimeCPW211Db;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False;Command Timeout=30";
 
         optionsBuilder.UseSqlServer(connectionString);
 

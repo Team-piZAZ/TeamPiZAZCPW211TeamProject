@@ -48,20 +48,6 @@ public class AnimeDbContext : DbContext
     }
 
     /// <summary>
-    /// Configures the database context to use SQL Server with the specified connection string.
-    /// </summary>
-    /// <param name="optionsBuilder">
-    /// The builder used to configure the options for the database context.
-    /// </param>
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("Data Source=ZACHARYKIMB6482;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False;Command Timeout=30");
-        }
-    }
-
-    /// <summary>
     /// Configures the model relationships and seeds initial data for the database.
     /// </summary>
     /// <param name="modelBuilder">
@@ -81,18 +67,15 @@ public class AnimeDbContext : DbContext
             .HasForeignKey(a => a.StudioId)
             .OnDelete(DeleteBehavior.SetNull);
 
-        /// <summary>
-        /// Seeds initial data for the Studio table in the database.
-        /// </summary>
+
+        // Seeds initial data for the Studio table in the database.
         modelBuilder.Entity<Studio>().HasData(
             new Studio { Id = 1, Name = "Studio Ghibli", Description = "A renowned Japanese animation studio." },
             new Studio { Id = 2, Name = "Madhouse", Description = "A Japanese animation studio known for its high-quality productions." },
             new Studio { Id = 3, Name = "Bones", Description = "A Japanese animation studio known for its diverse range of anime series." }
         );
 
-        /// <summary>
-        /// Seeds initial data for the Genre table in the database.
-        /// </summary>  
+        // Seeds initial data for the Genre table in the database.  
         modelBuilder.Entity<Genre>().HasData(
             new Genre { Id = 1, Name = "Action", Description = "Anime with intense action sequences and battles." },
             new Genre { Id = 2, Name = "Adventure", Description = "Anime that follows characters on exciting journeys and quests." },
