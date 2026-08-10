@@ -28,12 +28,102 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            lblStudio = new Label();
+            lblAnimeName = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            txtAnimeName = new TextBox();
+            btnAddToList = new Button();
+            lblGenre = new Label();
+            SuspendLayout();
+            // 
+            // lblStudio
+            // 
+            lblStudio.AutoSize = true;
+            lblStudio.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblStudio.ForeColor = SystemColors.Control;
+            lblStudio.Location = new Point(12, 9);
+            lblStudio.Name = "lblStudio";
+            lblStudio.Size = new Size(41, 15);
+            lblStudio.TabIndex = 0;
+            lblStudio.Text = "Studio";
+            // 
+            // lblAnimeName
+            // 
+            lblAnimeName.AutoSize = true;
+            lblAnimeName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblAnimeName.ForeColor = SystemColors.Control;
+            lblAnimeName.Location = new Point(369, 9);
+            lblAnimeName.Name = "lblAnimeName";
+            lblAnimeName.Size = new Size(78, 15);
+            lblAnimeName.TabIndex = 9;
+            lblAnimeName.Text = "Anime Name";
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Location = new Point(12, 35);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Padding = new Padding(10);
+            flowLayoutPanel1.Size = new Size(972, 569);
+            flowLayoutPanel1.TabIndex = 11;
+            // 
+            // txtAnimeName
+            // 
+            txtAnimeName.Location = new Point(452, 6);
+            txtAnimeName.Name = "txtAnimeName";
+            txtAnimeName.PlaceholderText = "Enter Anime Name";
+            txtAnimeName.Size = new Size(279, 23);
+            txtAnimeName.TabIndex = 12;
+            // 
+            // btnAddToList
+            // 
+            btnAddToList.BackColor = Color.BlueViolet;
+            btnAddToList.FlatStyle = FlatStyle.Flat;
+            btnAddToList.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAddToList.Location = new Point(805, 5);
+            btnAddToList.Name = "btnAddToList";
+            btnAddToList.Size = new Size(130, 23);
+            btnAddToList.TabIndex = 13;
+            btnAddToList.Text = "Add To List";
+            btnAddToList.UseVisualStyleBackColor = false;
+            // 
+            // lblGenre
+            // 
+            lblGenre.AutoSize = true;
+            lblGenre.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblGenre.ForeColor = SystemColors.Control;
+            lblGenre.Location = new Point(174, 9);
+            lblGenre.Name = "lblGenre";
+            lblGenre.Size = new Size(39, 15);
+            lblGenre.TabIndex = 14;
+            lblGenre.Text = "Genre";
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = SystemColors.ActiveCaptionText;
+            ClientSize = new Size(996, 616);
+            Controls.Add(lblGenre);
+            Controls.Add(btnAddToList);
+            Controls.Add(txtAnimeName);
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(lblAnimeName);
+            Controls.Add(lblStudio);
+            Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lblStudio;
+        private Label lblAnimeName;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private TextBox txtAnimeName;
+        private Button btnAddToList;
+        private Label lblGenre;
     }
 }

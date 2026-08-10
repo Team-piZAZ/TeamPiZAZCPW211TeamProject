@@ -29,5 +29,7 @@ public class Genre
     /// Gets or sets the collection of Anime entities associated with this Genre.
     /// </summary>
     public ICollection<Anime> Animes { get; set; } = [];
+
+    public override string ToString() => Name;
 }
 

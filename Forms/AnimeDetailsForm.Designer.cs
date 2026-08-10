@@ -39,65 +39,73 @@
             // 
             // txtTitle
             // 
-            txtTitle.Location = new Point(94, 92);
+            txtTitle.Location = new Point(82, 69);
+            txtTitle.Margin = new Padding(3, 2, 3, 2);
             txtTitle.Name = "txtTitle";
-            txtTitle.Size = new Size(538, 27);
+            txtTitle.Size = new Size(471, 23);
             txtTitle.TabIndex = 0;
             // 
             // txtSynopsis
             // 
-            txtSynopsis.Location = new Point(94, 182);
+            txtSynopsis.Location = new Point(82, 136);
+            txtSynopsis.Margin = new Padding(3, 2, 3, 2);
             txtSynopsis.Multiline = true;
             txtSynopsis.Name = "txtSynopsis";
-            txtSynopsis.Size = new Size(538, 178);
+            txtSynopsis.Size = new Size(471, 134);
             txtSynopsis.TabIndex = 1;
             // 
             // numRating
             // 
             numRating.DecimalPlaces = 1;
-            numRating.Location = new Point(699, 92);
+            numRating.Location = new Point(612, 69);
+            numRating.Margin = new Padding(3, 2, 3, 2);
             numRating.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numRating.Name = "numRating";
-            numRating.Size = new Size(150, 27);
+            numRating.Size = new Size(131, 23);
             numRating.TabIndex = 2;
             // 
             // dtpReleaseDate
             // 
             dtpReleaseDate.Format = DateTimePickerFormat.Short;
-            dtpReleaseDate.Location = new Point(947, 92);
+            dtpReleaseDate.Location = new Point(829, 69);
+            dtpReleaseDate.Margin = new Padding(3, 2, 3, 2);
             dtpReleaseDate.Name = "dtpReleaseDate";
-            dtpReleaseDate.Size = new Size(250, 27);
+            dtpReleaseDate.Size = new Size(219, 23);
             dtpReleaseDate.TabIndex = 3;
             // 
             // clbGenres
             // 
             clbGenres.FormattingEnabled = true;
-            clbGenres.Location = new Point(699, 180);
+            clbGenres.Location = new Point(612, 135);
+            clbGenres.Margin = new Padding(3, 2, 3, 2);
             clbGenres.Name = "clbGenres";
-            clbGenres.Size = new Size(498, 180);
+            clbGenres.Size = new Size(436, 130);
             clbGenres.TabIndex = 4;
             // 
             // btnSave
             // 
             btnSave.BackColor = Color.FromArgb(0, 192, 0);
-            btnSave.Location = new Point(1274, 92);
+            btnSave.Location = new Point(1115, 69);
+            btnSave.Margin = new Padding(3, 2, 3, 2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(126, 268);
+            btnSave.Size = new Size(110, 201);
             btnSave.TabIndex = 5;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
             // 
             // AnimeDetailsForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1487, 425);
+            BackColor = Color.Black;
+            ClientSize = new Size(1301, 319);
             Controls.Add(btnSave);
             Controls.Add(clbGenres);
             Controls.Add(dtpReleaseDate);
             Controls.Add(numRating);
             Controls.Add(txtSynopsis);
             Controls.Add(txtTitle);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "AnimeDetailsForm";
             Text = "AnimeDetailsForm";
             ((System.ComponentModel.ISupportInitialize)numRating).EndInit();
