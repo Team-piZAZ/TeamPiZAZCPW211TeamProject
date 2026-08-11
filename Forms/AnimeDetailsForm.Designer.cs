@@ -63,7 +63,7 @@
             txtTitle.Name = "txtTitle";
             txtTitle.Size = new Size(552, 32);
             txtTitle.TabIndex = 0;
-            txtTitle.Text = "Title goes here...";
+            txtTitle.PlaceholderText = "Title goes here...";
             // 
             // txtSynopsis
             // 
@@ -76,7 +76,7 @@
             txtSynopsis.Name = "txtSynopsis";
             txtSynopsis.Size = new Size(555, 197);
             txtSynopsis.TabIndex = 1;
-            txtSynopsis.Text = "Short Description . . .";
+            txtSynopsis.PlaceholderText = "Short Description . . .";
             // 
             // numRating
             // 
@@ -93,7 +93,7 @@
             // 
             dtpReleaseDate.CalendarMonthBackground = SystemColors.ActiveBorder;
             dtpReleaseDate.CalendarTitleBackColor = SystemColors.ActiveBorder;
-            dtpReleaseDate.CustomFormat = "8/2026";
+            dtpReleaseDate.CustomFormat = "MM/yyyy";
             dtpReleaseDate.Dock = DockStyle.Right;
             dtpReleaseDate.DropDownAlign = LeftRightAlignment.Right;
             dtpReleaseDate.Format = DateTimePickerFormat.Custom;
@@ -102,7 +102,6 @@
             dtpReleaseDate.RightToLeft = RightToLeft.No;
             dtpReleaseDate.Size = new Size(138, 27);
             dtpReleaseDate.TabIndex = 3;
-            dtpReleaseDate.Value = new DateTime(2026, 8, 11, 0, 0, 0, 0);
             // 
             // clbGenres
             // 
@@ -236,7 +235,7 @@
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.Sizable;
             Name = "AnimeDetailsForm";
             Text = "AnimeDetailsForm";
             ((System.ComponentModel.ISupportInitialize)numRating).EndInit();
