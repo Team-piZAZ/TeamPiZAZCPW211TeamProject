@@ -76,6 +76,7 @@
             txtAnimeName.PlaceholderText = "Enter Anime Name";
             txtAnimeName.Size = new Size(279, 23);
             txtAnimeName.TabIndex = 12;
+            txtAnimeName.TextChanged += txtAnimeName_TextChanged;
             // 
             // btnAddToList
             // 
