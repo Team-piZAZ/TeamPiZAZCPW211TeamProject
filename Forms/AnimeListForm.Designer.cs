@@ -1,6 +1,6 @@
 ﻿namespace TeamPiZAZCPW211TeamProject
 {
-    partial class Form1
+    partial class AnimeListForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnimeListForm));
             lblStudio = new Label();
             lblAnimeName = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
@@ -88,6 +88,7 @@
             btnAddToList.TabIndex = 13;
             btnAddToList.Text = "Add To List";
             btnAddToList.UseVisualStyleBackColor = false;
+            btnAddToList.Click += btnAddToList_Click;
             // 
             // lblGenre
             // 
@@ -100,7 +101,7 @@
             lblGenre.TabIndex = 14;
             lblGenre.Text = "Genre";
             // 
-            // Form1
+            // AnimeListForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -114,9 +115,9 @@
             Controls.Add(flowLayoutPanel1);
             Controls.Add(lblAnimeName);
             Controls.Add(lblStudio);
-            Name = "Form1";
-            Text = "Form1";
-            Load += Form1_Load;
+            Name = "AnimeListForm";
+            Text = "Anime List";
+            Load += AnimeListForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
