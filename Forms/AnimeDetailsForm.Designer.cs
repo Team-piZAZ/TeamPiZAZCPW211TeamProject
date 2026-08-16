@@ -41,8 +41,8 @@
             lblRating = new Label();
             panel4 = new Panel();
             panel5 = new Panel();
-            panel6 = new Panel();
             lblReleaseDate = new Label();
+            panel6 = new Panel();
             ((System.ComponentModel.ISupportInitialize)numRating).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -54,70 +54,73 @@
             // 
             // txtTitle
             // 
-            txtTitle.BackColor = SystemColors.ActiveBorder;
+            txtTitle.BackColor = Color.FromArgb(30, 30, 30);
             txtTitle.BorderStyle = BorderStyle.None;
             txtTitle.Dock = DockStyle.Fill;
             txtTitle.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTitle.Location = new Point(3, 3);
+            txtTitle.ForeColor = Color.White;
+            txtTitle.Location = new Point(3, 2);
+            txtTitle.Margin = new Padding(3, 2, 3, 2);
             txtTitle.Multiline = true;
             txtTitle.Name = "txtTitle";
-            txtTitle.Size = new Size(552, 32);
-            txtTitle.TabIndex = 0;
             txtTitle.PlaceholderText = "Title goes here...";
+            txtTitle.Size = new Size(482, 24);
+            txtTitle.TabIndex = 0;
             // 
             // txtSynopsis
             // 
-            txtSynopsis.BackColor = SystemColors.ActiveBorder;
+            txtSynopsis.BackColor = Color.FromArgb(30, 30, 30);
             txtSynopsis.BorderStyle = BorderStyle.None;
             txtSynopsis.Dock = DockStyle.Fill;
             txtSynopsis.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSynopsis.Location = new Point(3, 3);
+            txtSynopsis.ForeColor = Color.White;
+            txtSynopsis.Location = new Point(3, 2);
+            txtSynopsis.Margin = new Padding(3, 2, 3, 2);
             txtSynopsis.Multiline = true;
             txtSynopsis.Name = "txtSynopsis";
-            txtSynopsis.Size = new Size(555, 197);
-            txtSynopsis.TabIndex = 1;
             txtSynopsis.PlaceholderText = "Short Description . . .";
+            txtSynopsis.Size = new Size(485, 148);
+            txtSynopsis.TabIndex = 1;
             // 
             // numRating
             // 
-            numRating.BackColor = SystemColors.ActiveBorder;
+            numRating.BackColor = Color.FromArgb(30, 30, 30);
             numRating.DecimalPlaces = 1;
-            numRating.Location = new Point(78, 3);
+            numRating.ForeColor = Color.White;
+            numRating.Location = new Point(68, 2);
+            numRating.Margin = new Padding(3, 2, 3, 2);
             numRating.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numRating.Name = "numRating";
-            numRating.Size = new Size(82, 27);
+            numRating.Size = new Size(72, 23);
             numRating.TabIndex = 2;
             numRating.TextAlign = HorizontalAlignment.Center;
             // 
             // dtpReleaseDate
             // 
-            dtpReleaseDate.CalendarMonthBackground = SystemColors.ActiveBorder;
-            dtpReleaseDate.CalendarTitleBackColor = SystemColors.ActiveBorder;
             dtpReleaseDate.CustomFormat = "MM/yyyy";
             dtpReleaseDate.Dock = DockStyle.Right;
-            dtpReleaseDate.DropDownAlign = LeftRightAlignment.Right;
             dtpReleaseDate.Format = DateTimePickerFormat.Custom;
-            dtpReleaseDate.Location = new Point(152, 3);
+            dtpReleaseDate.Location = new Point(132, 2);
+            dtpReleaseDate.Margin = new Padding(3, 2, 3, 2);
             dtpReleaseDate.Name = "dtpReleaseDate";
-            dtpReleaseDate.RightToLeft = RightToLeft.No;
-            dtpReleaseDate.Size = new Size(138, 27);
+            dtpReleaseDate.Size = new Size(121, 23);
             dtpReleaseDate.TabIndex = 3;
             // 
             // clbGenres
             // 
-            clbGenres.BackColor = SystemColors.ActiveBorder;
+            clbGenres.BackColor = Color.FromArgb(30, 30, 30);
             clbGenres.BorderStyle = BorderStyle.None;
             clbGenres.Dock = DockStyle.Fill;
             clbGenres.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            clbGenres.ForeColor = Color.White;
             clbGenres.FormattingEnabled = true;
-            clbGenres.Location = new Point(3, 3);
+            clbGenres.Location = new Point(3, 2);
+            clbGenres.Margin = new Padding(3, 2, 3, 2);
             clbGenres.MultiColumn = true;
             clbGenres.Name = "clbGenres";
-            clbGenres.ScrollAlwaysVisible = true;
-            clbGenres.Size = new Size(555, 150);
+            clbGenres.Size = new Size(485, 113);
             clbGenres.Sorted = true;
             clbGenres.TabIndex = 4;
-            clbGenres.ThreeDCheckBoxes = true;
             // 
             // btnSave
             // 
@@ -128,9 +131,10 @@
             btnSave.FlatStyle = FlatStyle.Popup;
             btnSave.Font = new Font("Verdana", 24F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.Lime;
-            btnSave.Location = new Point(3, 3);
+            btnSave.Location = new Point(3, 2);
+            btnSave.Margin = new Padding(3, 2, 3, 2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(555, 119);
+            btnSave.Size = new Size(485, 90);
             btnSave.TabIndex = 5;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -138,23 +142,23 @@
             // panel1
             // 
             panel1.BackColor = Color.Magenta;
-            panel1.BackgroundImageLayout = ImageLayout.None;
             panel1.Controls.Add(txtSynopsis);
-            panel1.ForeColor = Color.Magenta;
-            panel1.Location = new Point(71, 189);
+            panel1.Location = new Point(62, 142);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Padding = new Padding(3);
-            panel1.Size = new Size(561, 203);
+            panel1.Padding = new Padding(3, 2, 3, 2);
+            panel1.Size = new Size(491, 152);
             panel1.TabIndex = 6;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Magenta;
             panel2.Controls.Add(txtTitle);
-            panel2.Location = new Point(74, 22);
+            panel2.Location = new Point(62, 16);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Padding = new Padding(3);
-            panel2.Size = new Size(558, 38);
+            panel2.Padding = new Padding(3, 2, 3, 2);
+            panel2.Size = new Size(488, 28);
             panel2.TabIndex = 7;
             // 
             // panel3
@@ -162,20 +166,22 @@
             panel3.BackColor = Color.Magenta;
             panel3.Controls.Add(lblRating);
             panel3.Controls.Add(numRating);
-            panel3.Location = new Point(71, 95);
+            panel3.Location = new Point(62, 71);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Padding = new Padding(3);
-            panel3.Size = new Size(166, 33);
+            panel3.Padding = new Padding(3, 2, 3, 2);
+            panel3.Size = new Size(145, 25);
             panel3.TabIndex = 8;
             // 
             // lblRating
             // 
             lblRating.AutoSize = true;
+            lblRating.BackColor = Color.Transparent;
             lblRating.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblRating.Location = new Point(9, 3);
-            lblRating.Margin = new Padding(3);
+            lblRating.ForeColor = Color.White;
+            lblRating.Location = new Point(8, 2);
             lblRating.Name = "lblRating";
-            lblRating.Size = new Size(63, 25);
+            lblRating.Size = new Size(52, 20);
             lblRating.TabIndex = 3;
             lblRating.Text = "Rating";
             // 
@@ -183,10 +189,11 @@
             // 
             panel4.BackColor = Color.Magenta;
             panel4.Controls.Add(clbGenres);
-            panel4.Location = new Point(71, 429);
+            panel4.Location = new Point(62, 322);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Padding = new Padding(3);
-            panel4.Size = new Size(561, 156);
+            panel4.Padding = new Padding(3, 2, 3, 2);
+            panel4.Size = new Size(491, 117);
             panel4.TabIndex = 9;
             // 
             // panel5
@@ -194,48 +201,51 @@
             panel5.BackColor = Color.Magenta;
             panel5.Controls.Add(lblReleaseDate);
             panel5.Controls.Add(dtpReleaseDate);
-            panel5.Location = new Point(339, 95);
+            panel5.Location = new Point(297, 71);
+            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Padding = new Padding(3);
-            panel5.Size = new Size(293, 33);
+            panel5.Padding = new Padding(3, 2, 3, 2);
+            panel5.Size = new Size(256, 25);
             panel5.TabIndex = 10;
+            // 
+            // lblReleaseDate
+            // 
+            lblReleaseDate.AutoSize = true;
+            lblReleaseDate.BackColor = Color.Transparent;
+            lblReleaseDate.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblReleaseDate.ForeColor = Color.White;
+            lblReleaseDate.Location = new Point(12, 2);
+            lblReleaseDate.Name = "lblReleaseDate";
+            lblReleaseDate.Size = new Size(96, 20);
+            lblReleaseDate.TabIndex = 4;
+            lblReleaseDate.Text = "Release Date";
             // 
             // panel6
             // 
             panel6.BackColor = Color.Lime;
             panel6.Controls.Add(btnSave);
-            panel6.Location = new Point(71, 639);
+            panel6.Location = new Point(62, 479);
+            panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Padding = new Padding(3);
-            panel6.Size = new Size(561, 125);
+            panel6.Padding = new Padding(3, 2, 3, 2);
+            panel6.Size = new Size(491, 94);
             panel6.TabIndex = 11;
-            // 
-            // lblReleaseDate
-            // 
-            lblReleaseDate.AutoSize = true;
-            lblReleaseDate.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblReleaseDate.Location = new Point(21, 3);
-            lblReleaseDate.Margin = new Padding(3);
-            lblReleaseDate.Name = "lblReleaseDate";
-            lblReleaseDate.Size = new Size(112, 25);
-            lblReleaseDate.TabIndex = 4;
-            lblReleaseDate.Text = "Release Date";
             // 
             // AnimeDetailsForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.InactiveBorder;
+            BackColor = Color.Black;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(726, 824);
+            ClientSize = new Size(635, 618);
             Controls.Add(panel6);
             Controls.Add(panel5);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            FormBorderStyle = FormBorderStyle.Sizable;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "AnimeDetailsForm";
             Text = "AnimeDetailsForm";
             ((System.ComponentModel.ISupportInitialize)numRating).EndInit();

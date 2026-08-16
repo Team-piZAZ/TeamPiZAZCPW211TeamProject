@@ -42,7 +42,7 @@ internal static class Program
         services.AddScoped<IAnimeService, AnimeService>();
 
         // Register Forms
-        services.AddTransient<Form1>();
+        services.AddTransient<AnimeListForm>();
 
         ServiceProvider = services.BuildServiceProvider();
 
@@ -54,7 +54,7 @@ internal static class Program
         }
 
         // 4. Run application
-        var mainForm = ServiceProvider.GetRequiredService<Form1>();
+        var mainForm = ServiceProvider.GetRequiredService<AnimeListForm>();
         Application.Run(mainForm);
     }
 }

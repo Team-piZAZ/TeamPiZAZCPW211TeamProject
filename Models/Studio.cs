@@ -29,5 +29,7 @@ public class Studio
     /// Gets or sets the collection of Anime entities associated with this Studio.
     /// </summary>
     public ICollection<Anime> Animes { get; set; } = [];
+
+    public override string ToString() => Name;
 }
 
