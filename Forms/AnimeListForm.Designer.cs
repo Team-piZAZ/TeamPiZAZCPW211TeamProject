@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnimeListForm));
             lblStudio = new Label();
             lblAnimeName = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            flpAnimeList = new FlowLayoutPanel();
             txtAnimeName = new TextBox();
             btnAddToList = new Button();
             lblGenre = new Label();
@@ -59,15 +59,15 @@
             lblAnimeName.TabIndex = 9;
             lblAnimeName.Text = "Anime Name";
             // 
-            // flowLayoutPanel1
+            // flpAnimeList
             // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.BackColor = Color.Transparent;
-            flowLayoutPanel1.Location = new Point(12, 35);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Padding = new Padding(10);
-            flowLayoutPanel1.Size = new Size(972, 569);
-            flowLayoutPanel1.TabIndex = 11;
+            flpAnimeList.AutoScroll = true;
+            flpAnimeList.BackColor = Color.Transparent;
+            flpAnimeList.Location = new Point(12, 35);
+            flpAnimeList.Name = "flpAnimeList";
+            flpAnimeList.Padding = new Padding(10);
+            flpAnimeList.Size = new Size(972, 569);
+            flpAnimeList.TabIndex = 11;
             // 
             // txtAnimeName
             // 
@@ -113,7 +113,7 @@
             Controls.Add(lblGenre);
             Controls.Add(btnAddToList);
             Controls.Add(txtAnimeName);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(flpAnimeList);
             Controls.Add(lblAnimeName);
             Controls.Add(lblStudio);
             Name = "AnimeListForm";
@@ -127,7 +127,7 @@
 
         private Label lblStudio;
         private Label lblAnimeName;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flpAnimeList;
         private TextBox txtAnimeName;
         private Button btnAddToList;
         private Label lblGenre;
