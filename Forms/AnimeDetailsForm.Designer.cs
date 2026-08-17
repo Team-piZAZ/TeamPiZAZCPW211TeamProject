@@ -252,6 +252,7 @@
             btnManageGenres.TabIndex = 12;
             btnManageGenres.Text = "Manage Genres";
             btnManageGenres.UseVisualStyleBackColor = false;
+            btnManageGenres.Click += btnManageGenres_Click;
             // 
             // panel7
             // 

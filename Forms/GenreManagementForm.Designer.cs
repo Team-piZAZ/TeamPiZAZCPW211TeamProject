@@ -38,8 +38,9 @@
             panel4 = new Panel();
             btnUpdate = new Button();
             panel5 = new Panel();
-            button1 = new Button();
+            btnDelete = new Button();
             lblEditGenre = new Label();
+            Load += GenreManagementForm_Load;
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -113,6 +114,7 @@
             btnAddGenre.TabIndex = 0;
             btnAddGenre.Text = "Add";
             btnAddGenre.UseVisualStyleBackColor = false;
+            btnAddGenre.Click += btnAdd_Click;
             // 
             // panel4
             // 
@@ -136,29 +138,31 @@
             btnUpdate.TabIndex = 0;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // panel5
             // 
             panel5.BackColor = Color.Magenta;
             panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Controls.Add(button1);
+            panel5.Controls.Add(btnDelete);
             panel5.Location = new Point(281, 167);
             panel5.Name = "panel5";
             panel5.Padding = new Padding(3);
             panel5.Size = new Size(109, 36);
             panel5.TabIndex = 6;
             // 
-            // button1
+            // btnDelete
             // 
-            button1.BackColor = Color.Crimson;
-            button1.Dock = DockStyle.Fill;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Location = new Point(3, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(101, 28);
-            button1.TabIndex = 0;
-            button1.Text = "DELETE";
-            button1.UseVisualStyleBackColor = false;
+            btnDelete.BackColor = Color.Crimson;
+            btnDelete.Dock = DockStyle.Fill;
+            btnDelete.FlatStyle = FlatStyle.Popup;
+            btnDelete.Location = new Point(3, 3);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(101, 28);
+            btnDelete.TabIndex = 0;
+            btnDelete.Text = "DELETE";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // lblEditGenre
             // 
@@ -209,6 +213,6 @@
         private Label lblEditGenre;
         private Button btnAddGenre;
         private Button btnUpdate;
-        private Button button1;
+        private Button btnDelete;
     }
 }
