@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using TeamPiZAZCPW211TeamProject.Services;
 using TeamPiZAZCPW211TeamProject.Models;
+using TeamPiZAZCPW211TeamProject.Database;
 
 namespace TeamPiZAZCPW211TeamProject.Forms;
 
@@ -11,6 +12,7 @@ public partial class AnimeDetailsForm : Form
 {
     // Reference to the AnimeService for managing anime data.
     private readonly AnimeService _animeService;
+    private readonly AnimeDbContext _context;
 
     // Holds the current anime being edited or viewed.
     private Anime _currentAnime;
@@ -54,6 +56,9 @@ public partial class AnimeDetailsForm : Form
         clbGenres.ValueMember = "Id";
     }
 
+    /// <summary>
+    /// Populates the form fields with the details of the current anime being edited.
+    /// </summary>
     private void PopulateFields()
     {
         txtTitle.Text = _currentAnime.Title;
@@ -148,6 +153,14 @@ public partial class AnimeDetailsForm : Form
         }
 
         return true;
+    }
+
+    private void btnManageGenres_Click(object sender, EventArgs e)
+    {
+        using (var genreForm = new GenreManagementForm(_context))
+        {
+            genreForm.ShowDialog();
+        }
     }
 }
 

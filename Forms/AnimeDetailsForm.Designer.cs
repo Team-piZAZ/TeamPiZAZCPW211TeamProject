@@ -43,6 +43,8 @@
             panel5 = new Panel();
             lblReleaseDate = new Label();
             panel6 = new Panel();
+            btnManageGenres = new Button();
+            panel7 = new Panel();
             ((System.ComponentModel.ISupportInitialize)numRating).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -50,6 +52,7 @@
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
+            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // txtTitle
@@ -64,7 +67,7 @@
             txtTitle.Multiline = true;
             txtTitle.Name = "txtTitle";
             txtTitle.PlaceholderText = "Title goes here...";
-            txtTitle.Size = new Size(482, 24);
+            txtTitle.Size = new Size(480, 22);
             txtTitle.TabIndex = 0;
             // 
             // txtSynopsis
@@ -79,13 +82,14 @@
             txtSynopsis.Multiline = true;
             txtSynopsis.Name = "txtSynopsis";
             txtSynopsis.PlaceholderText = "Short Description . . .";
-            txtSynopsis.Size = new Size(485, 148);
+            txtSynopsis.Size = new Size(483, 146);
             txtSynopsis.TabIndex = 1;
             // 
             // numRating
             // 
             numRating.BackColor = Color.FromArgb(30, 30, 30);
             numRating.DecimalPlaces = 1;
+            numRating.Dock = DockStyle.Right;
             numRating.ForeColor = Color.White;
             numRating.Location = new Point(68, 2);
             numRating.Margin = new Padding(3, 2, 3, 2);
@@ -100,7 +104,7 @@
             dtpReleaseDate.CustomFormat = "MM/yyyy";
             dtpReleaseDate.Dock = DockStyle.Right;
             dtpReleaseDate.Format = DateTimePickerFormat.Custom;
-            dtpReleaseDate.Location = new Point(132, 2);
+            dtpReleaseDate.Location = new Point(130, 2);
             dtpReleaseDate.Margin = new Padding(3, 2, 3, 2);
             dtpReleaseDate.Name = "dtpReleaseDate";
             dtpReleaseDate.Size = new Size(121, 23);
@@ -118,7 +122,7 @@
             clbGenres.Margin = new Padding(3, 2, 3, 2);
             clbGenres.MultiColumn = true;
             clbGenres.Name = "clbGenres";
-            clbGenres.Size = new Size(485, 113);
+            clbGenres.Size = new Size(483, 111);
             clbGenres.Sorted = true;
             clbGenres.TabIndex = 4;
             // 
@@ -134,7 +138,7 @@
             btnSave.Location = new Point(3, 2);
             btnSave.Margin = new Padding(3, 2, 3, 2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(485, 90);
+            btnSave.Size = new Size(483, 88);
             btnSave.TabIndex = 5;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -142,6 +146,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Magenta;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(txtSynopsis);
             panel1.Location = new Point(62, 142);
             panel1.Margin = new Padding(3, 2, 3, 2);
@@ -153,6 +158,7 @@
             // panel2
             // 
             panel2.BackColor = Color.Magenta;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(txtTitle);
             panel2.Location = new Point(62, 16);
             panel2.Margin = new Padding(3, 2, 3, 2);
@@ -164,6 +170,7 @@
             // panel3
             // 
             panel3.BackColor = Color.Magenta;
+            panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(lblRating);
             panel3.Controls.Add(numRating);
             panel3.Location = new Point(62, 71);
@@ -188,6 +195,7 @@
             // panel4
             // 
             panel4.BackColor = Color.Magenta;
+            panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(clbGenres);
             panel4.Location = new Point(62, 322);
             panel4.Margin = new Padding(3, 2, 3, 2);
@@ -199,6 +207,7 @@
             // panel5
             // 
             panel5.BackColor = Color.Magenta;
+            panel5.BorderStyle = BorderStyle.FixedSingle;
             panel5.Controls.Add(lblReleaseDate);
             panel5.Controls.Add(dtpReleaseDate);
             panel5.Location = new Point(297, 71);
@@ -223,13 +232,37 @@
             // panel6
             // 
             panel6.BackColor = Color.Lime;
+            panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.Controls.Add(btnSave);
-            panel6.Location = new Point(62, 479);
+            panel6.Location = new Point(62, 499);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
             panel6.Padding = new Padding(3, 2, 3, 2);
             panel6.Size = new Size(491, 94);
             panel6.TabIndex = 11;
+            // 
+            // btnManageGenres
+            // 
+            btnManageGenres.BackColor = Color.DarkTurquoise;
+            btnManageGenres.Dock = DockStyle.Fill;
+            btnManageGenres.FlatStyle = FlatStyle.Popup;
+            btnManageGenres.Location = new Point(3, 3);
+            btnManageGenres.Name = "btnManageGenres";
+            btnManageGenres.Size = new Size(483, 21);
+            btnManageGenres.TabIndex = 12;
+            btnManageGenres.Text = "Manage Genres";
+            btnManageGenres.UseVisualStyleBackColor = false;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.Magenta;
+            panel7.BorderStyle = BorderStyle.FixedSingle;
+            panel7.Controls.Add(btnManageGenres);
+            panel7.Location = new Point(62, 455);
+            panel7.Name = "panel7";
+            panel7.Padding = new Padding(3);
+            panel7.Size = new Size(491, 29);
+            panel7.TabIndex = 13;
             // 
             // AnimeDetailsForm
             // 
@@ -239,6 +272,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(635, 618);
+            Controls.Add(panel7);
             Controls.Add(panel6);
             Controls.Add(panel5);
             Controls.Add(panel4);
@@ -259,6 +293,7 @@
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel6.ResumeLayout(false);
+            panel7.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -278,5 +313,7 @@
         private Panel panel6;
         private Label lblRating;
         private Label lblReleaseDate;
+        private Button btnManageGenres;
+        private Panel panel7;
     }
 }
