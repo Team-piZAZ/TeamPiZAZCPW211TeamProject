@@ -72,7 +72,12 @@ public class AnimeDbContext : DbContext
         modelBuilder.Entity<Studio>().HasData(
             new Studio { Id = 1, Name = "Studio Ghibli", Description = "A renowned Japanese animation studio." },
             new Studio { Id = 2, Name = "Madhouse", Description = "A Japanese animation studio known for its high-quality productions." },
-            new Studio { Id = 3, Name = "Bones", Description = "A Japanese animation studio known for its diverse range of anime series." }
+            new Studio { Id = 3, Name = "Bones", Description = "A Japanese animation studio known for its diverse range of anime series." },
+            new Studio { Id = 4, Name = "Kyoto Animation", Description = "A Japanese animation studio known for its detailed animation and character-driven stories." },
+            new Studio { Id = 5, Name = "Ufotable", Description = "A Japanese animation studio known for its visually stunning anime adaptations." },
+            new Studio { Id = 6, Name = "Sunrise", Description = "A Japanese animation studio known for its mecha and science fiction anime." },
+            new Studio { Id = 7, Name = "Wit Studio", Description = "A Japanese animation studio known for its creative and innovative approach to anime production." },
+            new Studio { Id = 8, Name = "Studio Deen", Description = "A Japanese animation studio known for its high-quality productions and attention to detail." }
         );
 
         // Seeds initial data for the Genre table in the database.  
