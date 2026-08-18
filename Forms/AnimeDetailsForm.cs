@@ -39,29 +39,21 @@ public partial class AnimeDetailsForm : Form
     /// <param name="e">The event data.</param>
     private async void AnimeDetailsForm_Load(object sender, EventArgs e)
     {
-        // 1. Fetch all available genres from the database, sorted alphabetically
-        var allGenres = _context.Genres.OrderBy(g => g.Name).ToList();
+        // Fetch available genres asynchronously
+        var availableGenres = await _context.Genres.OrderBy(g => g.Name).ToListAsync();
 
-        // 2. Clear the box (just in case) and add the objects
+        // Clear the box and add the objects (Done exactly once!)
         clbGenres.Items.Clear();
-        foreach (var genre in allGenres)
+        foreach (var genre in availableGenres)
         {
             clbGenres.Items.Add(genre);
         }
 
-        // 3. Tell the CheckedListBox to dispprivate async void AnimeDetailsForm_Load(object sender, EventArgs e)
-        // Clear the box and add the objects
-        clbGenres.Items.Clear();
-        foreach (var genre in allGenres)
-        {
-            clbGenres.Items.Add(genre);
-        }
-
-        // Tell the CheckedListBox to display the genre's Name
+        // Set the display and value members
         clbGenres.DisplayMember = "Name";
         clbGenres.ValueMember = "Id";
 
-        // If we are updating an existing anime, load it asynchronously
+        // If we are updating an existing anime, load it
         if (IsUpdateMode && _currentAnime != null)
         {
             await LoadExistingAnimeDataAsync();
@@ -143,11 +135,12 @@ public partial class AnimeDetailsForm : Form
         if (!ValidateForm()) return;
 
         string titleToCheck = txtTitle.Text.Trim();
+        string titleToCheckInvariant = titleToCheck.ToLowerInvariant();
 
         // Only check for duplicates if we are adding a new anime not updating an existing one
         if (!IsUpdateMode)
         {
-            bool isDuplicate = _context.Animes.Any(a => a.Title.ToLower() == titleToCheck.ToLower());
+            bool isDuplicate = await _context.Animes.AnyAsync(a => a.Title.ToLowerInvariant() == titleToCheck.ToLowerInvariant());
             if (isDuplicate)
             {
                 MessageBox.Show($"'{titleToCheck}' is already in the database.", "Duplicate Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
