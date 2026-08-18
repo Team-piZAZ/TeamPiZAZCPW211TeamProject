@@ -6,14 +6,28 @@ using System.Windows.Forms;
 
 namespace TeamPiZAZCPW211TeamProject.Forms;
 
+/// <summary>
+/// A custom UserControl that combines a dropdown with a CheckedListBox, allowing multiple selections.
+/// </summary>
+/// <typeparam name="T">A type that represents the items in the dropdown.</typeparam>
 public partial class MultiCheckDropdown<T> : UserControl
 {
+    // The panel that acts as the dropdown display area.
     private Panel displayPanel = new Panel();
+
+    // The label that shows the selected items or a placeholder text.
     private Label displayLabel = new Label();
 
+    // The CheckedListBox that contains the selectable items.
     private CheckedListBox clb = new CheckedListBox();
+
+    // The popup form that appears when the dropdown is clicked.
     private Form popupForm = new Form();
 
+    // Event that is triggered when the selection changes in the CheckedListBox.
+    public event EventHandler SelectionChanged;
+
+    // Initializes a new instance of the MultiCheckDropdown class.
     public MultiCheckDropdown()
     {
         this.Height = 25;
@@ -57,7 +71,13 @@ public partial class MultiCheckDropdown<T> : UserControl
         // Update display when items checked
         clb.ItemCheck += (s, e) =>
         {
-            this.BeginInvoke((MethodInvoker)UpdateDisplayText);
+            this.BeginInvoke((MethodInvoker)delegate
+            {
+                UpdateDisplayText();
+
+                //Shout out to the main form that the selection has changed
+                SelectionChanged?.Invoke(this, EventArgs.Empty);
+            });
         };
 
         popupForm.Deactivate += (s, e) => popupForm.Hide();

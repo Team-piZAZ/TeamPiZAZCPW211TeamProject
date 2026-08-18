@@ -2,6 +2,7 @@
 using TeamPiZAZCPW211TeamProject.Services;
 using TeamPiZAZCPW211TeamProject.Models;
 using TeamPiZAZCPW211TeamProject.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace TeamPiZAZCPW211TeamProject.Forms;
 
@@ -20,11 +21,15 @@ public partial class AnimeDetailsForm : Form
     // Indicates whether the form is in update mode (editing an existing anime) or create mode (adding a new anime).
     private bool IsUpdateMode => _currentAnime != null;
 
-    public AnimeDetailsForm(AnimeService service, Anime animeToEdit)
+    public AnimeDetailsForm(AnimeDbContext context, AnimeService service, Anime animeToEdit = null)
     {
         InitializeComponent();
+        btnSave.Click += btnSave_Click;
+        this.Load += AnimeDetailsForm_Load;
+        _context = context;
         _animeService = service;
         _currentAnime = animeToEdit;
+        
     }
 
     /// <summary>
@@ -34,13 +39,60 @@ public partial class AnimeDetailsForm : Form
     /// <param name="e">The event data.</param>
     private async void AnimeDetailsForm_Load(object sender, EventArgs e)
     {
-        // Load all genres from the AnimeService and populate the CheckedListBox.
-        await LoadGenres();
+        // 1. Fetch all available genres from the database, sorted alphabetically
+        var allGenres = _context.Genres.OrderBy(g => g.Name).ToList();
 
-        if (IsUpdateMode)
+        // 2. Clear the box (just in case) and add the objects
+        clbGenres.Items.Clear();
+        foreach (var genre in allGenres)
         {
-            PopulateFields();
+            clbGenres.Items.Add(genre);
         }
+
+        // 3. Tell the CheckedListBox to dispprivate async void AnimeDetailsForm_Load(object sender, EventArgs e)
+        // Clear the box and add the objects
+        clbGenres.Items.Clear();
+        foreach (var genre in allGenres)
+        {
+            clbGenres.Items.Add(genre);
+        }
+
+        // Tell the CheckedListBox to display the genre's Name
+        clbGenres.DisplayMember = "Name";
+        clbGenres.ValueMember = "Id";
+
+        // If we are updating an existing anime, load it asynchronously
+        if (IsUpdateMode && _currentAnime != null)
+        {
+            await LoadExistingAnimeDataAsync();
+        }
+    }
+
+    private async Task LoadExistingAnimeDataAsync()
+        {
+            // Pre-fill the standard text boxes immediately
+            txtTitle.Text = _currentAnime.Title;
+            txtSynopsis.Text = _currentAnime.Synopsis;
+            numRating.Value = (decimal)_currentAnime.Rating;
+            dtpReleaseDate.Value = new DateTime(_currentAnime.ReleaseYear, 1, 1);
+
+            // CRITICAL: Fetch the attached genres asynchronously
+            var animeWithGenres = await _context.Animes
+                                          .Where(a => a.Id == _currentAnime.Id)
+                                          .SelectMany(a => a.Genres)
+                                          .Select(g => g.Id)
+                                          .ToListAsync();
+
+            // Loop through every checkbox in the list and check matches
+            for (int i = 0; i < clbGenres.Items.Count; i++)
+            {
+                var genreItem = (Genre)clbGenres.Items[i];
+
+                if (animeWithGenres.Contains(genreItem.Id))
+                {
+                    clbGenres.SetItemChecked(i, true);
+                }
+            }
     }
 
     /// <summary>
@@ -90,10 +142,25 @@ public partial class AnimeDetailsForm : Form
     {
         if (!ValidateForm()) return;
 
+        string titleToCheck = txtTitle.Text.Trim();
+
+        // Only check for duplicates if we are adding a new anime not updating an existing one
+        if (!IsUpdateMode)
+        {
+            bool isDuplicate = _context.Animes.Any(a => a.Title.ToLower() == titleToCheck.ToLower());
+            if (isDuplicate)
+            {
+                MessageBox.Show($"'{titleToCheck}' is already in the database.", "Duplicate Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Stops the save operation if a duplicate is found
+                return;
+            }
+        }
+
         // Create a new Anime object or use the existing one based on the mode
         var animeToSave = IsUpdateMode ? _currentAnime : new Anime();
 
-        animeToSave.Title = txtTitle.Text.Trim();
+        animeToSave.Title = titleToCheck;
         animeToSave.Synopsis = txtSynopsis.Text.Trim();
         animeToSave.Rating = (double)numRating.Value;
         animeToSave.ReleaseYear = dtpReleaseDate.Value.Year;
