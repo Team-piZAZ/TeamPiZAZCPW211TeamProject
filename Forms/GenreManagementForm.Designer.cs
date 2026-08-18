@@ -40,7 +40,6 @@
             panel5 = new Panel();
             btnDelete = new Button();
             lblEditGenre = new Label();
-            Load += GenreManagementForm_Load;
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -192,6 +191,7 @@
             Controls.Add(panel1);
             Name = "GenreManagementForm";
             Text = "GenreManagementForm";
+            Load += GenreManagementForm_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
