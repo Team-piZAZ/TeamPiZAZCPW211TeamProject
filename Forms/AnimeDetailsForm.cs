@@ -60,31 +60,41 @@ public partial class AnimeDetailsForm : Form
         }
     }
 
+    /// <summary>
+    /// Loads the data for an existing anime into the form.
+    /// </summary>
+    /// <returns>A task representing the asynchronous operation.</returns>
     private async Task LoadExistingAnimeDataAsync()
         {
-            // Pre-fill the standard text boxes immediately
-            txtTitle.Text = _currentAnime.Title;
-            txtSynopsis.Text = _currentAnime.Synopsis;
-            numRating.Value = (decimal)_currentAnime.Rating;
-            dtpReleaseDate.Value = new DateTime(_currentAnime.ReleaseYear, 1, 1);
+        if (_currentAnime == null) return;
+       
+        // Pre-fill the standard text boxes immediately
+        txtTitle.Text = _currentAnime.Title;
+        txtSynopsis.Text = _currentAnime.Synopsis;
+        cmbTvRating.SelectedValue = _currentAnime.TvRating;
+        numEpisodes.Value = (int)_currentAnime.Episodes;
+        numPublicationYear.Value = (int)_currentAnime.PublicationYear;
+        int safeYear = _currentAnime.ReleaseYear > 0 ? _currentAnime.ReleaseYear : DateTime.Now.Year;
+        dtpReleaseDate.Value = new DateTime(safeYear, 1, 1);
 
-            // CRITICAL: Fetch the attached genres asynchronously
-            var animeWithGenres = await _context.Animes
-                                          .Where(a => a.Id == _currentAnime.Id)
-                                          .SelectMany(a => a.Genres)
-                                          .Select(g => g.Id)
-                                          .ToListAsync();
 
-            // Loop through every checkbox in the list and check matches
-            for (int i = 0; i < clbGenres.Items.Count; i++)
+        // CRITICAL: Fetch the attached genres asynchronously
+        var animeWithGenres = await _context.Animes
+                                        .Where(a => a.Id == _currentAnime.Id)
+                                        .SelectMany(a => a.Genres)
+                                        .Select(g => g.Id)
+                                        .ToListAsync();
+
+        // Loop through every checkbox in the list and check matches
+        for (int i = 0; i < clbGenres.Items.Count; i++)
+        {
+            var genreItem = (Genre)clbGenres.Items[i];
+
+            if (animeWithGenres.Contains(genreItem.Id))
             {
-                var genreItem = (Genre)clbGenres.Items[i];
-
-                if (animeWithGenres.Contains(genreItem.Id))
-                {
-                    clbGenres.SetItemChecked(i, true);
-                }
+                clbGenres.SetItemChecked(i, true);
             }
+        }
     }
 
     /// <summary>
@@ -107,7 +117,7 @@ public partial class AnimeDetailsForm : Form
     {
         txtTitle.Text = _currentAnime.Title;
         txtSynopsis.Text = _currentAnime.Synopsis;
-        numRating.Value = (decimal)_currentAnime.Rating;
+        cmbTvRating.SelectedValue = _currentAnime.TvRating;
 
         // Set the DateTimePicker to the first day of the release year,
         // defaulting to January 1st of that year since only the year is stored.
@@ -155,7 +165,9 @@ public partial class AnimeDetailsForm : Form
 
         animeToSave.Title = titleToCheck;
         animeToSave.Synopsis = txtSynopsis.Text.Trim();
-        animeToSave.Rating = (double)numRating.Value;
+        animeToSave.TvRating = cmbTvRating.Text;
+        animeToSave.Episodes = (int)numEpisodes.Value;
+        animeToSave.PublicationYear = (int)numPublicationYear.Value;
         animeToSave.ReleaseYear = dtpReleaseDate.Value.Year;
 
         // Get the selected genre IDs from the CheckedListBox

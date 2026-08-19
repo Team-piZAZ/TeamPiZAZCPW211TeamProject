@@ -146,6 +146,16 @@ public partial class AnimeListForm : Form
 
             flpAnimeList.Controls.Add(animeCard);
         }
-            
+
+    }
+
+    private void lblTvRating_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label1_Click(object sender, EventArgs e)
+    {
+
     }
 }

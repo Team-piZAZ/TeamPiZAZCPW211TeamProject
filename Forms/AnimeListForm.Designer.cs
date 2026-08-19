@@ -31,10 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnimeListForm));
             lblStudio = new Label();
             lblAnimeName = new Label();
-            flpAnimeList = new FlowLayoutPanel();
             txtAnimeName = new TextBox();
             btnAddToList = new Button();
             lblGenre = new Label();
+            splitContainer1 = new SplitContainer();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.SuspendLayout();
             SuspendLayout();
             // 
             // lblStudio
@@ -58,16 +62,6 @@
             lblAnimeName.Size = new Size(78, 15);
             lblAnimeName.TabIndex = 9;
             lblAnimeName.Text = "Anime Name";
-            // 
-            // flpAnimeList
-            // 
-            flpAnimeList.AutoScroll = true;
-            flpAnimeList.BackColor = Color.Transparent;
-            flpAnimeList.Location = new Point(12, 35);
-            flpAnimeList.Name = "flpAnimeList";
-            flpAnimeList.Padding = new Padding(10);
-            flpAnimeList.Size = new Size(972, 569);
-            flpAnimeList.TabIndex = 11;
             // 
             // txtAnimeName
             // 
@@ -102,6 +96,28 @@
             lblGenre.TabIndex = 14;
             lblGenre.Text = "Genre";
             // 
+            // splitContainer1
+            // 
+            splitContainer1.BackColor = Color.Transparent;
+            splitContainer1.Location = new Point(12, 35);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(flowLayoutPanel1);
+            splitContainer1.Size = new Size(972, 569);
+            splitContainer1.SplitterDistance = 324;
+            splitContainer1.TabIndex = 15;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(324, 569);
+            flowLayoutPanel1.TabIndex = 0;
+            // 
             // AnimeListForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -110,15 +126,18 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(996, 616);
+            Controls.Add(splitContainer1);
             Controls.Add(lblGenre);
             Controls.Add(btnAddToList);
             Controls.Add(txtAnimeName);
-            Controls.Add(flpAnimeList);
             Controls.Add(lblAnimeName);
             Controls.Add(lblStudio);
             Name = "AnimeListForm";
             Text = "Anime List";
             Load += AnimeListForm_Load;
+            splitContainer1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -127,9 +146,10 @@
 
         private Label lblStudio;
         private Label lblAnimeName;
-        private FlowLayoutPanel flpAnimeList;
         private TextBox txtAnimeName;
         private Button btnAddToList;
         private Label lblGenre;
+        private SplitContainer splitContainer1;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
