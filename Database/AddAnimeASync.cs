@@ -32,7 +32,9 @@ public class AddAnimeASync
             Title = anime.Title,
             Synopsis = anime.Synopsis,
             ReleaseYear = anime.ReleaseYear,
-            Rating = anime.Rating,
+            TvRating = anime.TvRating,
+            Episodes = anime.Episodes,
+            PublicationYear = anime.PublicationYear,
             StudioId = anime.StudioId
         };
 
