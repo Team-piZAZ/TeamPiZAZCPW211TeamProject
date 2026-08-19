@@ -13,9 +13,9 @@ namespace TeamPiZAZCPW211TeamProject.Forms;
 /// <summary>
 /// Represents a user control that displays detailed information about an anime.
 /// </summary>
-public partial class LargeAnimeCard : UserControl
+public partial class mainLargeCard : UserControl
 {
-    public LargeAnimeCard()
+    public mainLargeCard()
     {
         InitializeComponent();
     }

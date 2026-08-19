@@ -1,6 +1,6 @@
 ﻿namespace TeamPiZAZCPW211TeamProject.Forms
 {
-    partial class LargeAnimeCard
+    partial class mainLargeCard
     {
         /// <summary> 
         /// Required designer variable.
@@ -113,7 +113,7 @@
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
-            // LargeAnimeCard
+            // mainLargeCard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -127,7 +127,7 @@
             Controls.Add(lblSynopsis);
             Controls.Add(lblTitle);
             ForeColor = SystemColors.Menu;
-            Name = "LargeAnimeCard";
+            Name = "mainLargeCard";
             Size = new Size(636, 382);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

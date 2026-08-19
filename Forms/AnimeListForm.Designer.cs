@@ -1,4 +1,9 @@
-﻿namespace TeamPiZAZCPW211TeamProject
+﻿using TeamPiZAZCPW211TeamProject.Models;
+using TeamPiZAZCPW211TeamProject.Services;
+using TeamPiZAZCPW211TeamProject.Database;
+using TeamPiZAZCPW211TeamProject.Forms;
+
+namespace TeamPiZAZCPW211TeamProject
 {
     partial class AnimeListForm
     {
@@ -35,10 +40,17 @@
             btnAddToList = new Button();
             lblGenre = new Label();
             splitContainer1 = new SplitContainer();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            flpAnimeList = new FlowLayoutPanel();
+            txtSearchTitle = new Button();
+            cmbStudio = new ComboBox();
+            cmbGenre = new ComboBox();
+            mainLargeCard = new mainLargeCard();
+            smallAnimeCard1 = new SmallAnimeCard();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            flpAnimeList.SuspendLayout();
             SuspendLayout();
             // 
             // lblStudio
@@ -65,10 +77,11 @@
             // 
             // txtAnimeName
             // 
+            txtAnimeName.BackColor = Color.FromArgb(30, 30, 30);
             txtAnimeName.Location = new Point(452, 6);
             txtAnimeName.Name = "txtAnimeName";
             txtAnimeName.PlaceholderText = "Enter Anime Name";
-            txtAnimeName.Size = new Size(279, 23);
+            txtAnimeName.Size = new Size(246, 23);
             txtAnimeName.TabIndex = 12;
             txtAnimeName.TextChanged += txtAnimeName_TextChanged;
             // 
@@ -77,7 +90,7 @@
             btnAddToList.BackColor = Color.BlueViolet;
             btnAddToList.FlatStyle = FlatStyle.Flat;
             btnAddToList.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAddToList.Location = new Point(805, 5);
+            btnAddToList.Location = new Point(854, 5);
             btnAddToList.Name = "btnAddToList";
             btnAddToList.Size = new Size(130, 23);
             btnAddToList.TabIndex = 13;
@@ -90,11 +103,12 @@
             lblGenre.AutoSize = true;
             lblGenre.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblGenre.ForeColor = SystemColors.Control;
-            lblGenre.Location = new Point(174, 9);
+            lblGenre.Location = new Point(184, 9);
             lblGenre.Name = "lblGenre";
             lblGenre.Size = new Size(39, 15);
             lblGenre.TabIndex = 14;
             lblGenre.Text = "Genre";
+            lblGenre.Click += lblGenre_Click;
             // 
             // splitContainer1
             // 
@@ -104,19 +118,80 @@
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(flowLayoutPanel1);
+            splitContainer1.Panel1.Controls.Add(flpAnimeList);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(mainLargeCard);
             splitContainer1.Size = new Size(972, 569);
             splitContainer1.SplitterDistance = 324;
             splitContainer1.TabIndex = 15;
             // 
-            // flowLayoutPanel1
+            // flpAnimeList
             // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(324, 569);
-            flowLayoutPanel1.TabIndex = 0;
+            flpAnimeList.AutoScroll = true;
+            flpAnimeList.Controls.Add(smallAnimeCard1);
+            flpAnimeList.Dock = DockStyle.Fill;
+            flpAnimeList.Location = new Point(0, 0);
+            flpAnimeList.Name = "flpAnimeList";
+            flpAnimeList.Size = new Size(324, 569);
+            flpAnimeList.TabIndex = 0;
+            // 
+            // txtSearchTitle
+            // 
+            txtSearchTitle.BackColor = Color.DarkCyan;
+            txtSearchTitle.FlatStyle = FlatStyle.Popup;
+            txtSearchTitle.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtSearchTitle.Location = new Point(715, 5);
+            txtSearchTitle.Name = "txtSearchTitle";
+            txtSearchTitle.Size = new Size(122, 23);
+            txtSearchTitle.TabIndex = 16;
+            txtSearchTitle.Text = "Search Title";
+            txtSearchTitle.UseVisualStyleBackColor = false;
+            // 
+            // cmbStudio
+            // 
+            cmbStudio.BackColor = Color.FromArgb(30, 30, 30);
+            cmbStudio.FlatStyle = FlatStyle.Popup;
+            cmbStudio.ForeColor = SystemColors.Window;
+            cmbStudio.FormattingEnabled = true;
+            cmbStudio.Location = new Point(59, 5);
+            cmbStudio.Name = "cmbStudio";
+            cmbStudio.Size = new Size(109, 23);
+            cmbStudio.TabIndex = 17;
+            // 
+            // cmbGenre
+            // 
+            cmbGenre.BackColor = Color.FromArgb(30, 30, 30);
+            cmbGenre.FlatStyle = FlatStyle.Popup;
+            cmbGenre.ForeColor = SystemColors.Window;
+            cmbGenre.FormattingEnabled = true;
+            cmbGenre.Location = new Point(229, 5);
+            cmbGenre.Name = "cmbGenre";
+            cmbGenre.Size = new Size(121, 23);
+            cmbGenre.TabIndex = 18;
+            // 
+            // mainLargeCard
+            // 
+            this.mainLargeCard.BackColor = Color.FromArgb(30, 30, 30);
+            this.mainLargeCard.BorderStyle = BorderStyle.Fixed3D;
+            this.mainLargeCard.Dock = DockStyle.Fill;
+            this.mainLargeCard.ForeColor = SystemColors.Menu;
+            this.mainLargeCard.Location = new Point(0, 0);
+            this.mainLargeCard.Name = "mainLargeCard";
+            this.mainLargeCard.Size = new Size(644, 569);
+            this.mainLargeCard.TabIndex = 0;
+            // 
+            // smallAnimeCard1
+            // 
+            smallAnimeCard1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            smallAnimeCard1.BackColor = Color.DeepSkyBlue;
+            smallAnimeCard1.BackgroundImageLayout = ImageLayout.Stretch;
+            smallAnimeCard1.Location = new Point(3, 3);
+            smallAnimeCard1.Name = "smallAnimeCard1";
+            smallAnimeCard1.Padding = new Padding(3);
+            smallAnimeCard1.Size = new Size(275, 140);
+            smallAnimeCard1.TabIndex = 0;
             // 
             // AnimeListForm
             // 
@@ -126,6 +201,9 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(996, 616);
+            Controls.Add(cmbGenre);
+            Controls.Add(cmbStudio);
+            Controls.Add(txtSearchTitle);
             Controls.Add(splitContainer1);
             Controls.Add(lblGenre);
             Controls.Add(btnAddToList);
@@ -136,8 +214,10 @@
             Text = "Anime List";
             Load += AnimeListForm_Load;
             splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            flpAnimeList.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -150,6 +230,11 @@
         private Button btnAddToList;
         private Label lblGenre;
         private SplitContainer splitContainer1;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flpAnimeList;
+        private Button txtSearchTitle;
+        private ComboBox cmbStudio;
+        private ComboBox cmbGenre;
+        private SmallAnimeCard smallAnimeCard1;
+        private mainLargeCard mainLargeCard;
     }
 }
