@@ -129,27 +129,24 @@ public partial class AnimeListForm : Form
         DisplayAnime(filtered.ToList());
     }
 
+    
     private void DisplayAnime(List<Anime> animeList)
     {
-        // Clear existing controls in the FlowLayoutPanel
+        // Clear out the old UI elements
         flpAnimeList.Controls.Clear();
 
-        // Loop through the filtered anime list and create a button for each anime
-        foreach (Anime anime in animeList)
+        foreach (var anime in animeList)
         {
-            // Create a new button for the anime
-            Button animeCard = new Button();
-            animeCard.Text = anime.Title;
-            animeCard.Size = new Size(150, 50);
-            animeCard.BackColor = Color.FromArgb(30, 30, 30);
-            animeCard.ForeColor = Color.White;
-            animeCard.FlatStyle = FlatStyle.Flat;
-            animeCard.FlatAppearance.BorderColor = Color.Magenta;
-            animeCard.Margin = new Padding(5);
+            // Instantiate your custom UserControl
+            SmallAnimeCard card = new SmallAnimeCard();
 
-            flpAnimeList.Controls.Add(animeCard);
+            // Pass the anime data to the card (you may need to create a public method 
+            // inside SmallAnimeCard.cs to accept this data and update its labels/images)
+            card.PopulateData(anime);
+
+            // Add the finished card to your flow layout panel
+            flpAnimeList.Controls.Add(card);
         }
-
     }
 
     private async void btnSearch_Click(object sender, EventArgs e)

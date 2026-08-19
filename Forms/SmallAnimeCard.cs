@@ -54,4 +54,12 @@ public partial class SmallAnimeCard : UserControl
     {
         OnCardClicked?.Invoke(AnimeId);
     }
+
+    public void PopulateData(Anime anime)
+    {
+        if (anime == null) return;
+
+        lblTitle.Text = anime.Title;
+        lblRating.Text = anime.TvRating;
+    }
 }
