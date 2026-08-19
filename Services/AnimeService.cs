@@ -127,7 +127,9 @@ public class AnimeService : IAnimeService
         existingAnime.Title = anime.Title;
         existingAnime.Synopsis = anime.Synopsis;
         existingAnime.ReleaseYear = anime.ReleaseYear;
-        existingAnime.Rating = anime.Rating;
+        existingAnime.TvRating = anime.TvRating;
+        existingAnime.Episodes = anime.Episodes;
+        existingAnime.PublicationYear = anime.PublicationYear;
         existingAnime.StudioId = anime.StudioId;
 
         // Reset the existing genres and add the updated genres based on selectedGenreIds
