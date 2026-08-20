@@ -51,6 +51,9 @@
             panel9 = new Panel();
             lblPublicationYear = new Label();
             numPublicationYear = new NumericUpDown();
+            lblGenres = new Label();
+            panel10 = new Panel();
+            btnEditAnime = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -62,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)numEpisodes).BeginInit();
             panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numPublicationYear).BeginInit();
+            panel10.SuspendLayout();
             SuspendLayout();
             // 
             // txtTitle
@@ -69,7 +73,7 @@
             txtTitle.BackColor = Color.FromArgb(30, 30, 30);
             txtTitle.BorderStyle = BorderStyle.None;
             txtTitle.Dock = DockStyle.Fill;
-            txtTitle.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTitle.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTitle.ForeColor = Color.White;
             txtTitle.Location = new Point(3, 2);
             txtTitle.Margin = new Padding(3, 2, 3, 2);
@@ -82,16 +86,16 @@
             // txtSynopsis
             // 
             txtSynopsis.BackColor = Color.FromArgb(30, 30, 30);
-            txtSynopsis.BorderStyle = BorderStyle.None;
+            txtSynopsis.BorderStyle = BorderStyle.FixedSingle;
             txtSynopsis.Dock = DockStyle.Fill;
-            txtSynopsis.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSynopsis.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSynopsis.ForeColor = Color.White;
             txtSynopsis.Location = new Point(3, 2);
             txtSynopsis.Margin = new Padding(3, 2, 3, 2);
             txtSynopsis.Multiline = true;
             txtSynopsis.Name = "txtSynopsis";
             txtSynopsis.PlaceholderText = "Short Description . . .";
-            txtSynopsis.Size = new Size(483, 146);
+            txtSynopsis.Size = new Size(483, 109);
             txtSynopsis.TabIndex = 1;
             // 
             // dtpReleaseDate
@@ -100,24 +104,24 @@
             dtpReleaseDate.CustomFormat = "MM/yyyy";
             dtpReleaseDate.Dock = DockStyle.Right;
             dtpReleaseDate.Format = DateTimePickerFormat.Custom;
-            dtpReleaseDate.Location = new Point(108, 3);
+            dtpReleaseDate.Location = new Point(130, 3);
             dtpReleaseDate.Name = "dtpReleaseDate";
-            dtpReleaseDate.Size = new Size(100, 23);
+            dtpReleaseDate.Size = new Size(78, 23);
             dtpReleaseDate.TabIndex = 3;
             // 
             // clbGenres
             // 
             clbGenres.BackColor = Color.FromArgb(30, 30, 30);
-            clbGenres.BorderStyle = BorderStyle.None;
+            clbGenres.BorderStyle = BorderStyle.FixedSingle;
             clbGenres.Dock = DockStyle.Fill;
-            clbGenres.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            clbGenres.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             clbGenres.ForeColor = Color.White;
             clbGenres.FormattingEnabled = true;
             clbGenres.Location = new Point(3, 2);
             clbGenres.Margin = new Padding(3, 2, 3, 2);
             clbGenres.MultiColumn = true;
             clbGenres.Name = "clbGenres";
-            clbGenres.Size = new Size(483, 111);
+            clbGenres.Size = new Size(483, 89);
             clbGenres.Sorted = true;
             clbGenres.TabIndex = 4;
             // 
@@ -147,7 +151,7 @@
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Padding = new Padding(3, 2, 3, 2);
-            panel1.Size = new Size(491, 152);
+            panel1.Size = new Size(491, 115);
             panel1.TabIndex = 6;
             // 
             // panel2
@@ -191,24 +195,24 @@
             // 
             lblRating.AutoSize = true;
             lblRating.BackColor = Color.Transparent;
-            lblRating.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblRating.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblRating.ForeColor = Color.White;
             lblRating.Location = new Point(6, 1);
             lblRating.Name = "lblRating";
-            lblRating.Size = new Size(70, 20);
+            lblRating.Size = new Size(88, 18);
             lblRating.TabIndex = 3;
-            lblRating.Text = "Tv Rating";
+            lblRating.Text = "TV Rating";
             // 
             // panel4
             // 
             panel4.BackColor = Color.Magenta;
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(clbGenres);
-            panel4.Location = new Point(62, 322);
+            panel4.Location = new Point(62, 290);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
             panel4.Padding = new Padding(3, 2, 3, 2);
-            panel4.Size = new Size(491, 117);
+            panel4.Size = new Size(491, 95);
             panel4.TabIndex = 9;
             // 
             // panel5
@@ -227,11 +231,11 @@
             // 
             lblReleaseDate.AutoSize = true;
             lblReleaseDate.BackColor = Color.Transparent;
-            lblReleaseDate.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblReleaseDate.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblReleaseDate.ForeColor = Color.White;
             lblReleaseDate.Location = new Point(6, 4);
             lblReleaseDate.Name = "lblReleaseDate";
-            lblReleaseDate.Size = new Size(96, 20);
+            lblReleaseDate.Size = new Size(118, 18);
             lblReleaseDate.TabIndex = 4;
             lblReleaseDate.Text = "Release Date";
             // 
@@ -252,9 +256,11 @@
             btnManageGenres.BackColor = Color.DarkTurquoise;
             btnManageGenres.Dock = DockStyle.Fill;
             btnManageGenres.FlatStyle = FlatStyle.Popup;
+            btnManageGenres.Font = new Font("Verdana", 12F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+            btnManageGenres.ForeColor = Color.Lime;
             btnManageGenres.Location = new Point(3, 3);
             btnManageGenres.Name = "btnManageGenres";
-            btnManageGenres.Size = new Size(483, 21);
+            btnManageGenres.Size = new Size(483, 31);
             btnManageGenres.TabIndex = 12;
             btnManageGenres.Text = "Manage Genres";
             btnManageGenres.UseVisualStyleBackColor = false;
@@ -262,13 +268,13 @@
             // 
             // panel7
             // 
-            panel7.BackColor = Color.Magenta;
+            panel7.BackColor = Color.Lime;
             panel7.BorderStyle = BorderStyle.FixedSingle;
             panel7.Controls.Add(btnManageGenres);
             panel7.Location = new Point(62, 455);
             panel7.Name = "panel7";
             panel7.Padding = new Padding(3);
-            panel7.Size = new Size(491, 29);
+            panel7.Size = new Size(491, 39);
             panel7.TabIndex = 13;
             // 
             // panel8
@@ -286,11 +292,11 @@
             // lblEpisodes
             // 
             lblEpisodes.AutoSize = true;
-            lblEpisodes.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblEpisodes.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblEpisodes.ForeColor = SystemColors.Window;
             lblEpisodes.Location = new Point(8, 3);
             lblEpisodes.Name = "lblEpisodes";
-            lblEpisodes.Size = new Size(68, 20);
+            lblEpisodes.Size = new Size(81, 18);
             lblEpisodes.TabIndex = 1;
             lblEpisodes.Text = "Episodes";
             // 
@@ -324,11 +330,11 @@
             // lblPublicationYear
             // 
             lblPublicationYear.AutoSize = true;
-            lblPublicationYear.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPublicationYear.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPublicationYear.ForeColor = SystemColors.Window;
-            lblPublicationYear.Location = new Point(6, 3);
+            lblPublicationYear.Location = new Point(-1, 3);
             lblPublicationYear.Name = "lblPublicationYear";
-            lblPublicationYear.Size = new Size(115, 20);
+            lblPublicationYear.Size = new Size(140, 18);
             lblPublicationYear.TabIndex = 1;
             lblPublicationYear.Text = "Publication Year";
             // 
@@ -337,13 +343,51 @@
             numPublicationYear.BackColor = Color.FromArgb(30, 30, 30);
             numPublicationYear.BorderStyle = BorderStyle.FixedSingle;
             numPublicationYear.ForeColor = SystemColors.Window;
-            numPublicationYear.Location = new Point(127, 3);
+            numPublicationYear.Location = new Point(152, 3);
             numPublicationYear.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numPublicationYear.Minimum = new decimal(new int[] { 1940, 0, 0, 0 });
             numPublicationYear.Name = "numPublicationYear";
-            numPublicationYear.Size = new Size(81, 23);
+            numPublicationYear.Size = new Size(56, 23);
             numPublicationYear.TabIndex = 0;
             numPublicationYear.Value = new decimal(new int[] { 1940, 0, 0, 0 });
+            // 
+            // lblGenres
+            // 
+            lblGenres.AutoSize = true;
+            lblGenres.BackColor = Color.Transparent;
+            lblGenres.Font = new Font("Verdana", 12F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblGenres.ForeColor = Color.Turquoise;
+            lblGenres.Location = new Point(66, 267);
+            lblGenres.Name = "lblGenres";
+            lblGenres.Size = new Size(71, 18);
+            lblGenres.TabIndex = 16;
+            lblGenres.Text = "Genres";
+            // 
+            // panel10
+            // 
+            panel10.BackColor = Color.Lime;
+            panel10.BorderStyle = BorderStyle.FixedSingle;
+            panel10.Controls.Add(btnEditAnime);
+            panel10.Location = new Point(62, 407);
+            panel10.Name = "panel10";
+            panel10.Padding = new Padding(3);
+            panel10.Size = new Size(491, 42);
+            panel10.TabIndex = 17;
+            // 
+            // btnEditAnime
+            // 
+            btnEditAnime.BackColor = Color.DarkTurquoise;
+            btnEditAnime.Dock = DockStyle.Fill;
+            btnEditAnime.FlatStyle = FlatStyle.Popup;
+            btnEditAnime.Font = new Font("Verdana", 12F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+            btnEditAnime.ForeColor = Color.Lime;
+            btnEditAnime.Location = new Point(3, 3);
+            btnEditAnime.Name = "btnEditAnime";
+            btnEditAnime.Size = new Size(483, 34);
+            btnEditAnime.TabIndex = 0;
+            btnEditAnime.Text = "Edit Anime";
+            btnEditAnime.UseVisualStyleBackColor = false;
+            btnEditAnime.Click += btnEditAnime_Click;
             // 
             // AnimeDetailsForm
             // 
@@ -352,7 +396,9 @@
             BackColor = Color.Black;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(635, 618);
+            ClientSize = new Size(622, 618);
+            Controls.Add(panel10);
+            Controls.Add(lblGenres);
             Controls.Add(panel9);
             Controls.Add(panel8);
             Controls.Add(panel7);
@@ -382,7 +428,9 @@
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numPublicationYear).EndInit();
+            panel10.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -409,5 +457,8 @@
         private Label lblEpisodes;
         private Label lblPublicationYear;
         private NumericUpDown numPublicationYear;
+        private Label lblGenres;
+        private Panel panel10;
+        private Button btnEditAnime;
     }
 }
