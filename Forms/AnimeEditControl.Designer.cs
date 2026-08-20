@@ -135,7 +135,7 @@
             dtpPublicationYear.CalendarMonthBackground = Color.FromArgb(30, 30, 30);
             dtpPublicationYear.CalendarTitleBackColor = Color.FromArgb(30, 30, 30);
             dtpPublicationYear.CalendarTitleForeColor = Color.FromArgb(30, 30, 30);
-            dtpPublicationYear.CustomFormat = "2026";
+            dtpPublicationYear.CustomFormat = "yyyy";
             dtpPublicationYear.DropDownAlign = LeftRightAlignment.Right;
             dtpPublicationYear.Format = DateTimePickerFormat.Custom;
             dtpPublicationYear.Location = new Point(306, 229);

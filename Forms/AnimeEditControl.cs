@@ -15,13 +15,12 @@ namespace TeamPiZAZCPW211TeamProject.Forms;
 public partial class AnimeEditControl : UserControl
 {
 
-    private readonly AnimeDbContext _context = new AnimeDbContext();
+    private readonly AnimeDbContext _context;
     public AnimeEditControl(AnimeDbContext context)
     {
         InitializeComponent();
         _context = context;
         btnSearch.Click += btnSearch_Click;
-        btnSaveChanges.Click += btnSaveChanges_Click;
         btnCancelChanges.Click += btnCancelChanges_Click;
     }
 
