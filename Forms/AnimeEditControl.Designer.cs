@@ -121,7 +121,7 @@
             numEpisodes.BorderStyle = BorderStyle.FixedSingle;
             numEpisodes.ForeColor = SystemColors.InactiveCaption;
             numEpisodes.Location = new Point(195, 229);
-            numEpisodes.Margin = new Padding(4, 4, 4, 4);
+            numEpisodes.Margin = new Padding(4);
             numEpisodes.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numEpisodes.Name = "numEpisodes";
             numEpisodes.Size = new Size(76, 27);
@@ -191,6 +191,7 @@
             btnSaveChanges.TabIndex = 11;
             btnSaveChanges.Text = "Save Changes";
             btnSaveChanges.UseVisualStyleBackColor = false;
+            btnSaveChanges.Click += btnSaveChanges_Click;
             // 
             // btnCancelChanges
             // 
@@ -224,9 +225,9 @@
             Controls.Add(btnSearch);
             Controls.Add(txtEditSearch);
             Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "AnimeEditControl";
-            Size = new Size(459, 349);
+            Size = new Size(457, 350);
             Load += AnimeEditControl_Load;
             ((System.ComponentModel.ISupportInitialize)numEpisodes).EndInit();
             ResumeLayout(false);

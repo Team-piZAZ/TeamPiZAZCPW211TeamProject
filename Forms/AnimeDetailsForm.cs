@@ -78,7 +78,7 @@ public partial class AnimeDetailsForm : Form
         dtpReleaseDate.Value = new DateTime(safeYear, 1, 1);
 
 
-        // CRITICAL: Fetch the attached genres asynchronously
+        // Fetch the attached genres asynchronously
         var animeWithGenres = await _context.Animes
                                         .Where(a => a.Id == _currentAnime.Id)
                                         .SelectMany(a => a.Genres)
@@ -97,41 +97,6 @@ public partial class AnimeDetailsForm : Form
         }
     }
 
-    /// <summary>
-    /// Loads all genres from the AnimeService and populates the CheckedListBox with them.
-    /// </summary>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    private async Task LoadGenres()
-    {
-        var allGenres = await _animeService.GetAllGenresAsync();
-
-        clbGenres.DataSource = allGenres;
-        clbGenres.DisplayMember = "Name";
-        clbGenres.ValueMember = "Id";
-    }
-
-    /// <summary>
-    /// Populates the form fields with the details of the current anime being edited.
-    /// </summary>
-    private void PopulateFields()
-    {
-        txtTitle.Text = _currentAnime.Title;
-        txtSynopsis.Text = _currentAnime.Synopsis;
-        cmbTvRating.SelectedValue = _currentAnime.TvRating;
-
-        // Set the DateTimePicker to the first day of the release year,
-        // defaulting to January 1st of that year since only the year is stored.
-        dtpReleaseDate.Value = new DateTime(_currentAnime.ReleaseYear, 1, 1);
-
-        for (int i = 0; i < clbGenres.Items.Count; i++)
-        {
-            var genre = (Genre)clbGenres.Items[i];
-            if (_currentAnime.Genres.Any(g => g.Id == genre.Id))
-            {
-                clbGenres.SetItemChecked(i, true);
-            }
-        }
-    }
 
     /// <summary>
     /// Handles the click event of the Save button.
@@ -227,6 +192,13 @@ public partial class AnimeDetailsForm : Form
         return true;
     }
 
+    /// <summary>
+    /// Handles the click event of the Manage Genres button. 
+    /// It opens the GenreManagementForm as a modal dialog, 
+    /// allowing the user to manage genres.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
     private void btnManageGenres_Click(object sender, EventArgs e)
     {
         using (var genreForm = new GenreManagementForm(_context))
@@ -235,15 +207,34 @@ public partial class AnimeDetailsForm : Form
         }
     }
 
+    /// <summary>
+    /// Handles the click event of the Edit Anime button. It hides the button, 
+    /// creates a new AnimeEditControl, centers it on the form, 
+    /// and adds it to the form's controls. When the edit control is disposed, 
+    /// the button is made visible again.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
     private void btnEditAnime_Click(object sender, EventArgs e)
     {
+        // Hide the edit button so they can't click it twice
         btnEditAnime.Visible = false;
 
+        // Instantiate the new edit control
         AnimeEditControl editControl = new AnimeEditControl(_context);
 
-        editControl.Dock = DockStyle.Fill;
-        this.Controls.Add(editControl);
+        // Center the control on the form
+        editControl.Left = (this.ClientSize.Width - editControl.Width) / 2;
+        editControl.Top = (this.ClientSize.Height - editControl.Height) / 2;
 
+        // Tell the form to bring the button back when the edit control closes!
+        editControl.Disposed += (s, args) =>
+        {
+            btnEditAnime.Visible = true;
+        };
+
+        // Add it to the form and bring it to the front
+        this.Controls.Add(editControl);
         editControl.BringToFront();
     }
 }

@@ -20,6 +20,9 @@ public partial class AnimeEditControl : UserControl
     {
         InitializeComponent();
         _context = context;
+        btnSearch.Click += btnSearch_Click;
+        btnSaveChanges.Click += btnSaveChanges_Click;
+        btnCancelChanges.Click += btnCancelChanges_Click;
     }
 
     private void panel1_Paint(object sender, PaintEventArgs e)
@@ -60,11 +63,57 @@ public partial class AnimeEditControl : UserControl
 
         dtpPublicationYear.Value = new DateTime(_animeToEdit.PublicationYear, 1, 1);
 
-        
+
         numEpisodes.Value = Math.Max(numEpisodes.Minimum, _animeToEdit.Episodes);
 
 
         cmbEditTvRating.Text = _animeToEdit.TvRating;
 
+    }
+
+    private void btnCancelChanges_Click(object sender, EventArgs e)
+    {
+        this.Parent?.Controls.Remove(this);
+        this.Dispose();
+
+    }
+
+    private async void btnSaveChanges_Click(object sender, EventArgs e)
+    {
+        // Ensure that an anime has been loaded for editing
+        if (_animeToEdit == null)
+        {
+            MessageBox.Show("Please search for and load an anime to edit first.", "No Anime Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(txtTitle.Text) || string.IsNullOrWhiteSpace(txtSynopsis.Text))
+        {
+            MessageBox.Show("Title and Synopsis cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        // Update the anime details with the values from the text boxes
+        _animeToEdit.Title = txtTitle.Text;
+        _animeToEdit.Synopsis = txtSynopsis.Text;
+
+        // Since dtpPublicationYear is a DateTimePicker, we extract just the Year as an integer
+        _animeToEdit.PublicationYear = dtpPublicationYear.Value.Year;
+
+        _animeToEdit.Episodes = (int)numEpisodes.Value;
+        _animeToEdit.TvRating = cmbEditTvRating.Text;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+
+            MessageBox.Show("Anime Updated Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            this.Dispose(); // Close the control after saving changes
+        }
+        catch
+        {
+            MessageBox.Show("An error occurred while saving changes. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

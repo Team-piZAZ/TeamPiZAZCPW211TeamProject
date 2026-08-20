@@ -396,7 +396,7 @@
             BackColor = Color.Black;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(635, 618);
+            ClientSize = new Size(622, 618);
             Controls.Add(panel10);
             Controls.Add(lblGenres);
             Controls.Add(panel9);
