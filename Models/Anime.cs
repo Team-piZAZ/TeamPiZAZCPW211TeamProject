@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace TeamPiZAZCPW211TeamProject.Models;
@@ -31,10 +32,9 @@ public class Anime
     public int ReleaseYear { get; set; }
 
     /// <summary>
-    /// Gets or sets the rating of the Anime, 
-    /// which can be used to indicate its popularity or quality.
+    /// Gets or sets the TV rating of the Anime.
     /// </summary>
-    public double Rating { get; set; }
+    public string TvRating { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the foreign key for the associated Studio entity.
@@ -45,6 +45,17 @@ public class Anime
     /// Gets or sets the associated Studio entity for the Anime.
     /// </summary>
     public Studio? Studio { get; set; }
+
+    /// <summary>
+    /// Gets or sets the number of episodes in the Anime.
+    /// </summary>
+    public int Episodes { get; set; }
+
+    /// <summary>
+    /// Gets or sets the publication year of the Anime.
+    /// </summary>
+    public int PublicationYear { get; set; }
+
 
     /// <summary>
     /// Gets or sets the collection of Genre entities associated with this Anime.

@@ -47,8 +47,10 @@ public class UpdateAnimeAsync
         existingAnime.Title = anime.Title;
         existingAnime.Synopsis = anime.Synopsis;
         existingAnime.ReleaseYear = anime.ReleaseYear;
-        existingAnime.Rating = anime.Rating;
+        existingAnime.TvRating = anime.TvRating;
         existingAnime.StudioId = anime.StudioId;
+        existingAnime.Episodes = anime.Episodes;
+        existingAnime.PublicationYear = anime.PublicationYear;
 
         // Remove all existing Genre relationships.
         existingAnime.Genres.Clear();
