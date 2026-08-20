@@ -29,7 +29,7 @@ public partial class AnimeDetailsForm : Form
         _context = context;
         _animeService = service;
         _currentAnime = animeToEdit;
-        
+
     }
 
     /// <summary>
@@ -65,9 +65,9 @@ public partial class AnimeDetailsForm : Form
     /// </summary>
     /// <returns>A task representing the asynchronous operation.</returns>
     private async Task LoadExistingAnimeDataAsync()
-        {
+    {
         if (_currentAnime == null) return;
-       
+
         // Pre-fill the standard text boxes immediately
         txtTitle.Text = _currentAnime.Title;
         txtSynopsis.Text = _currentAnime.Synopsis;
@@ -233,6 +233,18 @@ public partial class AnimeDetailsForm : Form
         {
             genreForm.ShowDialog();
         }
+    }
+
+    private void btnEditAnime_Click(object sender, EventArgs e)
+    {
+        btnEditAnime.Visible = false;
+
+        AnimeEditControl editControl = new AnimeEditControl(_context);
+
+        editControl.Dock = DockStyle.Fill;
+        this.Controls.Add(editControl);
+
+        editControl.BringToFront();
     }
 }
 
