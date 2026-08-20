@@ -210,7 +210,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            BorderStyle = BorderStyle.FixedSingle;
+            BorderStyle = BorderStyle.Fixed3D;
             Controls.Add(btnCancelChanges);
             Controls.Add(btnSaveChanges);
             Controls.Add(lblPublicationYear);
@@ -227,7 +227,7 @@
             Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
             Name = "AnimeEditControl";
-            Size = new Size(457, 350);
+            Size = new Size(455, 348);
             Load += AnimeEditControl_Load;
             ((System.ComponentModel.ISupportInitialize)numEpisodes).EndInit();
             ResumeLayout(false);
