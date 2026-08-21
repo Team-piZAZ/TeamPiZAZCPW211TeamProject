@@ -14,21 +14,69 @@ namespace TeamPiZAZCPW211TeamProject.Forms;
 
 public partial class AnimeEditControl : UserControl
 {
+    // ErrorProvider to display validation errors
+    private readonly ErrorProvider _errorProvider = new();
 
+    // Private field to hold the currently selected anime for editing
+    private Anime _currentAnime;
+
+    // Service for handling anime-related operations, such as updating anime details
+    private IAnimeService _animeService;
+
+    // Database context for accessing the anime database
     private readonly AnimeDbContext _context;
+
+    // Constructor for the AnimeEditControl, initializing the database context and setting up event handlers
     public AnimeEditControl(AnimeDbContext context)
     {
         InitializeComponent();
         _context = context;
         btnSearch.Click += btnSearch_Click;
         btnCancelChanges.Click += btnCancelChanges_Click;
+        ConfigureErrorProvider();
+        RegisteredValidationEvents();
     }
 
-    private void panel1_Paint(object sender, PaintEventArgs e)
+    /// <summary>
+    /// Configures the ErrorProvider to display validation errors 
+    /// without blinking and associates it with the current control.
+    /// </summary>
+    private void ConfigureErrorProvider()
     {
+        // Set the blink style to never blink to avoid distracting the user
+        _errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+
+        // Associate the ErrorProvider with the current control to display errors for its child controls
+        _errorProvider.ContainerControl = this;
 
     }
 
+
+    /// <summary>
+    /// Registers validation event handlers for the input fields to ensure
+    /// that user input meets the required criteria before allowing changes to be saved.
+    /// </summary>
+    private void RegisteredValidationEvents()
+    {
+        // Registering the Validating event handlers for the input fields to perform validation when the user attempts to leave the field
+        txtTitle.Validating += txtTitle_Validating;
+
+        // Registering the Validating event handler for the Publication Year field to ensure it is a valid integer and falls within the acceptable range
+        dtpPublicationYear.Validating += dtpPublicationYear_Validating;
+
+        // Registering the Validating event handler for the Episodes field to ensure it is a valid whole number greater than 0
+        numEpisodes.Validating += numEpisodes_Validating;
+
+        // Registering the Validating event handler for the TV Rating field to ensure it is not empty and provides a valid rating
+        cmbEditTvRating.Validating += cmbEditTvRating_Validating;
+
+        // Registering the Validating event handler for the Synopsis field to ensure it is not empty and provides a brief description of the anime
+        txtSynopsis.Validating += txtSynopsis_Validating;
+    }
+
+
+
+    // Event handler for the Load event of the AnimeEditControl, setting up autocomplete for the search textbox
     private async void AnimeEditControl_Load(object sender, EventArgs e)
     {
         var titles = await _context.Animes.Select(a => a.Title).Distinct().ToArrayAsync();
@@ -40,8 +88,10 @@ public partial class AnimeEditControl : UserControl
         txtEditSearch.AutoCompleteCustomSource = autoCompleteData;
     }
 
+    // Private field to hold the anime being edited
     private Anime _animeToEdit;
 
+    // Event handler for the Click event of the search button, searching for an anime by title and populating the form fields with its details
     private async void btnSearch_Click(object sender, EventArgs e)
     {
         string searchTitle = txtEditSearch.Text;
@@ -70,6 +120,7 @@ public partial class AnimeEditControl : UserControl
 
     }
 
+    // Event handler for the Click event of the cancel button, removing the control from its parent and disposing of it
     private void btnCancelChanges_Click(object sender, EventArgs e)
     {
         this.Parent?.Controls.Remove(this);
@@ -77,6 +128,7 @@ public partial class AnimeEditControl : UserControl
 
     }
 
+    // Event handler for the Click event of the save changes button, validating input and saving changes to the database
     private async void btnSaveChanges_Click(object sender, EventArgs e)
     {
         // Ensure that an anime has been loaded for editing
@@ -114,5 +166,208 @@ public partial class AnimeEditControl : UserControl
         {
             MessageBox.Show("An error occurred while saving changes. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        if (HasValidationErrors())
+        {
+            MessageBox.Show(
+                "Please resolve all validation errors marked with an exclamation icon before saving.",
+                "Validation Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            return;
+        }
+
+        // Map updated UI values back to the Anime entity
+        _currentAnime.Title = txtTitle.Text.Trim();
+        _currentAnime.Synopsis = txtSynopsis.Text.Trim();
+        _currentAnime.TvRating = cmbEditTvRating.Text.Trim();
+        _currentAnime.PublicationYear = int.Parse(dtpPublicationYear.Text.Trim());
+        _currentAnime.Episodes = int.Parse(numEpisodes.Text.Trim());
+
+        // To prevent data loss, we need to keep track of the existing genre IDs before updating the anime details.
+        // This tells the database to keep the existing genres associated with the anime, while allowing for updates to other fields.
+        List<int> existingGenreIds = _currentAnime.Genres.Select(g => g.Id).ToList();
+
+        try
+        {
+            btnSaveChanges.Enabled = false;
+            await _animeService.UpdateAnimeAsync(_currentAnime, existingGenreIds);
+
+            MessageBox.Show("Anime details successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"An error occurred while saving changes: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            btnSaveChanges.Enabled = true;
+        }
     }
+
+    // Below are the Validation event handlers for the various input fields,
+    // ensuring that user input meets the required criteria before allowing changes to be saved.
+
+
+
+
+    /// <summary>
+    /// Validates the Title field to ensure it is not empty and does not exceed 200 characters.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">A System.ComponentModel.CancelEventArgs that contains the event data.</param>
+    private void txtTitle_Validating(object? sender, System.ComponentModel.CancelEventArgs e)
+    {
+        // Check if the Title field is empty or exceeds 200 characters and set the appropriate error message
+        if (string.IsNullOrWhiteSpace(txtTitle.Text))
+        {
+            _errorProvider.SetError(txtTitle, "Title cannot be empty.");
+        }
+        // Check if the Title field exceeds 200 characters and set the appropriate error message
+        else if (txtTitle.Text.Trim().Length > 200)
+        {
+            _errorProvider.SetError(txtTitle, "Title cannot exceed 200 characters.");
+
+        }
+        // If the Title field is valid, clear any existing error messages
+        else
+        {
+            _errorProvider.SetError(txtTitle, string.Empty);
+        }
+    }
+
+
+    /// <summary>
+    /// Validates the Publication Year field to ensure it is a valid 
+    /// integer and falls within the acceptable range (1950 to current year + 2).
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">A System.ComponentModel.CancelEventArgs that contains the event data.</param>
+    private void dtpPublicationYear_Validating(object? sender, System.ComponentModel.CancelEventArgs e)
+    {
+
+        // Check if the Release Year field is a valid integer and falls within the acceptable range
+        if (!int.TryParse(dtpPublicationYear.Text.Trim(), out int year))
+        {
+            _errorProvider.SetError(dtpPublicationYear, "Release Year must be a valid integer.");
+        }
+
+        // Check if the Release Year is outside the acceptable range (1950 to current year + 2) and set the appropriate error message
+        else if (year < 1950 || year > DateTime.Now.Year + 2)
+        {
+            _errorProvider.SetError(dtpPublicationYear, $"Release Year must be between 1950 and {DateTime.Now.Year + 2}.");
+        }
+
+        // If the Release Year is valid, clear any existing error messages
+        else
+        {
+            _errorProvider.SetError(dtpPublicationYear, string.Empty);
+        }
+    }
+
+
+
+    /// <summary>
+    /// Validates the Episodes field to ensure it is a valid whole number greater than 0.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">A System.ComponentModel.CancelEventArgs that contains the event data.</param>
+    private void numEpisodes_Validating(object? sender, System.ComponentModel.CancelEventArgs e)
+    {
+        // Check if the Episodes field is a valid whole number and greater than 0, setting the appropriate error message if not
+        if (!int.TryParse(numEpisodes.Text.Trim(), out int episodes))
+        {
+            _errorProvider.SetError(numEpisodes, "Episodes must be a valid whole number.");
+        }
+
+        // Check if the Episodes field is less than or equal to 0 and set the appropriate error message
+        else if (episodes <= 0)
+        {
+            _errorProvider.SetError(numEpisodes, "Episodes must be greater than 0.");
+        }
+
+        // If the Episodes field is valid, clear any existing error messages
+        else
+        {
+            _errorProvider.SetError(numEpisodes, string.Empty);
+        }
+    }
+
+
+    /// <summary>
+    /// Validates the TV Rating field to ensure it is not empty and provides a valid rating (e.g., TV-14, TV-MA).
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">A System.ComponentModel.CancelEventArgs that contains the event data.</param>
+    private void cmbEditTvRating_Validating(object? sender, System.ComponentModel.CancelEventArgs e)
+    {
+        // Check if the TV Rating field is empty and set the appropriate error message
+        if (string.IsNullOrWhiteSpace(cmbEditTvRating.Text))
+        {
+            _errorProvider.SetError(cmbEditTvRating, "TV Rating is required (e.g., TV-14, TV-MA).");
+        }
+
+        // If the TV Rating field is valid, clear any existing error messages
+        else
+        {
+            _errorProvider.SetError(cmbEditTvRating, string.Empty);
+        }
+    }
+
+
+
+    /// <summary>
+    /// Validates the Synopsis field to ensure it is not empty and provides a brief description of the anime.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">A System.ComponentModel.CancelEventArgs that contains the event data.</param>
+    private void txtSynopsis_Validating(object? sender, System.ComponentModel.CancelEventArgs e)
+    {
+
+        // Check if the Synopsis field is empty and set the appropriate error message
+        if (string.IsNullOrWhiteSpace(txtSynopsis.Text))
+        {
+            _errorProvider.SetError(txtSynopsis, "Synopsis / Description is required.");
+        }
+
+        // If the Synopsis field is valid, clear any existing error messages
+        else
+        {
+            _errorProvider.SetError(txtSynopsis, string.Empty);
+        }
+    }
+
+    /// <summary>
+    /// Checks if there are any validation errors in the input fields by validating each control and checking for error messages.
+    /// </summary>
+    /// <returns>True if there are validation errors, false otherwise.</returns>
+    private bool HasValidationErrors()
+    {
+
+        // Validate all child controls to ensure they meet the required criteria
+        if (!ValidateChildren(ValidationConstraints.Enabled))
+        {
+            return true;
+        }
+
+        // Create an array of controls to validate for errors
+        Control[] controlsToValidate = [txtTitle,  dtpPublicationYear, numEpisodes, cmbEditTvRating, txtSynopsis];
+
+        // Check each control for validation errors by checking if the ErrorProvider has any error messages associated with it
+        foreach (Control control in controlsToValidate)
+        {
+
+            // If the ErrorProvider has an error message for the control, return true indicating that there are validation errors
+            if (!string.IsNullOrEmpty(_errorProvider.GetError(control)))
+            {
+                return true;
+            }
+        }
+
+        // If no validation errors are found, return false indicating that all input fields are valid
+        return false;
+    }
+
+
 }

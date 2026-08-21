@@ -51,10 +51,10 @@
             txtEditSearch.BackColor = Color.FromArgb(30, 30, 30);
             txtEditSearch.BorderStyle = BorderStyle.FixedSingle;
             txtEditSearch.ForeColor = SystemColors.Window;
-            txtEditSearch.Location = new Point(120, 13);
+            txtEditSearch.Location = new Point(133, 15);
             txtEditSearch.Name = "txtEditSearch";
             txtEditSearch.PlaceholderText = "Name of Anime...";
-            txtEditSearch.Size = new Size(321, 27);
+            txtEditSearch.Size = new Size(377, 32);
             txtEditSearch.TabIndex = 0;
             // 
             // btnSearch
@@ -64,7 +64,7 @@
             btnSearch.Font = new Font("Verdana", 12F, FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             btnSearch.Location = new Point(18, 14);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(85, 23);
+            btnSearch.Size = new Size(97, 31);
             btnSearch.TabIndex = 1;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
@@ -73,10 +73,11 @@
             // 
             txtTitle.BackColor = Color.FromArgb(30, 30, 30);
             txtTitle.BorderStyle = BorderStyle.FixedSingle;
-            txtTitle.Location = new Point(18, 78);
+            txtTitle.ForeColor = SystemColors.InactiveCaption;
+            txtTitle.Location = new Point(18, 88);
             txtTitle.Name = "txtTitle";
             txtTitle.PlaceholderText = "Edit Title...";
-            txtTitle.Size = new Size(423, 27);
+            txtTitle.Size = new Size(492, 32);
             txtTitle.TabIndex = 2;
             // 
             // lblComment
@@ -85,9 +86,9 @@
             lblComment.BackColor = Color.Transparent;
             lblComment.Font = new Font("Verdana", 12F, FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblComment.ForeColor = SystemColors.InactiveCaption;
-            lblComment.Location = new Point(30, 43);
+            lblComment.Location = new Point(29, 60);
             lblComment.Name = "lblComment";
-            lblComment.Size = new Size(390, 18);
+            lblComment.Size = new Size(469, 25);
             lblComment.TabIndex = 3;
             lblComment.Text = "Edit Selected Anime Details in the form below";
             // 
@@ -96,12 +97,12 @@
             txtSynopsis.BackColor = Color.FromArgb(30, 30, 30);
             txtSynopsis.BorderStyle = BorderStyle.FixedSingle;
             txtSynopsis.ForeColor = SystemColors.InactiveCaption;
-            txtSynopsis.Location = new Point(18, 123);
+            txtSynopsis.Location = new Point(18, 135);
             txtSynopsis.Multiline = true;
             txtSynopsis.Name = "txtSynopsis";
             txtSynopsis.PlaceholderText = "Edit Synopsis...";
             txtSynopsis.ScrollBars = ScrollBars.Vertical;
-            txtSynopsis.Size = new Size(423, 66);
+            txtSynopsis.Size = new Size(492, 66);
             txtSynopsis.TabIndex = 4;
             // 
             // cmbEditTvRating
@@ -110,9 +111,9 @@
             cmbEditTvRating.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEditTvRating.FormattingEnabled = true;
             cmbEditTvRating.Items.AddRange(new object[] { "TV-Y", "TV-Y7", "TV-G", "TV-PG", "TV-14", "TV-MA" });
-            cmbEditTvRating.Location = new Point(18, 228);
+            cmbEditTvRating.Location = new Point(29, 250);
             cmbEditTvRating.Name = "cmbEditTvRating";
-            cmbEditTvRating.Size = new Size(121, 26);
+            cmbEditTvRating.Size = new Size(121, 33);
             cmbEditTvRating.TabIndex = 5;
             // 
             // numEpisodes
@@ -120,11 +121,11 @@
             numEpisodes.BackColor = Color.FromArgb(30, 30, 30);
             numEpisodes.BorderStyle = BorderStyle.FixedSingle;
             numEpisodes.ForeColor = SystemColors.InactiveCaption;
-            numEpisodes.Location = new Point(195, 229);
+            numEpisodes.Location = new Point(225, 250);
             numEpisodes.Margin = new Padding(4);
             numEpisodes.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numEpisodes.Name = "numEpisodes";
-            numEpisodes.Size = new Size(76, 27);
+            numEpisodes.Size = new Size(76, 32);
             numEpisodes.TabIndex = 6;
             numEpisodes.TextAlign = HorizontalAlignment.Center;
             numEpisodes.ThousandsSeparator = true;
@@ -138,10 +139,10 @@
             dtpPublicationYear.CustomFormat = "yyyy";
             dtpPublicationYear.DropDownAlign = LeftRightAlignment.Right;
             dtpPublicationYear.Format = DateTimePickerFormat.Custom;
-            dtpPublicationYear.Location = new Point(306, 229);
+            dtpPublicationYear.Location = new Point(387, 250);
             dtpPublicationYear.Name = "dtpPublicationYear";
             dtpPublicationYear.RightToLeft = RightToLeft.No;
-            dtpPublicationYear.Size = new Size(123, 27);
+            dtpPublicationYear.Size = new Size(123, 32);
             dtpPublicationYear.TabIndex = 7;
             dtpPublicationYear.Value = new DateTime(2026, 8, 20, 0, 0, 0, 0);
             // 
@@ -151,9 +152,9 @@
             lblTvRating.BackColor = Color.Transparent;
             lblTvRating.Font = new Font("Verdana", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
             lblTvRating.ForeColor = SystemColors.HighlightText;
-            lblTvRating.Location = new Point(30, 207);
+            lblTvRating.Location = new Point(29, 222);
             lblTvRating.Name = "lblTvRating";
-            lblTvRating.Size = new Size(88, 18);
+            lblTvRating.Size = new Size(110, 25);
             lblTvRating.TabIndex = 8;
             lblTvRating.Text = "TV Rating";
             // 
@@ -163,9 +164,9 @@
             lblEpisodes.BackColor = Color.Transparent;
             lblEpisodes.Font = new Font("Verdana", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
             lblEpisodes.ForeColor = SystemColors.HighlightText;
-            lblEpisodes.Location = new Point(195, 207);
+            lblEpisodes.Location = new Point(213, 222);
             lblEpisodes.Name = "lblEpisodes";
-            lblEpisodes.Size = new Size(81, 18);
+            lblEpisodes.Size = new Size(99, 25);
             lblEpisodes.TabIndex = 9;
             lblEpisodes.Text = "Episodes";
             // 
@@ -175,9 +176,9 @@
             lblPublicationYear.BackColor = Color.Transparent;
             lblPublicationYear.Font = new Font("Verdana", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
             lblPublicationYear.ForeColor = SystemColors.HighlightText;
-            lblPublicationYear.Location = new Point(301, 207);
+            lblPublicationYear.Location = new Point(337, 222);
             lblPublicationYear.Name = "lblPublicationYear";
-            lblPublicationYear.Size = new Size(140, 18);
+            lblPublicationYear.Size = new Size(173, 25);
             lblPublicationYear.TabIndex = 10;
             lblPublicationYear.Text = "Publication Year";
             // 
@@ -185,9 +186,9 @@
             // 
             btnSaveChanges.BackColor = SystemColors.Highlight;
             btnSaveChanges.FlatStyle = FlatStyle.Popup;
-            btnSaveChanges.Location = new Point(18, 270);
+            btnSaveChanges.Location = new Point(18, 304);
             btnSaveChanges.Name = "btnSaveChanges";
-            btnSaveChanges.Size = new Size(423, 26);
+            btnSaveChanges.Size = new Size(492, 39);
             btnSaveChanges.TabIndex = 11;
             btnSaveChanges.Text = "Save Changes";
             btnSaveChanges.UseVisualStyleBackColor = false;
@@ -197,17 +198,18 @@
             // 
             btnCancelChanges.BackColor = Color.Firebrick;
             btnCancelChanges.FlatStyle = FlatStyle.Popup;
-            btnCancelChanges.Location = new Point(18, 302);
+            btnCancelChanges.Location = new Point(18, 349);
             btnCancelChanges.Name = "btnCancelChanges";
-            btnCancelChanges.Size = new Size(423, 34);
+            btnCancelChanges.Size = new Size(492, 37);
             btnCancelChanges.TabIndex = 12;
             btnCancelChanges.Text = "Cancel ";
             btnCancelChanges.UseVisualStyleBackColor = false;
             // 
             // AnimeEditControl
             // 
-            AutoScaleDimensions = new SizeF(10F, 18F);
+            AutoScaleDimensions = new SizeF(13F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LawnGreen;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             BorderStyle = BorderStyle.Fixed3D;
@@ -227,7 +229,7 @@
             Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
             Name = "AnimeEditControl";
-            Size = new Size(455, 348);
+            Size = new Size(531, 410);
             Load += AnimeEditControl_Load;
             ((System.ComponentModel.ISupportInitialize)numEpisodes).EndInit();
             ResumeLayout(false);

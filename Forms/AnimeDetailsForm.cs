@@ -217,15 +217,22 @@ public partial class AnimeDetailsForm : Form
     /// <param name="e">The event data.</param>
     private void btnEditAnime_Click(object sender, EventArgs e)
     {
+        
         // Hide the edit button so they can't click it twice
         btnEditAnime.Visible = false;
 
         // Instantiate the new edit control
         AnimeEditControl editControl = new AnimeEditControl(_context);
 
+        // Set the size and appearance of the edit control
+        editControl.BorderStyle = BorderStyle.FixedSingle;
+        editControl.BackColor = Color.FromArgb(45, 45, 45);
+
         // Center the control on the form
-        editControl.Left = (this.ClientSize.Width - editControl.Width) / 2;
-        editControl.Top = (this.ClientSize.Height - editControl.Height) / 2;
+        editControl.Location = new Point(
+            (this.ClientSize.Width - editControl.Width) / 2,
+            (this.ClientSize.Height - editControl.Height) / 2
+        );
 
         // Tell the form to bring the button back when the edit control closes!
         editControl.Disposed += (s, args) =>
