@@ -16,10 +16,10 @@ public partial class AnimeDetailsForm : Form
     private readonly AnimeDbContext _context;
 
     // Holds the current anime being edited or viewed.
-    private Anime _currentAnime;
+    private Anime _animeToEdit;
 
     // Indicates whether the form is in update mode (editing an existing anime) or create mode (adding a new anime).
-    private bool IsUpdateMode => _currentAnime != null;
+    private bool IsUpdateMode => _animeToEdit != null;
 
     public AnimeDetailsForm(AnimeDbContext context, AnimeService service, Anime animeToEdit = null)
     {
@@ -28,7 +28,7 @@ public partial class AnimeDetailsForm : Form
         this.Load += AnimeDetailsForm_Load;
         _context = context;
         _animeService = service;
-        _currentAnime = animeToEdit;
+        _animeToEdit = animeToEdit;
 
     }
 
@@ -54,7 +54,7 @@ public partial class AnimeDetailsForm : Form
         clbGenres.ValueMember = "Id";
 
         // If we are updating an existing anime, load it
-        if (IsUpdateMode && _currentAnime != null)
+        if (IsUpdateMode && _animeToEdit != null)
         {
             await LoadExistingAnimeDataAsync();
         }
@@ -66,21 +66,21 @@ public partial class AnimeDetailsForm : Form
     /// <returns>A task representing the asynchronous operation.</returns>
     private async Task LoadExistingAnimeDataAsync()
     {
-        if (_currentAnime == null) return;
+        if (_animeToEdit == null) return;
 
         // Pre-fill the standard text boxes immediately
-        txtTitle.Text = _currentAnime.Title;
-        txtSynopsis.Text = _currentAnime.Synopsis;
-        cmbTvRating.SelectedValue = _currentAnime.TvRating;
-        numEpisodes.Value = (int)_currentAnime.Episodes;
-        numPublicationYear.Value = (int)_currentAnime.PublicationYear;
-        int safeYear = _currentAnime.ReleaseYear > 0 ? _currentAnime.ReleaseYear : DateTime.Now.Year;
+        txtTitle.Text = _animeToEdit.Title;
+        txtSynopsis.Text = _animeToEdit.Synopsis;
+        cmbTvRating.SelectedValue = _animeToEdit.TvRating;
+        numEpisodes.Value = (int)_animeToEdit.Episodes;
+        numPublicationYear.Value = (int)_animeToEdit.PublicationYear;
+        int safeYear = _animeToEdit.ReleaseYear > 0 ? _animeToEdit.ReleaseYear : DateTime.Now.Year;
         dtpReleaseDate.Value = new DateTime(safeYear, 1, 1);
 
 
         // Fetch the attached genres asynchronously
         var animeWithGenres = await _context.Animes
-                                        .Where(a => a.Id == _currentAnime.Id)
+                                        .Where(a => a.Id == _animeToEdit.Id)
                                         .SelectMany(a => a.Genres)
                                         .Select(g => g.Id)
                                         .ToListAsync();
@@ -126,7 +126,7 @@ public partial class AnimeDetailsForm : Form
         }
 
         // Create a new Anime object or use the existing one based on the mode
-        var animeToSave = IsUpdateMode ? _currentAnime : new Anime();
+        var animeToSave = IsUpdateMode ? _animeToEdit : new Anime();
 
         animeToSave.Title = titleToCheck;
         animeToSave.Synopsis = txtSynopsis.Text.Trim();
@@ -222,7 +222,9 @@ public partial class AnimeDetailsForm : Form
         btnEditAnime.Visible = false;
 
         // Instantiate the new edit control
-        AnimeEditControl editControl = new AnimeEditControl(_context);
+        AnimeEditControl editControl = new AnimeEditControl();
+
+        editControl.LoadAnimeData(_animeService, _animeToEdit);
 
         // Set the size and appearance of the edit control
         editControl.BorderStyle = BorderStyle.FixedSingle;
@@ -230,7 +232,7 @@ public partial class AnimeDetailsForm : Form
 
         // Center the control on the form
         editControl.Location = new Point(
-            (this.ClientSize.Width - editControl.Width) / 2,
+            (this.ClientSize.Width - editControl.Width) / 10,
             (this.ClientSize.Height - editControl.Height) / 2
         );
 
