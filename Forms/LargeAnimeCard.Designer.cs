@@ -43,9 +43,9 @@
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.DarkTurquoise;
-            lblTitle.Location = new Point(31, 15);
+            lblTitle.Location = new Point(35, 20);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(70, 34);
+            lblTitle.Size = new Size(86, 42);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Title";
             // 
@@ -53,9 +53,9 @@
             // 
             lblSynopsis.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblSynopsis.ForeColor = Color.DarkTurquoise;
-            lblSynopsis.Location = new Point(31, 67);
+            lblSynopsis.Location = new Point(35, 89);
             lblSynopsis.Name = "lblSynopsis";
-            lblSynopsis.Size = new Size(115, 40);
+            lblSynopsis.Size = new Size(157, 53);
             lblSynopsis.TabIndex = 1;
             lblSynopsis.Text = "Synopsis";
             lblSynopsis.TextAlign = ContentAlignment.MiddleCenter;
@@ -65,9 +65,9 @@
             lblTvRating.AutoSize = true;
             lblTvRating.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblTvRating.ForeColor = Color.DarkTurquoise;
-            lblTvRating.Location = new Point(31, 131);
+            lblTvRating.Location = new Point(35, 175);
             lblTvRating.Name = "lblTvRating";
-            lblTvRating.Size = new Size(126, 34);
+            lblTvRating.Size = new Size(157, 42);
             lblTvRating.TabIndex = 2;
             lblTvRating.Text = "Tv Rating";
             // 
@@ -76,9 +76,9 @@
             lblEpisodes.AutoSize = true;
             lblEpisodes.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblEpisodes.ForeColor = Color.DarkTurquoise;
-            lblEpisodes.Location = new Point(31, 195);
+            lblEpisodes.Location = new Point(35, 260);
             lblEpisodes.Name = "lblEpisodes";
-            lblEpisodes.Size = new Size(114, 34);
+            lblEpisodes.Size = new Size(142, 42);
             lblEpisodes.TabIndex = 3;
             lblEpisodes.Text = "Episodes";
             // 
@@ -87,9 +87,9 @@
             lblPublicationYear.AutoSize = true;
             lblPublicationYear.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblPublicationYear.ForeColor = Color.DarkTurquoise;
-            lblPublicationYear.Location = new Point(31, 261);
+            lblPublicationYear.Location = new Point(35, 348);
             lblPublicationYear.Name = "lblPublicationYear";
-            lblPublicationYear.Size = new Size(200, 34);
+            lblPublicationYear.Size = new Size(250, 42);
             lblPublicationYear.TabIndex = 4;
             lblPublicationYear.Text = "Publication Year";
             // 
@@ -98,24 +98,25 @@
             lblReleaseYear.AutoSize = true;
             lblReleaseYear.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblReleaseYear.ForeColor = Color.DarkTurquoise;
-            lblReleaseYear.Location = new Point(31, 323);
+            lblReleaseYear.Location = new Point(35, 431);
             lblReleaseYear.Name = "lblReleaseYear";
-            lblReleaseYear.Size = new Size(164, 34);
+            lblReleaseYear.Size = new Size(208, 42);
             lblReleaseYear.TabIndex = 5;
             lblReleaseYear.Text = "Release Year";
             lblReleaseYear.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(347, 15);
+            pictureBox1.Location = new Point(397, 20);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(269, 351);
+            pictureBox1.Size = new Size(307, 468);
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
             // mainLargeCard
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             BorderStyle = BorderStyle.Fixed3D;
@@ -127,8 +128,9 @@
             Controls.Add(lblSynopsis);
             Controls.Add(lblTitle);
             ForeColor = SystemColors.Menu;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "mainLargeCard";
-            Size = new Size(636, 382);
+            Size = new Size(727, 509);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
