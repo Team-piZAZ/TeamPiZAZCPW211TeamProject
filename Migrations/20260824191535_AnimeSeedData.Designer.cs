@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TeamPiZAZCPW211TeamProject.Database;
 
@@ -10,9 +11,11 @@ using TeamPiZAZCPW211TeamProject.Database;
 namespace TeamPiZAZCPW211TeamProject.Migrations
 {
     [DbContext(typeof(AnimeDbContext))]
-    partial class AnimeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260824191535_AnimeSeedData")]
+    partial class AnimeSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,7 +83,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 101,
                             Episodes = 366,
                             PublicationYear = 2004,
-                            ReleaseYear = 2004,
+                            ReleaseYear = 0,
                             StudioId = 9,
                             Synopsis = "Bleach follows Ichigo Kurosaki, a teenager who can see ghosts,\r\nand Rukia Kuchiki, a Soul Reaper (Shinigami). After Rukia\r\nshares her powers with Ichigo to save his family, he must protect\r\nhumans from evil spirits called Hollows and guide lost souls.",
                             Title = "Bleach",
@@ -91,7 +94,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 102,
                             Episodes = 63,
                             PublicationYear = 2016,
-                            ReleaseYear = 2016,
+                            ReleaseYear = 0,
                             StudioId = 5,
                             Synopsis = "Set in Taisho Era Japan, the story follows a boy, Tanjiro Kamado,\r\nwho's family is massacred by a demon which sets him on the\r\npath for revenge. Eventually, he meets an organization called the\r\nDemon Slayer Corp who help him in this adventure.",
                             Title = "Demon Slayer",
@@ -113,7 +116,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 104,
                             Episodes = 1170,
                             PublicationYear = 2004,
-                            ReleaseYear = 2004,
+                            ReleaseYear = 0,
                             StudioId = 11,
                             Synopsis = "Monkey D. Luffy dreams of becoming the Pirate King by finding\r\nthe legendary \"One Piece\" treasure left behind by Gol D. Roger.\r\nAfter accidentally eating a magical Gum-Gum Devil Fruit, Luffy\r\ngained the ability to stretch like rubber. He sets sail, assembling a\r\nloyal and eccentric crew, to conquer the perilous Grand Line.",
                             Title = "One Piece",
@@ -124,7 +127,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 105,
                             Episodes = 220,
                             PublicationYear = 1999,
-                            ReleaseYear = 1999,
+                            ReleaseYear = 0,
                             StudioId = 9,
                             Synopsis = "Focus' on the struggle of a young ninja in the Hidden Leaf Village,\r\nNaruto Uzumaki. He faces many dangers with his companions\r\nSasuke Uchiha and Sakura Haruno, including other ninja and\r\nother villages.",
                             Title = "Naruto",
@@ -135,7 +138,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 106,
                             Episodes = 291,
                             PublicationYear = 1989,
-                            ReleaseYear = 1989,
+                            ReleaseYear = 0,
                             StudioId = 11,
                             Synopsis = "Follows a hero named Goku and his friends who together, these\r\nfighters defend Earth from powerful space aliens, killer robots,\r\nand magic monsters through intense martial arts battles.",
                             Title = "Dragon Ball",
@@ -146,7 +149,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 107,
                             Episodes = 48,
                             PublicationYear = 2023,
-                            ReleaseYear = 2023,
+                            ReleaseYear = 0,
                             StudioId = 10,
                             Synopsis = "Historical mystery anime following Maomao, a young apothecary\r\nsold into palace servitude, who solves medical and court\r\nmysteries using her vast knowledge of poisons and herbs.",
                             Title = "Apothecary Diaries",
@@ -157,7 +160,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 108,
                             Episodes = 38,
                             PublicationYear = 2023,
-                            ReleaseYear = 2023,
+                            ReleaseYear = 0,
                             StudioId = 2,
                             Synopsis = "Fantasy anime series that follows Frieren, an immortal elf mage.\r\nIt uniquely begins after her party defeats the Demon King,\r\nexploring her emotional journey to understand human mortality\r\nand connections decades later with her new party.",
                             Title = "Frieren: Beyond Journey's End",
@@ -168,7 +171,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 109,
                             Episodes = 24,
                             PublicationYear = 2017,
-                            ReleaseYear = 2017,
+                            ReleaseYear = 0,
                             StudioId = 3,
                             Synopsis = "Fantasy anime series that follows Chise Hatori, a young girl\r\nsold at an auction to a mysterious non-human mage named Elias\r\nAinsworth. The story explores their relationship and Chise's\r\njourney of self-discovery in a world of magic and mythical creatures.",
                             Title = "The Ancient Magus' Bride",
@@ -179,7 +182,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 110,
                             Episodes = 200,
                             PublicationYear = 1992,
-                            ReleaseYear = 1992,
+                            ReleaseYear = 0,
                             StudioId = 11,
                             Synopsis = "Following Usagi Tsukino, a clumsy, average teenager who\r\ndiscovers she is the reincarnation of a Moon Kingdom princess.\r\nGuided by a talking cat named Luna, she transforms into the\r\nmagical guardian \"Sailor Moon\" to fight dark forces and protect\r\nEarth alongside a team of fellow Sailor Guardians.",
                             Title = "Sailor Moon",
@@ -190,7 +193,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 111,
                             Episodes = 13,
                             PublicationYear = 2025,
-                            ReleaseYear = 2025,
+                            ReleaseYear = 0,
                             Synopsis = "Follows a noble woman, Scarlet El Vandimion, who's received\r\nUnflattering nicknames due to her love for a good beatdown on\r\nunjustly nobles. Scarlet is also on mission with the Prince, Julius,\r\nto bring down corrupt nobility and religious institutions.",
                             Title = "May I Ask For One Final Thing",
                             TvRating = "TV-MA"
@@ -200,7 +203,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 112,
                             Episodes = 12,
                             PublicationYear = 2022,
-                            ReleaseYear = 2022,
+                            ReleaseYear = 0,
                             Synopsis = "Fantasy anime series that follows Menou, a skilled executioner\r\nwho is tasked with eliminating individuals summoned from\r\nanother world. The story explores themes of morality, justice,\r\nand the consequences of wielding power in a fantastical setting.",
                             Title = "The Executioner and Her Way of Life",
                             TvRating = "TV-14"
@@ -210,7 +213,7 @@ namespace TeamPiZAZCPW211TeamProject.Migrations
                             Id = 113,
                             Episodes = 12,
                             PublicationYear = 2021,
-                            ReleaseYear = 2021,
+                            ReleaseYear = 0,
                             Synopsis = "Fantasy anime series that follows Lugh Tuatha De, a skilled\r\nassassin who is reincarnated into a parallel world. Tasked with\r\npreventing the rise of a destructive hero, Lugh must navigate\r\npolitical intrigue and moral dilemmas to fulfill his mission.",
                             Title = "The World's Finest Assassin",
                             TvRating = "TV-14"
