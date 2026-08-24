@@ -77,7 +77,10 @@ public class AnimeDbContext : DbContext
             new Studio { Id = 5, Name = "Ufotable", Description = "A Japanese animation studio known for its visually stunning anime adaptations." },
             new Studio { Id = 6, Name = "Sunrise", Description = "A Japanese animation studio known for its mecha and science fiction anime." },
             new Studio { Id = 7, Name = "Wit Studio", Description = "A Japanese animation studio known for its creative and innovative approach to anime production." },
-            new Studio { Id = 8, Name = "Studio Deen", Description = "A Japanese animation studio known for its high-quality productions and attention to detail." }
+            new Studio { Id = 8, Name = "Studio Deen", Description = "A Japanese animation studio known for its high-quality productions and attention to detail." },
+            new Studio { Id = 9, Name = "Pierrot", Description = "A Japanese animation studio known for its long-running anime series and adaptations of popular manga." },
+            new Studio { Id = 10, Name = "OLM", Description = "A Japanese animation studio known for its iconic anime series and films." },
+            new Studio { Id = 11, Name = "Toei Animation", Description = "A Japanese animation studio known for its long-running anime series and adaptations of popular manga." }
         );
 
         // Seeds initial data for the Genre table in the database.  
@@ -91,6 +94,23 @@ public class AnimeDbContext : DbContext
             new Genre { Id = 7, Name = "Romance", Description = "Anime that focuses on romantic relationships and love stories." },
             new Genre { Id = 8, Name = "Science Fiction", Description = "Anime that explores futuristic or scientific concepts." },
             new Genre { Id = 9, Name = "Slice of Life", Description = "Anime that depicts everyday life and experiences of characters." }
+        );
+
+        modelBuilder.Entity<Anime>().HasData(
+            new Anime { Id = 101, Title = "Bleach", Synopsis = "Bleach follows Ichigo Kurosaki, a teenager who can see ghosts,\r\nand Rukia Kuchiki, a Soul Reaper (Shinigami). After Rukia\r\nshares her powers with Ichigo to save his family, he must protect\r\nhumans from evil spirits called Hollows and guide lost souls.", StudioId = 9, Episodes = 366, PublicationYear = 2004, TvRating = "TV-14" },
+            new Anime { Id = 102, Title = "Demon Slayer", Synopsis = "Set in Taisho Era Japan, the story follows a boy, Tanjiro Kamado,\r\nwho's family is massacred by a demon which sets him on the\r\npath for revenge. Eventually, he meets an organization called the\r\nDemon Slayer Corp who help him in this adventure.", StudioId = 5, Episodes = 63, PublicationYear = 2016, TvRating = "TV-14" },
+            new Anime { Id = 103, Title = "Pokemon", Synopsis = "Humans known as 'Trainers' catch, train, and battle creatures\r\nknown as Pokémon. The trainers and they're Pokémon not only\r\nshare a special bond in battle, but also a deep friendship.", StudioId = 10, Episodes = 1300, PublicationYear = 1997, TvRating = "TV-PG" },
+            new Anime { Id = 104, Title = "One Piece", Synopsis = "Monkey D. Luffy dreams of becoming the Pirate King by finding\r\nthe legendary \"One Piece\" treasure left behind by Gol D. Roger.\r\nAfter accidentally eating a magical Gum-Gum Devil Fruit, Luffy\r\ngained the ability to stretch like rubber. He sets sail, assembling a\r\nloyal and eccentric crew, to conquer the perilous Grand Line.", StudioId = 11, Episodes = 1170, PublicationYear = 2004, TvRating = "TV-14" },
+            new Anime { Id = 105, Title = "Naruto", Synopsis = "Focus' on the struggle of a young ninja in the Hidden Leaf Village,\r\nNaruto Uzumaki. He faces many dangers with his companions\r\nSasuke Uchiha and Sakura Haruno, including other ninja and\r\nother villages.", StudioId = 9, Episodes = 220, PublicationYear = 1999, TvRating = "TV-PG" },
+            new Anime { Id = 106, Title = "Dragon Ball", Synopsis = "Follows a hero named Goku and his friends who together, these\r\nfighters defend Earth from powerful space aliens, killer robots,\r\nand magic monsters through intense martial arts battles.", StudioId = 11, Episodes = 291, PublicationYear = 1989, TvRating = "TV-PG" },
+            new Anime { Id = 107, Title = "Apothecary Diaries", Synopsis = "Historical mystery anime following Maomao, a young apothecary\r\nsold into palace servitude, who solves medical and court\r\nmysteries using her vast knowledge of poisons and herbs.", StudioId = 10, Episodes = 48, PublicationYear = 2023, TvRating = "TV-14" },
+            new Anime { Id = 108, Title = "Frieren: Beyond Journey's End", Synopsis = "Fantasy anime series that follows Frieren, an immortal elf mage.\r\nIt uniquely begins after her party defeats the Demon King,\r\nexploring her emotional journey to understand human mortality\r\nand connections decades later with her new party.", StudioId = 2, Episodes = 38, PublicationYear = 2023, TvRating = "TV-14" },
+            new Anime { Id = 109, Title = "The Ancient Magus' Bride", Synopsis = "Fantasy anime series that follows Chise Hatori, a young girl\r\nsold at an auction to a mysterious non-human mage named Elias\r\nAinsworth. The story explores their relationship and Chise's\r\njourney of self-discovery in a world of magic and mythical creatures.", StudioId = 3, Episodes = 24, PublicationYear = 2017, TvRating = "TV-14" },
+            new Anime { Id = 110, Title = "Sailor Moon", Synopsis = "Following Usagi Tsukino, a clumsy, average teenager who\r\ndiscovers she is the reincarnation of a Moon Kingdom princess.\r\nGuided by a talking cat named Luna, she transforms into the\r\nmagical guardian \"Sailor Moon\" to fight dark forces and protect\r\nEarth alongside a team of fellow Sailor Guardians.", StudioId = 11, Episodes = 200, PublicationYear = 1992, TvRating = "TV-PG" },
+            new Anime { Id = 111, Title = "May I Ask For One Final Thing", Synopsis = "Follows a noble woman, Scarlet El Vandimion, who's received\r\nUnflattering nicknames due to her love for a good beatdown on\r\nunjustly nobles. Scarlet is also on mission with the Prince, Julius,\r\nto bring down corrupt nobility and religious institutions.", Episodes = 13, PublicationYear = 2025, TvRating = "TV-MA" },
+            new Anime { Id = 112, Title = "The Executioner and Her Way of Life", Synopsis = "Fantasy anime series that follows Menou, a skilled executioner\r\nwho is tasked with eliminating individuals summoned from\r\nanother world. The story explores themes of morality, justice,\r\nand the consequences of wielding power in a fantastical setting.", Episodes = 12, PublicationYear = 2022, TvRating = "TV-14" },
+            new Anime { Id = 113, Title = "The World's Finest Assassin", Synopsis = "Fantasy anime series that follows Lugh Tuatha De, a skilled\r\nassassin who is reincarnated into a parallel world. Tasked with\r\npreventing the rise of a destructive hero, Lugh must navigate\r\npolitical intrigue and moral dilemmas to fulfill his mission.", Episodes = 12, PublicationYear = 2021, TvRating = "TV-14" }
+
         );
     }
 }
