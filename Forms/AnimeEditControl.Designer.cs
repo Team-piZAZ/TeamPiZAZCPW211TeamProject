@@ -229,7 +229,7 @@
             Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
             Name = "AnimeEditControl";
-            Size = new Size(531, 410);
+            Size = new Size(551, 418);
             Load += AnimeEditControl_Load;
             ((System.ComponentModel.ISupportInitialize)numEpisodes).EndInit();
             ResumeLayout(false);
