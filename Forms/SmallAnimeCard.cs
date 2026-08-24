@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using TeamPiZAZCPW211TeamProject.Models;
-using TeamPiZAZCPW211TeamProject.Services;
+﻿using TeamPiZAZCPW211TeamProject.Models;
 using TeamPiZAZCPW211TeamProject.Database;
-using Microsoft.EntityFrameworkCore;
 
 namespace TeamPiZAZCPW211TeamProject;
 
@@ -16,7 +7,6 @@ public partial class SmallAnimeCard : UserControl
 {
 
     public int AnimeId { get; private set; }
-
 
     public event Action<int> OnCardClicked;
 
@@ -28,10 +18,38 @@ public partial class SmallAnimeCard : UserControl
     {
         InitializeComponent();
 
+        this.MouseEnter += Card_MouseEnter;
+        MouseLeave += Card_MouseLeave;
         this.Click += Card_Click;
+        lblTitle.MouseEnter += Card_MouseEnter;
+        lblTitle.MouseLeave += Card_MouseLeave;
+        lblRating.MouseEnter += Card_MouseEnter;
+        lblRating.MouseLeave += Card_MouseLeave;
         lblTitle.Click += Card_Click;
         lblRating.Click += Card_Click;
     }
+
+
+    /// <summary>
+    /// Handles the MouseEnter event for the card, 
+    /// changing its background color to a darker shade 
+    /// when the mouse enters the card area.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Card_MouseEnter(object sender, EventArgs e)
+    {
+        this.BackColor = Color.FromArgb(48, 25, 52); // Change to a darker shade when the mouse enters the card
+    }
+
+    private void Card_MouseLeave(object sender, EventArgs e)
+    {
+        if (!this.ClientRectangle.Contains(this.PointToClient(Cursor.Position)))
+        {
+            this.BackColor = Color.FromArgb(95, 0, 160); // Change back to the original shade when the mouse leaves the card
+        }
+    }
+
 
     /// <summary>
     /// Sets up the card with the provided Anime object, populating the title and rating labels.
@@ -62,4 +80,10 @@ public partial class SmallAnimeCard : UserControl
         lblTitle.Text = anime.Title;
         lblRating.Text = anime.TvRating;
     }
+
+    private void SmallAnimeCard_Load(object sender, EventArgs e)
+    {
+
+    }
+
 }
