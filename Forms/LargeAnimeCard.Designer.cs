@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             lblTitle = new Label();
-            lblSynopsis = new Label();
+            lblGenre = new Label();
             lblTvRating = new Label();
             lblEpisodes = new Label();
             lblPublicationYear = new Label();
@@ -49,16 +49,16 @@
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Title";
             // 
-            // lblSynopsis
+            // lblGenre
             // 
-            lblSynopsis.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblSynopsis.ForeColor = Color.DarkTurquoise;
-            lblSynopsis.Location = new Point(35, 89);
-            lblSynopsis.Name = "lblSynopsis";
-            lblSynopsis.Size = new Size(157, 53);
-            lblSynopsis.TabIndex = 1;
-            lblSynopsis.Text = "Synopsis";
-            lblSynopsis.TextAlign = ContentAlignment.MiddleCenter;
+            lblGenre.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblGenre.ForeColor = Color.DarkTurquoise;
+            lblGenre.Location = new Point(35, 89);
+            lblGenre.Name = "lblGenre";
+            lblGenre.Size = new Size(157, 53);
+            lblGenre.TabIndex = 1;
+            lblGenre.Text = "Genre";
+            lblGenre.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblTvRating
             // 
@@ -125,7 +125,7 @@
             Controls.Add(lblPublicationYear);
             Controls.Add(lblEpisodes);
             Controls.Add(lblTvRating);
-            Controls.Add(lblSynopsis);
+            Controls.Add(lblGenre);
             Controls.Add(lblTitle);
             ForeColor = SystemColors.Menu;
             Margin = new Padding(3, 4, 3, 4);
@@ -139,7 +139,7 @@
         #endregion
 
         private Label lblTitle;
-        private Label lblSynopsis;
+        private Label lblGenre;
         private Label lblTvRating;
         private Label lblEpisodes;
         private Label lblPublicationYear;

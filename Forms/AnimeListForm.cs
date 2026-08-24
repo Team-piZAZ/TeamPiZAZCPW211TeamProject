@@ -142,7 +142,9 @@ public partial class AnimeListForm : Form
 
             // Pass the anime data to the card (you may need to create a public method 
             // inside SmallAnimeCard.cs to accept this data and update its labels/images)
-            card.PopulateData(anime);
+            card.SetupCard(anime);
+
+            card.OnCardClicked += SmallCard_Clicked;
 
             // Add the finished card to your flow layout panel
             flpAnimeList.Controls.Add(card);
@@ -205,13 +207,18 @@ public partial class AnimeListForm : Form
 
     }
 
-    private async void SmallCard_Clicked(int clickedAnimeId)
+    private void SmallCard_Clicked(int clickedAnimeId)
     {
-        var selectedAnime = await _context.Animes.FirstOrDefaultAsync(a => a.Id == clickedAnimeId);
 
-        if (selectedAnime != null)
+        var fullAnime = _context.Animes.Include(a => a.Genres).FirstOrDefault(a => a.Id == clickedAnimeId);
+
+        if (fullAnime != null)
         {
-            mainLargeCard.LoadFullDetails(selectedAnime);
+
+            mainLargeCard.LoadFullDetails(fullAnime);
+
+            // Force the card to become visible in case it was hidden!
+            mainLargeCard.Show();
         }
     }
 

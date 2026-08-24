@@ -42,9 +42,9 @@
             lblTitle.FlatStyle = FlatStyle.Popup;
             lblTitle.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = SystemColors.Window;
-            lblTitle.Location = new Point(14, 21);
+            lblTitle.Location = new Point(16, 28);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(44, 22);
+            lblTitle.Size = new Size(57, 27);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Title:";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -56,32 +56,35 @@
             lblRating.BorderStyle = BorderStyle.Fixed3D;
             lblRating.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblRating.ForeColor = SystemColors.Window;
-            lblRating.Location = new Point(14, 85);
+            lblRating.Location = new Point(16, 113);
             lblRating.Name = "lblRating";
-            lblRating.Size = new Size(82, 22);
+            lblRating.Size = new Size(104, 27);
             lblRating.TabIndex = 1;
             lblRating.Text = "TV Rating:";
             lblRating.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(144, 3);
+            pictureBox1.Location = new Point(165, 4);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(128, 134);
+            pictureBox1.Size = new Size(146, 179);
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
             // SmallAnimeCard
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DeepSkyBlue;
+            BackColor = Color.FromArgb(95, 0, 160);
             BackgroundImageLayout = ImageLayout.Stretch;
             Controls.Add(pictureBox1);
             Controls.Add(lblRating);
             Controls.Add(lblTitle);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "SmallAnimeCard";
-            Size = new Size(275, 140);
+            Size = new Size(314, 187);
+            Load += SmallAnimeCard_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
