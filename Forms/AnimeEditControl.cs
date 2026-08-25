@@ -8,6 +8,10 @@ namespace TeamPiZAZCPW211TeamProject.Forms;
 
 public partial class AnimeEditControl : UserControl
 {
+
+    // Database context for interacting with the anime database
+    private readonly AnimeDbContext _context;
+
     // ErrorProvider to display validation errors
     private readonly ErrorProvider _errorProvider = new();
 
@@ -19,9 +23,10 @@ public partial class AnimeEditControl : UserControl
 
 
     // Constructor for the AnimeEditControl, initializing the database context and setting up event handlers
-    public AnimeEditControl()
+    public AnimeEditControl(AnimeDbContext context)
     {
         InitializeComponent();
+        _context = context;
         btnSearch.Click += btnSearch_Click;
         btnCancelChanges.Click += btnCancelChanges_Click;
         ConfigureErrorProvider();
@@ -112,7 +117,14 @@ public partial class AnimeEditControl : UserControl
 
         // ensure the publication year is valid and set the DateTimePicker value accordingly
         int pubYear = _animeToEdit.PublicationYear > DateTime.MinValue.Year ? _animeToEdit.PublicationYear : DateTime.Now.Year;
-        dtpPublicationYear.Value = new DateTime(_animeToEdit.PublicationYear, 1, 1);
+        int safeYear = _animeToEdit.PublicationYear;
+
+        if (safeYear < 1 || safeYear > 9999)
+        {
+            safeYear = 2000;
+        }
+
+        dtpPublicationYear.Value = new DateTime(safeYear, 1, 1);
 
 
         numEpisodes.Value = Math.Max(numEpisodes.Minimum, _animeToEdit.Episodes);
@@ -135,48 +147,42 @@ public partial class AnimeEditControl : UserControl
 
     private async void btnSaveChanges_Click(object sender, EventArgs e)
     {
-        // Run Validation
-        if (HasValidationErrors())
+        // Stops the NullReferenceException if they haven't searched yet!
+        if (_animeToEdit == null)
         {
-            MessageBox.Show(
-                "Please resolve all validation errors marked with an exclamation icon before saving.",
-                "Validation Error",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Warning
-            );
+            MessageBox.Show("Please search for and load an anime to edit first.", "No Anime Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
-        // Map UI to Entity using strongly typed values
-        _animeToEdit.Title = txtTitle.Text.Trim();
-        _animeToEdit.Synopsis = txtSynopsis.Text.Trim();
-        _animeToEdit.TvRating = cmbEditTvRating.Text.Trim();
+        // Strict Validation: Prevent blank entries
+        if (string.IsNullOrWhiteSpace(txtTitle.Text) || string.IsNullOrWhiteSpace(txtSynopsis.Text))
+        {
+            MessageBox.Show("Title and Synopsis cannot be blank.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        // Map the data safely
+        _animeToEdit.Title = txtTitle.Text;
+        _animeToEdit.Synopsis = txtSynopsis.Text;
+
+        // Ensure you are using whichever variable name you settled on (PublicationYear or ReleaseYear)
+        _animeToEdit.ReleaseYear = dtpPublicationYear.Value.Year;
         _animeToEdit.Episodes = (int)numEpisodes.Value;
+        _animeToEdit.TvRating = cmbEditTvRating.Text;
 
-        // Use .Value instead of parsing .Text
-        _animeToEdit.PublicationYear = dtpPublicationYear.Value.Year;
-        _animeToEdit.Episodes = (int)numEpisodes.Value;
-
-        // Preserve existing genres
-        List<int> existingGenreIds = _animeToEdit.Genres.Select(g => g.Id).ToList();
-
-        // Single Persistence Path
+        // Save and safely close
         try
         {
-            btnSaveChanges.Enabled = false;
+            await _context.SaveChangesAsync();
+            MessageBox.Show("Anime updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Remove any raw _context calls here. Only use the service.
-            await _animeService.UpdateAnimeAsync(_animeToEdit, existingGenreIds);
-
-            MessageBox.Show("Anime details successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Safely remove from the parent form without crashing
+            this.Parent?.Controls.Remove(this);
+            this.Dispose();
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"An error occurred while saving changes: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        finally
-        {
-            btnSaveChanges.Enabled = true;
+            MessageBox.Show($"An error occurred while saving: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 

@@ -55,7 +55,7 @@
     <None Update="Images\105.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Images\106.jpg">
+    <None Update="Images\114.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Images\107.jpg">
