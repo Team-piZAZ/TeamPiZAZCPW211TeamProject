@@ -18,15 +18,24 @@ public partial class SmallAnimeCard : UserControl
     {
         InitializeComponent();
 
+        this.BackColor = Color.FromArgb(95, 0, 160);
+
         this.MouseEnter += Card_MouseEnter;
-        MouseLeave += Card_MouseLeave;
+        this.MouseLeave += Card_MouseLeave;
         this.Click += Card_Click;
+
         lblTitle.MouseEnter += Card_MouseEnter;
         lblTitle.MouseLeave += Card_MouseLeave;
+        lblTitle.Click += Card_Click;
+
         lblRating.MouseEnter += Card_MouseEnter;
         lblRating.MouseLeave += Card_MouseLeave;
-        lblTitle.Click += Card_Click;
         lblRating.Click += Card_Click;
+
+        // Wires the MouseEnter, MouseLeave, and Click events for the picture box to the same handlers as the card.
+        picAnimeCover.MouseEnter += Card_MouseEnter;
+        picAnimeCover.MouseLeave += Card_MouseLeave;
+        picAnimeCover.Click += Card_Click;
     }
 
 
@@ -35,8 +44,8 @@ public partial class SmallAnimeCard : UserControl
     /// changing its background color to a darker shade 
     /// when the mouse enters the card area.
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="e">An EventArgs object that contains the event data.</param>
     private void Card_MouseEnter(object sender, EventArgs e)
     {
         this.BackColor = Color.FromArgb(48, 25, 52); // Change to a darker shade when the mouse enters the card
@@ -60,6 +69,18 @@ public partial class SmallAnimeCard : UserControl
         AnimeId = anime.Id;
         lblTitle.Text = anime.Title;
         lblRating.Text = anime.TvRating;
+
+        // Load the image from the Images folder based on the AnimeId
+        string imagePath = Path.Combine(Application.StartupPath, "Images", $"{anime.Id}.jpg");
+
+        if (System.IO.File.Exists(imagePath))
+        {
+            picAnimeCover.ImageLocation = imagePath;
+        }
+        else
+        {
+            picAnimeCover.Image = null; // or set a default image if you have one
+        }
     }
 
     /// <summary>

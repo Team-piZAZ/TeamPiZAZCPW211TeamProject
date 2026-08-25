@@ -31,7 +31,6 @@ public partial class mainLargeCard : UserControl
 
         lblTitle.Text = anime.Title;
 
-        // Check if the anime has genres, then join them into a clean, comma-separated string
         if (anime.Genres != null && anime.Genres.Any())
         {
             lblGenre.Text = "Genre: " + string.Join(", ", anime.Genres.Select(g => g.Name));
@@ -45,7 +44,28 @@ public partial class mainLargeCard : UserControl
         lblEpisodes.Text = $"Episodes: {anime.Episodes}";
         lblPublicationYear.Text = $"Published: {anime.PublicationYear}";
         lblReleaseYear.Text = $"Released: {anime.ReleaseYear}";
+        txtSynopsis.Text = anime.Synopsis;
 
-        // Picture logic goes here later.
+        // Dynamically load the image based on the Anime's ID
+        string imagePath = Path.Combine(Application.StartupPath, "Images", $"{anime.Id}.jpg");
+
+        if (!System.IO.File.Exists(imagePath))
+        {
+            imagePath = Path.Combine(Application.StartupPath, "Images", $"{anime.Id}.png");
+        }
+
+        if (!System.IO.File.Exists(imagePath))
+        {
+            imagePath = Path.Combine(Application.StartupPath, "Images", $"{anime.Id}.webp");
+        }
+
+        if (System.IO.File.Exists(imagePath))
+        {
+            picLargeCover.ImageLocation = imagePath;
+        }
+        else
+        {
+            picLargeCover.Image = null;
+        }
     }
 }

@@ -30,8 +30,8 @@
         {
             lblTitle = new Label();
             lblRating = new Label();
-            pictureBox1 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            picAnimeCover = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picAnimeCover).BeginInit();
             SuspendLayout();
             // 
             // lblTitle
@@ -63,14 +63,15 @@
             lblRating.Text = "TV Rating:";
             lblRating.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // pictureBox1
+            // picAnimeCover
             // 
-            pictureBox1.Location = new Point(165, 4);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(146, 179);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
+            picAnimeCover.Location = new Point(165, 4);
+            picAnimeCover.Margin = new Padding(3, 4, 3, 4);
+            picAnimeCover.Name = "picAnimeCover";
+            picAnimeCover.Size = new Size(146, 179);
+            picAnimeCover.SizeMode = PictureBoxSizeMode.Zoom;
+            picAnimeCover.TabIndex = 2;
+            picAnimeCover.TabStop = false;
             // 
             // SmallAnimeCard
             // 
@@ -78,14 +79,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(95, 0, 160);
             BackgroundImageLayout = ImageLayout.Stretch;
-            Controls.Add(pictureBox1);
+            Controls.Add(picAnimeCover);
             Controls.Add(lblRating);
             Controls.Add(lblTitle);
             Margin = new Padding(3, 4, 3, 4);
             Name = "SmallAnimeCard";
             Size = new Size(314, 187);
             Load += SmallAnimeCard_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picAnimeCover).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -94,6 +95,6 @@
 
         private Label lblTitle;
         private Label lblRating;
-        private PictureBox pictureBox1;
+        private PictureBox picAnimeCover;
     }
 }
