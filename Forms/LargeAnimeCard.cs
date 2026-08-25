@@ -48,6 +48,17 @@ public partial class mainLargeCard : UserControl
 
         // Dynamically load the image based on the Anime's ID
         string imagePath = Path.Combine(Application.StartupPath, "Images", $"{anime.Id}.jpg");
+
+        if (!System.IO.File.Exists(imagePath))
+        {
+            imagePath = Path.Combine(Application.StartupPath, "Images", $"{anime.Id}.png");
+        }
+
+        if (!System.IO.File.Exists(imagePath))
+        {
+            imagePath = Path.Combine(Application.StartupPath, "Images", $"{anime.Id}.webp");
+        }
+
         if (System.IO.File.Exists(imagePath))
         {
             picLargeCover.ImageLocation = imagePath;
