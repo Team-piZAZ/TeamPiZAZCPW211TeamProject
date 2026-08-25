@@ -44,7 +44,7 @@
             lblReleaseDate = new Label();
             panel6 = new Panel();
             btnManageGenres = new Button();
-            panel7 = new Panel();
+            panelManage = new Panel();
             panel8 = new Panel();
             lblEpisodes = new Label();
             numEpisodes = new NumericUpDown();
@@ -52,20 +52,23 @@
             lblPublicationYear = new Label();
             numPublicationYear = new NumericUpDown();
             lblGenres = new Label();
-            panel10 = new Panel();
+            panelEdit = new Panel();
             btnEditAnime = new Button();
+            panelDelete = new Panel();
+            btnDeleteAnime = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
-            panel7.SuspendLayout();
+            panelManage.SuspendLayout();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numEpisodes).BeginInit();
             panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numPublicationYear).BeginInit();
-            panel10.SuspendLayout();
+            panelEdit.SuspendLayout();
+            panelDelete.SuspendLayout();
             SuspendLayout();
             // 
             // txtTitle
@@ -93,7 +96,7 @@
             txtSynopsis.Multiline = true;
             txtSynopsis.Name = "txtSynopsis";
             txtSynopsis.PlaceholderText = "Short Description . . .";
-            txtSynopsis.Size = new Size(553, 145);
+            txtSynopsis.Size = new Size(553, 121);
             txtSynopsis.TabIndex = 1;
             // 
             // dtpReleaseDate
@@ -119,7 +122,7 @@
             clbGenres.Location = new Point(3, 3);
             clbGenres.MultiColumn = true;
             clbGenres.Name = "clbGenres";
-            clbGenres.Size = new Size(553, 118);
+            clbGenres.Size = new Size(553, 89);
             clbGenres.Sorted = true;
             clbGenres.TabIndex = 4;
             // 
@@ -132,9 +135,9 @@
             btnSave.FlatStyle = FlatStyle.Popup;
             btnSave.Font = new Font("Verdana", 24F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.Lime;
-            btnSave.Location = new Point(3, 3);
+            btnSave.Location = new Point(6, 6);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(553, 117);
+            btnSave.Size = new Size(547, 111);
             btnSave.TabIndex = 5;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -146,8 +149,8 @@
             panel1.Controls.Add(txtSynopsis);
             panel1.Location = new Point(71, 189);
             panel1.Name = "panel1";
-            panel1.Padding = new Padding(3, 3, 3, 3);
-            panel1.Size = new Size(561, 153);
+            panel1.Padding = new Padding(3);
+            panel1.Size = new Size(561, 129);
             panel1.TabIndex = 6;
             // 
             // panel2
@@ -157,7 +160,7 @@
             panel2.Controls.Add(txtTitle);
             panel2.Location = new Point(71, 21);
             panel2.Name = "panel2";
-            panel2.Padding = new Padding(3, 3, 3, 3);
+            panel2.Padding = new Padding(3);
             panel2.Size = new Size(557, 37);
             panel2.TabIndex = 7;
             // 
@@ -203,10 +206,10 @@
             panel4.BackColor = Color.Magenta;
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(clbGenres);
-            panel4.Location = new Point(71, 387);
+            panel4.Location = new Point(71, 349);
             panel4.Name = "panel4";
-            panel4.Padding = new Padding(3, 3, 3, 3);
-            panel4.Size = new Size(561, 126);
+            panel4.Padding = new Padding(3);
+            panel4.Size = new Size(561, 97);
             panel4.TabIndex = 9;
             // 
             // panel5
@@ -239,9 +242,9 @@
             panel6.BackColor = Color.Lime;
             panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.Controls.Add(btnSave);
-            panel6.Location = new Point(71, 665);
+            panel6.Location = new Point(71, 675);
             panel6.Name = "panel6";
-            panel6.Padding = new Padding(3, 3, 3, 3);
+            panel6.Padding = new Padding(6);
             panel6.Size = new Size(561, 125);
             panel6.TabIndex = 11;
             // 
@@ -261,17 +264,17 @@
             btnManageGenres.UseVisualStyleBackColor = false;
             btnManageGenres.Click += btnManageGenres_Click;
             // 
-            // panel7
+            // panelManage
             // 
-            panel7.BackColor = Color.Lime;
-            panel7.BorderStyle = BorderStyle.FixedSingle;
-            panel7.Controls.Add(btnManageGenres);
-            panel7.Location = new Point(71, 607);
-            panel7.Margin = new Padding(3, 4, 3, 4);
-            panel7.Name = "panel7";
-            panel7.Padding = new Padding(3, 4, 3, 4);
-            panel7.Size = new Size(561, 51);
-            panel7.TabIndex = 13;
+            panelManage.BackColor = Color.Yellow;
+            panelManage.BorderStyle = BorderStyle.FixedSingle;
+            panelManage.Controls.Add(btnManageGenres);
+            panelManage.Location = new Point(71, 465);
+            panelManage.Margin = new Padding(3, 4, 3, 4);
+            panelManage.Name = "panelManage";
+            panelManage.Padding = new Padding(3, 4, 3, 4);
+            panelManage.Size = new Size(561, 51);
+            panelManage.TabIndex = 13;
             // 
             // panel8
             // 
@@ -357,23 +360,23 @@
             lblGenres.BackColor = Color.Transparent;
             lblGenres.Font = new Font("Verdana", 12F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblGenres.ForeColor = Color.Turquoise;
-            lblGenres.Location = new Point(75, 356);
+            lblGenres.Location = new Point(75, 321);
             lblGenres.Name = "lblGenres";
             lblGenres.Size = new Size(90, 25);
             lblGenres.TabIndex = 16;
             lblGenres.Text = "Genres";
             // 
-            // panel10
+            // panelEdit
             // 
-            panel10.BackColor = Color.Lime;
-            panel10.BorderStyle = BorderStyle.FixedSingle;
-            panel10.Controls.Add(btnEditAnime);
-            panel10.Location = new Point(71, 543);
-            panel10.Margin = new Padding(3, 4, 3, 4);
-            panel10.Name = "panel10";
-            panel10.Padding = new Padding(3, 4, 3, 4);
-            panel10.Size = new Size(561, 55);
-            panel10.TabIndex = 17;
+            panelEdit.BackColor = Color.Yellow;
+            panelEdit.BorderStyle = BorderStyle.FixedSingle;
+            panelEdit.Controls.Add(btnEditAnime);
+            panelEdit.Location = new Point(71, 536);
+            panelEdit.Margin = new Padding(3, 4, 3, 4);
+            panelEdit.Name = "panelEdit";
+            panelEdit.Padding = new Padding(3, 4, 3, 4);
+            panelEdit.Size = new Size(561, 55);
+            panelEdit.TabIndex = 17;
             // 
             // btnEditAnime
             // 
@@ -391,6 +394,31 @@
             btnEditAnime.UseVisualStyleBackColor = false;
             btnEditAnime.Click += btnEditAnime_Click;
             // 
+            // panelDelete
+            // 
+            panelDelete.BackColor = Color.Red;
+            panelDelete.BorderStyle = BorderStyle.FixedSingle;
+            panelDelete.Controls.Add(btnDeleteAnime);
+            panelDelete.Location = new Point(71, 604);
+            panelDelete.Name = "panelDelete";
+            panelDelete.Padding = new Padding(3);
+            panelDelete.Size = new Size(561, 55);
+            panelDelete.TabIndex = 18;
+            // 
+            // btnDeleteAnime
+            // 
+            btnDeleteAnime.BackColor = Color.DarkTurquoise;
+            btnDeleteAnime.Dock = DockStyle.Fill;
+            btnDeleteAnime.FlatStyle = FlatStyle.Popup;
+            btnDeleteAnime.Font = new Font("Verdana", 12F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+            btnDeleteAnime.ForeColor = Color.Lime;
+            btnDeleteAnime.Location = new Point(3, 3);
+            btnDeleteAnime.Name = "btnDeleteAnime";
+            btnDeleteAnime.Size = new Size(553, 47);
+            btnDeleteAnime.TabIndex = 0;
+            btnDeleteAnime.Text = "Delete Anime";
+            btnDeleteAnime.UseVisualStyleBackColor = false;
+            // 
             // AnimeDetailsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -399,11 +427,12 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(711, 824);
-            Controls.Add(panel10);
+            Controls.Add(panelDelete);
+            Controls.Add(panelEdit);
             Controls.Add(lblGenres);
             Controls.Add(panel9);
             Controls.Add(panel8);
-            Controls.Add(panel7);
+            Controls.Add(panelManage);
             Controls.Add(panel6);
             Controls.Add(panel5);
             Controls.Add(panel4);
@@ -422,14 +451,15 @@
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel6.ResumeLayout(false);
-            panel7.ResumeLayout(false);
+            panelManage.ResumeLayout(false);
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numEpisodes).EndInit();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numPublicationYear).EndInit();
-            panel10.ResumeLayout(false);
+            panelEdit.ResumeLayout(false);
+            panelDelete.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -450,7 +480,7 @@
         private Label lblRating;
         private Label lblReleaseDate;
         private Button btnManageGenres;
-        private Panel panel7;
+        private Panel panelManage;
         private ComboBox cmbTvRating;
         private Panel panel8;
         private NumericUpDown numEpisodes;
@@ -459,7 +489,9 @@
         private Label lblPublicationYear;
         private NumericUpDown numPublicationYear;
         private Label lblGenres;
-        private Panel panel10;
+        private Panel panelEdit;
         private Button btnEditAnime;
+        private Panel panelDelete;
+        private Button btnDeleteAnime;
     }
 }

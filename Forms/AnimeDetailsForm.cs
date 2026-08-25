@@ -29,7 +29,19 @@ public partial class AnimeDetailsForm : Form
         _context = context;
         _animeService = service;
         _animeToEdit = animeToEdit;
+        btnDeleteAnime.Click += btnLaunchDeleteControl_Click;
+    }
 
+    private void btnLaunchDeleteControl_Click(object sender, EventArgs e)
+    {
+        AnimeDeleteControl deleteControl = new AnimeDeleteControl(_context);
+
+        // Center it on the screen
+        deleteControl.Left = (this.ClientSize.Width - deleteControl.Width) / 2;
+        deleteControl.Top = (this.ClientSize.Height - deleteControl.Height) / 2;
+
+        this.Controls.Add(deleteControl);
+        deleteControl.BringToFront();
     }
 
     /// <summary>
@@ -107,54 +119,60 @@ public partial class AnimeDetailsForm : Form
     /// <param name="e">The event data.</param>
     private async void btnSave_Click(object sender, EventArgs e)
     {
-        if (!ValidateForm()) return;
+        // 1. Grab the exact text with proper capitalization for saving
+        string properCaseTitle = txtTitle.Text.Trim();
 
-        string titleToCheck = txtTitle.Text.Trim();
-        string titleToCheckInvariant = titleToCheck.ToLowerInvariant();
+        // 2. The Duplicate Check (Compare them both in lowercase)
+        bool titleExists = await _context.Animes.AnyAsync(a => a.Title.ToLower() == properCaseTitle.ToLower());
 
-        // Only check for duplicates if we are adding a new anime not updating an existing one
-        if (!IsUpdateMode)
+        if (titleExists)
         {
-            bool isDuplicate = await _context.Animes.AnyAsync(a => a.Title.ToLowerInvariant() == titleToCheck.ToLowerInvariant());
-            if (isDuplicate)
-            {
-                MessageBox.Show($"'{titleToCheck}' is already in the database.", "Duplicate Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("This anime already exists in the database!", "Duplicate Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
 
-                // Stops the save operation if a duplicate is found
-                return;
+        // 3. Create the new Anime using the PROPER CASE title
+        Anime newAnime = new Anime
+        {
+            Title = properCaseTitle,
+            Synopsis = txtSynopsis.Text.Trim(),
+            PublicationYear = (int)numPublicationYear.Value,
+            ReleaseYear = dtpReleaseDate.Value.Year,
+            Episodes = (int)numEpisodes.Value,
+            TvRating = cmbTvRating.Text,
+            // If you have a Studio ID dropdown, map it here too: StudioId = (int)cmbStudio.SelectedValue,
+
+            Genres = new List<Genre>() //Initialize the list so it's not null!
+        };
+
+        // Safely attach the genres
+        // Grab the IDs of whatever the user checked in your custom dropdown
+        var selectedGenreIds = clbGenres.CheckedItems.Cast<Genre>().Select(g => g.Id).ToList();
+
+        if (selectedGenreIds.Any())
+        {
+            // Ask the database for the official tracking versions of those genres
+            var trackedGenres = await _context.Genres.Where(g => selectedGenreIds.Contains(g.Id)).ToListAsync();
+
+            // Add the officially tracked genres to our new anime the EF Core way (so it knows to save the relationship)
+            foreach (var genre in trackedGenres)
+            {
+                newAnime.Genres.Add(genre);
             }
         }
 
-        // Create a new Anime object or use the existing one based on the mode
-        var animeToSave = IsUpdateMode ? _animeToEdit : new Anime();
-
-        animeToSave.Title = titleToCheck;
-        animeToSave.Synopsis = txtSynopsis.Text.Trim();
-        animeToSave.TvRating = cmbTvRating.Text;
-        animeToSave.Episodes = (int)numEpisodes.Value;
-        animeToSave.PublicationYear = (int)numPublicationYear.Value;
-        animeToSave.ReleaseYear = dtpReleaseDate.Value.Year;
-
-        // Get the selected genre IDs from the CheckedListBox
-        var selectedGenreIds = clbGenres.CheckedItems
-                                                .Cast<Genre>()
-                                                .Select(g => g.Id)
-                                                .ToList();
-
+        // 5. Save everything to SQL Server
         try
         {
-            if (IsUpdateMode)
-                await _animeService.UpdateAnimeAsync(animeToSave, selectedGenreIds);
-            else
-                await _animeService.AddAnimeAsync(animeToSave, selectedGenreIds);
+            _context.Animes.Add(newAnime);
+            await _context.SaveChangesAsync();
 
-            MessageBox.Show("Saved Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            MessageBox.Show("Anime added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close(); // Or whatever logic you use to reset the form
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error saving anime: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -217,12 +235,12 @@ public partial class AnimeDetailsForm : Form
     /// <param name="e">The event data.</param>
     private void btnEditAnime_Click(object sender, EventArgs e)
     {
-        
+
         // Hide the edit button so they can't click it twice
         btnEditAnime.Visible = false;
 
         // Instantiate the new edit control
-        AnimeEditControl editControl = new AnimeEditControl();
+        AnimeEditControl editControl = new AnimeEditControl(_context);
 
         editControl.LoadAnimeData(_animeService, _animeToEdit);
 
@@ -245,6 +263,11 @@ public partial class AnimeDetailsForm : Form
         // Add it to the form and bring it to the front
         this.Controls.Add(editControl);
         editControl.BringToFront();
+    }
+
+    private async Task btnDeleteAnime_ClickAsync(object sender, EventArgs e)
+    {
+        
     }
 }
 
