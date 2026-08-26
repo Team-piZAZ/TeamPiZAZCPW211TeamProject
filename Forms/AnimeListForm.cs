@@ -26,10 +26,10 @@ public partial class AnimeListForm : Form
         _context = context;
     }
 
-    private async void AnimeListForm_Load(object sender, EventArgs e)
+    private void AnimeListForm_Load(object sender, EventArgs e)
     {
-        // 1. Setup Predictive Text for the Title Search
-        var titles = await _context.Animes.Select(a => a.Title).ToArrayAsync();
+        // Setup Predictive Text 
+        var titles = _context.Animes.Select(a => a.Title).ToArray(); // Sync
         var autoCompleteData = new AutoCompleteStringCollection();
         autoCompleteData.AddRange(titles);
 
@@ -37,16 +37,16 @@ public partial class AnimeListForm : Form
         txtAnimeName.AutoCompleteSource = AutoCompleteSource.CustomSource;
         txtAnimeName.AutoCompleteCustomSource = autoCompleteData;
 
-        // 2. Populate the Studio Dropdown (Add an "All Studios" default)
-        var studios = await _context.Studios.OrderBy(s => s.Name).ToListAsync();
+        // Populate the Studio Dropdown
+        var studios = _context.Studios.OrderBy(s => s.Name).ToList(); // Sync
         studios.Insert(0, new Studio { Id = 0, Name = "All Studios" });
 
         cmbStudio.DataSource = studios;
         cmbStudio.DisplayMember = "Name";
         cmbStudio.ValueMember = "Id";
 
-        // 3. Populate the Genre Dropdown (Add an "All Genres" default)
-        var genres = await _context.Genres.OrderBy(g => g.Name).ToListAsync();
+        // Populate the Genre Dropdown
+        var genres = _context.Genres.OrderBy(g => g.Name).ToList(); // Sync
         genres.Insert(0, new Genre { Id = 0, Name = "All Genres" });
 
         cmbGenre.DataSource = genres;
@@ -54,6 +54,13 @@ public partial class AnimeListForm : Form
         cmbGenre.ValueMember = "Id";
     }
 
+
+    /// <summary>
+    /// Handles the click event for the "Add to List" button.
+    /// Opens the AnimeDetailsForm for adding a new anime.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
     private void btnAddToList_Click(object sender, EventArgs e)
     {
         AnimeService service = new AnimeService(_context);
@@ -66,6 +73,12 @@ public partial class AnimeListForm : Form
 
     }
 
+
+    /// <summary>
+    /// Handles the click event for the "Search" button.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
     private async void btnSearch_Click(object sender, EventArgs e)
     {
         flpAnimeList.Controls.Clear();
@@ -119,6 +132,11 @@ public partial class AnimeListForm : Form
         }
     }
 
+
+    /// <summary>
+    /// Handles the click event for a small anime card.
+    /// </summary>
+    /// <param name="clickedAnimeId">The ID of the clicked anime.</param>
     private void SmallCard_Clicked(int clickedAnimeId)
     {
         var fullAnime = _context.Animes.Include(a => a.Genres).FirstOrDefault(a => a.Id == clickedAnimeId);
