@@ -202,10 +202,9 @@ public partial class AnimeEditControl : UserControl
             _animeToEdit.TvRating = cmbEditTvRating.Text;
 
             _animeToEdit.Genres.Clear();
-
-            if (trackedGenres.Any())
+            foreach (var genre in trackedGenres)
             {
-                _animeToEdit.Genres = trackedGenres;
+                _animeToEdit.Genres.Add(genre);
             }
 
             // Save changes
