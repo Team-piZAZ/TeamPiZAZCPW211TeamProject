@@ -85,7 +85,6 @@ namespace TeamPiZAZCPW211TeamProject
             txtAnimeName.PlaceholderText = "Enter Anime Name";
             txtAnimeName.Size = new Size(281, 27);
             txtAnimeName.TabIndex = 12;
-            txtAnimeName.TextChanged += txtAnimeName_TextChanged;
             // 
             // btnAddToList
             // 
@@ -111,7 +110,6 @@ namespace TeamPiZAZCPW211TeamProject
             lblGenre.Size = new Size(50, 20);
             lblGenre.TabIndex = 14;
             lblGenre.Text = "Genre";
-            lblGenre.Click += lblGenre_Click;
             // 
             // splitContainer1
             // 
@@ -179,6 +177,7 @@ namespace TeamPiZAZCPW211TeamProject
             txtSearchTitle.TabIndex = 16;
             txtSearchTitle.Text = "Search Title";
             txtSearchTitle.UseVisualStyleBackColor = false;
+            txtSearchTitle.Click += btnSearch_Click;
             // 
             // cmbStudio
             // 
