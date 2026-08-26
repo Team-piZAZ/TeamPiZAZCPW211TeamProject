@@ -183,6 +183,7 @@
             cmbTvRating.FlatStyle = FlatStyle.Flat;
             cmbTvRating.ForeColor = Color.White;
             cmbTvRating.FormattingEnabled = true;
+            cmbTvRating.Items.AddRange(new object[] { "TV-Y", "TV-Y7", "TV-G", "TV-PG", "TV-14", "TV-MA" });
             cmbTvRating.Location = new Point(118, 1);
             cmbTvRating.Margin = new Padding(3, 4, 3, 4);
             cmbTvRating.Name = "cmbTvRating";
