@@ -42,6 +42,7 @@
             lblPublicationYear = new Label();
             btnSaveChanges = new Button();
             btnCancelChanges = new Button();
+            clbEditGenres = new CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)numEpisodes).BeginInit();
             SuspendLayout();
             // 
@@ -109,9 +110,10 @@
             // 
             cmbEditTvRating.BackColor = Color.FromArgb(30, 30, 30);
             cmbEditTvRating.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEditTvRating.FlatStyle = FlatStyle.Popup;
             cmbEditTvRating.FormattingEnabled = true;
             cmbEditTvRating.Items.AddRange(new object[] { "TV-Y", "TV-Y7", "TV-G", "TV-PG", "TV-14", "TV-MA" });
-            cmbEditTvRating.Location = new Point(29, 250);
+            cmbEditTvRating.Location = new Point(50, 369);
             cmbEditTvRating.Name = "cmbEditTvRating";
             cmbEditTvRating.Size = new Size(121, 33);
             cmbEditTvRating.TabIndex = 5;
@@ -119,9 +121,8 @@
             // numEpisodes
             // 
             numEpisodes.BackColor = Color.FromArgb(30, 30, 30);
-            numEpisodes.BorderStyle = BorderStyle.FixedSingle;
             numEpisodes.ForeColor = SystemColors.InactiveCaption;
-            numEpisodes.Location = new Point(225, 250);
+            numEpisodes.Location = new Point(229, 370);
             numEpisodes.Margin = new Padding(4);
             numEpisodes.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numEpisodes.Name = "numEpisodes";
@@ -139,7 +140,7 @@
             dtpPublicationYear.CustomFormat = "yyyy";
             dtpPublicationYear.DropDownAlign = LeftRightAlignment.Right;
             dtpPublicationYear.Format = DateTimePickerFormat.Custom;
-            dtpPublicationYear.Location = new Point(387, 250);
+            dtpPublicationYear.Location = new Point(375, 370);
             dtpPublicationYear.Name = "dtpPublicationYear";
             dtpPublicationYear.RightToLeft = RightToLeft.No;
             dtpPublicationYear.Size = new Size(123, 32);
@@ -150,11 +151,11 @@
             // 
             lblTvRating.AutoSize = true;
             lblTvRating.BackColor = Color.Transparent;
-            lblTvRating.Font = new Font("Verdana", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblTvRating.ForeColor = SystemColors.HighlightText;
-            lblTvRating.Location = new Point(29, 222);
+            lblTvRating.Font = new Font("Verdana", 12F, FontStyle.Bold | FontStyle.Underline);
+            lblTvRating.ForeColor = SystemColors.Desktop;
+            lblTvRating.Location = new Point(50, 341);
             lblTvRating.Name = "lblTvRating";
-            lblTvRating.Size = new Size(110, 25);
+            lblTvRating.Size = new Size(121, 25);
             lblTvRating.TabIndex = 8;
             lblTvRating.Text = "TV Rating";
             // 
@@ -162,11 +163,11 @@
             // 
             lblEpisodes.AutoSize = true;
             lblEpisodes.BackColor = Color.Transparent;
-            lblEpisodes.Font = new Font("Verdana", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblEpisodes.ForeColor = SystemColors.HighlightText;
-            lblEpisodes.Location = new Point(213, 222);
+            lblEpisodes.Font = new Font("Verdana", 12F, FontStyle.Bold | FontStyle.Underline);
+            lblEpisodes.ForeColor = SystemColors.Desktop;
+            lblEpisodes.Location = new Point(209, 341);
             lblEpisodes.Name = "lblEpisodes";
-            lblEpisodes.Size = new Size(99, 25);
+            lblEpisodes.Size = new Size(112, 25);
             lblEpisodes.TabIndex = 9;
             lblEpisodes.Text = "Episodes";
             // 
@@ -174,11 +175,11 @@
             // 
             lblPublicationYear.AutoSize = true;
             lblPublicationYear.BackColor = Color.Transparent;
-            lblPublicationYear.Font = new Font("Verdana", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblPublicationYear.ForeColor = SystemColors.HighlightText;
-            lblPublicationYear.Location = new Point(337, 222);
+            lblPublicationYear.Font = new Font("Verdana", 12F, FontStyle.Bold | FontStyle.Underline);
+            lblPublicationYear.ForeColor = SystemColors.Desktop;
+            lblPublicationYear.Location = new Point(331, 341);
             lblPublicationYear.Name = "lblPublicationYear";
-            lblPublicationYear.Size = new Size(173, 25);
+            lblPublicationYear.Size = new Size(196, 25);
             lblPublicationYear.TabIndex = 10;
             lblPublicationYear.Text = "Publication Year";
             // 
@@ -186,7 +187,7 @@
             // 
             btnSaveChanges.BackColor = SystemColors.Highlight;
             btnSaveChanges.FlatStyle = FlatStyle.Popup;
-            btnSaveChanges.Location = new Point(18, 304);
+            btnSaveChanges.Location = new Point(18, 408);
             btnSaveChanges.Name = "btnSaveChanges";
             btnSaveChanges.Size = new Size(492, 39);
             btnSaveChanges.TabIndex = 11;
@@ -198,12 +199,24 @@
             // 
             btnCancelChanges.BackColor = Color.Firebrick;
             btnCancelChanges.FlatStyle = FlatStyle.Popup;
-            btnCancelChanges.Location = new Point(18, 349);
+            btnCancelChanges.Location = new Point(18, 453);
             btnCancelChanges.Name = "btnCancelChanges";
             btnCancelChanges.Size = new Size(492, 37);
             btnCancelChanges.TabIndex = 12;
             btnCancelChanges.Text = "Cancel ";
             btnCancelChanges.UseVisualStyleBackColor = false;
+            // 
+            // clbEditGenres
+            // 
+            clbEditGenres.BackColor = Color.FromArgb(30, 30, 30);
+            clbEditGenres.BorderStyle = BorderStyle.FixedSingle;
+            clbEditGenres.ForeColor = SystemColors.Window;
+            clbEditGenres.FormattingEnabled = true;
+            clbEditGenres.Location = new Point(21, 226);
+            clbEditGenres.MultiColumn = true;
+            clbEditGenres.Name = "clbEditGenres";
+            clbEditGenres.Size = new Size(489, 110);
+            clbEditGenres.TabIndex = 13;
             // 
             // AnimeEditControl
             // 
@@ -211,8 +224,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LawnGreen;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Stretch;
+            BackgroundImageLayout = ImageLayout.Center;
             BorderStyle = BorderStyle.Fixed3D;
+            Controls.Add(clbEditGenres);
             Controls.Add(btnCancelChanges);
             Controls.Add(btnSaveChanges);
             Controls.Add(lblPublicationYear);
@@ -229,7 +243,7 @@
             Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
             Name = "AnimeEditControl";
-            Size = new Size(551, 418);
+            Size = new Size(530, 519);
             Load += AnimeEditControl_Load;
             ((System.ComponentModel.ISupportInitialize)numEpisodes).EndInit();
             ResumeLayout(false);
@@ -251,5 +265,6 @@
         private Label lblPublicationYear;
         private Button btnSaveChanges;
         private Button btnCancelChanges;
+        private CheckedListBox clbEditGenres;
     }
 }
