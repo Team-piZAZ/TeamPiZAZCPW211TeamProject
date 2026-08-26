@@ -18,6 +18,8 @@ public partial class AnimeEditControl : UserControl
     // Dependency Injection: Accepting the DbContext in the constructor
     private readonly AnimeDbContext _context;
     private readonly ErrorProvider _errorProvider = new();
+
+    private bool _isSaving = false;
     private Anime _animeToEdit;
 
 
@@ -84,13 +86,18 @@ public partial class AnimeEditControl : UserControl
         _hasLoaded = true;
 
         // Setup predictive search synchronously
-        var titles = _context.Animes.Select(a => a.Title).Distinct().ToArray(); // Sync
+        var titles = _context.Animes.Select(a => a.Title).Distinct().ToArray(); 
         var autoCompleteData = new AutoCompleteStringCollection();
         autoCompleteData.AddRange(titles);
 
         txtEditSearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         txtEditSearch.AutoCompleteSource = AutoCompleteSource.CustomSource;
         txtEditSearch.AutoCompleteCustomSource = autoCompleteData;
+
+        var availableGenres = _context.Genres.OrderBy(g => g.Name).ToList(); 
+        clbEditGenres.DataSource = availableGenres;
+        clbEditGenres.DisplayMember = "Name";
+        clbEditGenres.ValueMember = "Id";
     }
 
 
@@ -158,48 +165,49 @@ public partial class AnimeEditControl : UserControl
     /// <param name="e">The event data.</param>
     private async void btnSaveChanges_Click(object sender, EventArgs e)
     {
-        // Check rules BEFORE saving
-        if (HasValidationErrors())
-        {
-            MessageBox.Show("Please fix the highlighted errors before saving.", "Validation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
+        // The Titanium Padlock: Reject any concurrent clicks instantly
+        if (_isSaving) return;
+        _isSaving = true;
+        btnSaveChanges.Enabled = false;
 
-        if (_animeToEdit == null)
-        {
-            MessageBox.Show("Please search for and load an anime to edit first.", "No Anime Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
-
-        // Map the data safely
-        _animeToEdit.Title = txtTitle.Text;
-        _animeToEdit.Synopsis = txtSynopsis.Text;
-        _animeToEdit.PublicationYear = dtpPublicationYear.Value.Year;
-        _animeToEdit.Episodes = (int)numEpisodes.Value;
-        _animeToEdit.TvRating = cmbEditTvRating.Text;
-
-        // Wipe the existing relationship clean
-        _animeToEdit.Genres.Clear();
-
-        // Grab the newly checked IDs from the UI
-        var selectedGenreIds = clbEditGenres.CheckedItems
-                                            .Cast<Genre>()
-                                            .Select(g => g.Id)
-                                            .ToList();
-
-        // Fetch the official tracked genres and attach them
-        if (selectedGenreIds.Any())
-        {
-            var trackedGenres = await _context.Genres
-                                            .Where(g => selectedGenreIds.Contains(g.Id))
-                                            .ToListAsync();
-
-            _animeToEdit.Genres = trackedGenres;
-        }
-
-        // Save and safely close
         try
         {
+            if (HasValidationErrors())
+            {
+                MessageBox.Show("Please fix the highlighted errors before saving.", "Validation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (_animeToEdit == null)
+            {
+                MessageBox.Show("Please search for and load an anime to edit first.", "No Anime Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Fetch the data FIRST
+            var selectedGenreIds = clbEditGenres.CheckedItems.Cast<Genre>().Select(g => g.Id).ToList();
+
+            List<Genre> trackedGenres = new List<Genre>();
+
+            if (selectedGenreIds.Any())
+            {
+                trackedGenres = await _context.Genres.Where(g => selectedGenreIds.Contains(g.Id)).ToListAsync();
+            }
+
+            // NOW modify the tracked object
+            _animeToEdit.Title = txtTitle.Text;
+            _animeToEdit.Synopsis = txtSynopsis.Text;
+            _animeToEdit.PublicationYear = dtpPublicationYear.Value.Year;
+            _animeToEdit.Episodes = (int)numEpisodes.Value;
+            _animeToEdit.TvRating = cmbEditTvRating.Text;
+
+            _animeToEdit.Genres.Clear();
+            foreach (var genre in trackedGenres)
+            {
+                _animeToEdit.Genres.Add(genre);
+            }
+
+            // Save changes
             await _context.SaveChangesAsync();
             MessageBox.Show("Anime updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -209,6 +217,16 @@ public partial class AnimeEditControl : UserControl
         catch (Exception ex)
         {
             MessageBox.Show($"An error occurred while saving: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            // Remove the padlock
+            _isSaving = false;
+
+            if (!this.IsDisposed)
+            {
+                btnSaveChanges.Enabled = true;
+            }
         }
     }
 

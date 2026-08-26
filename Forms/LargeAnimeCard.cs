@@ -24,7 +24,6 @@ public partial class mainLargeCard : UserControl
     /// Loads the full details of the specified anime into the user control.
     /// </summary>
     /// <param name="anime">The anime to display.</param>
-    // 2. In mainLargeCard.cs, update your LoadFullDetails method:
     public void LoadFullDetails(Anime anime)
     {
         if (anime == null) return;
@@ -33,7 +32,7 @@ public partial class mainLargeCard : UserControl
 
         if (anime.Genres != null && anime.Genres.Any())
         {
-            lblGenre.Text = "Genre: " + string.Join(", ", anime.Genres.Select(g => g.Name));
+            lblGenre.Text = "Genre: " + string.Join(" ", anime.Genres.Select(g => g.Name));
         }
         else
         {

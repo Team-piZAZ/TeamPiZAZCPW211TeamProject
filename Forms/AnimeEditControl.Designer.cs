@@ -111,6 +111,7 @@
             cmbEditTvRating.BackColor = Color.FromArgb(30, 30, 30);
             cmbEditTvRating.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEditTvRating.FlatStyle = FlatStyle.Popup;
+            cmbEditTvRating.ForeColor = SystemColors.ScrollBar;
             cmbEditTvRating.FormattingEnabled = true;
             cmbEditTvRating.Items.AddRange(new object[] { "TV-Y", "TV-Y7", "TV-G", "TV-PG", "TV-14", "TV-MA" });
             cmbEditTvRating.Location = new Point(50, 369);

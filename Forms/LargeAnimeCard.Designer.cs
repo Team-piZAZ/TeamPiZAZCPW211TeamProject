@@ -53,11 +53,13 @@
             // 
             // lblGenre
             // 
+            lblGenre.AllowDrop = false;
+            lblGenre.AutoSize = true;
             lblGenre.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblGenre.ForeColor = Color.DarkTurquoise;
             lblGenre.Location = new Point(35, 89);
             lblGenre.Name = "lblGenre";
-            lblGenre.Size = new Size(157, 53);
+            lblGenre.Size = new Size(102, 42);
             lblGenre.TabIndex = 1;
             lblGenre.Text = "Genre";
             lblGenre.TextAlign = ContentAlignment.MiddleLeft;
