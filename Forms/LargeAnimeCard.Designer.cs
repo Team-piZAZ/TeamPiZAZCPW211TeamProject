@@ -53,8 +53,8 @@
             // 
             // lblGenre
             // 
-            lblGenre.AllowDrop = true;
-            lblGenre.AutoSize = true;
+            lblGenre.AllowDrop = false;
+            lblGenre.AutoSize = true
             lblGenre.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
             lblGenre.ForeColor = Color.DarkTurquoise;
             lblGenre.Location = new Point(35, 89);
