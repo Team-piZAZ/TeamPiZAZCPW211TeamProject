@@ -67,15 +67,24 @@ public partial class AnimeEditControl : UserControl
 
 
     /// <summary>
-    /// Handles the Load event of the AnimeEditControl. This method 
-    /// sets up predictive search for anime titles directly from the database context.
+    /// Indicates whether the control has already been loaded to prevent duplicate initialization.
+    /// </summary>
+    private bool _hasLoaded = false;
+
+    /// <summary>
+    /// Handles the Load event of the AnimeEditControl. 
+    /// This method sets up predictive search for anime titles
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The event data.</param>
-    private async void AnimeEditControl_Load(object sender, EventArgs e)
+    private void AnimeEditControl_Load(object sender, EventArgs e)
     {
-        // Setup predictive search directly from the DB Context
-        var titles = await _context.Animes.Select(a => a.Title).Distinct().ToArrayAsync();
+        // Prevent duplicate loading
+        if (_hasLoaded) return;
+        _hasLoaded = true;
+
+        // Setup predictive search synchronously
+        var titles = _context.Animes.Select(a => a.Title).Distinct().ToArray(); // Sync
         var autoCompleteData = new AutoCompleteStringCollection();
         autoCompleteData.AddRange(titles);
 

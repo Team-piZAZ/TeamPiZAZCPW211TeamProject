@@ -40,15 +40,14 @@ public partial class AnimeDetailsForm : Form
 
 
     /// <summary>
-    ///  Handles the Load event of the AnimeDetailsForm control. 
-    ///  This method fetches available genres from the database and populates the CheckedListBox with them.
+    /// Handles the Load event of the AnimeDetailsForm control.
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The event data.</param>
-    private async void AnimeDetailsForm_Load(object sender, EventArgs e)
+    private void AnimeDetailsForm_Load(object sender, EventArgs e)
     {
-        // Fetch available genres asynchronously
-        var availableGenres = await _context.Genres.OrderBy(g => g.Name).ToListAsync();
+        // Fetch available genres synchronously
+        var availableGenres = _context.Genres.OrderBy(g => g.Name).ToList(); // Sync
 
         clbGenres.Items.Clear();
         foreach (var genre in availableGenres)
