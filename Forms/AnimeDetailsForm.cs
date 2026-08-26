@@ -49,6 +49,7 @@ public partial class AnimeDetailsForm : Form
         // Fetch available genres synchronously
         var availableGenres = _context.Genres.OrderBy(g => g.Name).ToList(); // Sync
 
+        clbGenres.Sorted = false;
         clbGenres.DataSource = availableGenres;
 
         clbGenres.DisplayMember = "Name";
