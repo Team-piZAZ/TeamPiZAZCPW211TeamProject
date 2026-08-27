@@ -30,8 +30,14 @@ public partial class AnimeListForm : Form
     /// <param name="e">The event data.</param>
     private async void AnimeListForm_Load(object sender, EventArgs e)
     {
+        // Step 1: Disable controls to prevent concurrent database calls
+        txtAnimeName.Enabled = false;
+        cmbStudio.Enabled = false;
+        cmbGenre.Enabled = false;
+
         // Setup Predictive Text 
-        var titles = await _context.Animes.Select(a => a.Title).ToArrayAsync(); // Sync
+        // Step 2: Update the comment to reflect the async reality
+        var titles = await _context.Animes.Select(a => a.Title).ToArrayAsync(); // Async
         var autoCompleteData = new AutoCompleteStringCollection();
         autoCompleteData.AddRange(titles);
 
@@ -40,7 +46,8 @@ public partial class AnimeListForm : Form
         txtAnimeName.AutoCompleteCustomSource = autoCompleteData;
 
         // Populate the Studio Dropdown
-        var studios = await _context.Studios.OrderBy(s => s.Name).ToListAsync(); // Sync
+        // Step 2: Update the comment
+        var studios = await _context.Studios.OrderBy(s => s.Name).ToListAsync(); // Async
         studios.Insert(0, new Studio { Id = 0, Name = "All Studios" });
 
         cmbStudio.DataSource = studios;
@@ -48,12 +55,18 @@ public partial class AnimeListForm : Form
         cmbStudio.ValueMember = "Id";
 
         // Populate the Genre Dropdown
-        var genres = await _context.Genres.OrderBy(g => g.Name).ToListAsync(); // Sync
+        // Step 2: Update the comment
+        var genres = await _context.Genres.OrderBy(g => g.Name).ToListAsync(); // Async
         genres.Insert(0, new Genre { Id = 0, Name = "All Genres" });
 
         cmbGenre.DataSource = genres;
         cmbGenre.DisplayMember = "Name";
         cmbGenre.ValueMember = "Id";
+
+        // Step 3: Re-enable controls now that initialization is completely finished
+        txtAnimeName.Enabled = true;
+        cmbStudio.Enabled = true;
+        cmbGenre.Enabled = true;
     }
 
 
