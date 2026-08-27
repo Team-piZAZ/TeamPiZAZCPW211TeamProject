@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace TeamPiZAZCPW211TeamProject.Models;
+﻿namespace TeamPiZAZCPW211TeamProject.Models;
 
 /// <summary>
 /// Represents an Anime entity in the database, which can be associated with a Studio and multiple Genres.
