@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TeamPiZAZCPW211TeamProject.Models;
 
 namespace TeamPiZAZCPW211TeamProject.Database;
