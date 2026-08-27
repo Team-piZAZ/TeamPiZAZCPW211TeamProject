@@ -36,11 +36,7 @@ public class AnimeService : IAnimeService
     /// </returns>
     public async Task<List<Anime>> GetAllAnimeAsync()
     {
-        return await _context.Animes
-            .Include(a => a.Studio)
-            .Include(a => a.Genres)
-            .AsNoTracking()
-            .ToListAsync();
+        return await _context.Animes.Include(a => a.Studio).Include(a => a.Genres).AsNoTracking().ToListAsync();
     }
 
 
@@ -55,10 +51,7 @@ public class AnimeService : IAnimeService
     /// </returns>
     public async Task<Anime?> GetAnimeByIdAsync(int id)
     {
-        return await _context.Animes
-            .Include(a => a.Studio)
-            .Include(a => a.Genres)
-            .FirstOrDefaultAsync(a => a.Id == id);
+        return await _context.Animes.Include(a => a.Studio).Include(a => a.Genres).FirstOrDefaultAsync(a => a.Id == id);
     }
 
     /// <summary>
@@ -89,9 +82,7 @@ public class AnimeService : IAnimeService
     {
         if (selectedGenreIds.Count != 0)
         {
-            var genres = await _context.Genres
-                .Where(g => selectedGenreIds.Contains(g.Id))
-                .ToListAsync();
+            var genres = await _context.Genres.Where(g => selectedGenreIds.Contains(g.Id)).ToListAsync();
 
             anime.Genres = genres;
         }
@@ -116,9 +107,7 @@ public class AnimeService : IAnimeService
     public async Task UpdateAnimeAsync(Anime anime, List<int> selectedGenreIds)
     {
         // Retrieve the existing anime from the database, including its associated genres
-        var existingAnime = await _context.Animes
-            .Include(a => a.Genres)
-            .FirstOrDefaultAsync(a => a.Id == anime.Id);
+        var existingAnime = await _context.Animes.Include(a => a.Studio).Include(a => a.Genres).FirstOrDefaultAsync(a => a.Id == anime.Id);
 
         // If the anime does not exist, exit the method
         if (existingAnime == null) return;
@@ -134,9 +123,7 @@ public class AnimeService : IAnimeService
 
         // Reset the existing genres and add the updated genres based on selectedGenreIds
         existingAnime.Genres.Clear();
-        var updatedGenres = await _context.Genres
-            .Where(g => selectedGenreIds.Contains(g.Id))
-            .ToListAsync();
+        var updatedGenres = await _context.Genres.Where(g => selectedGenreIds.Contains(g.Id)).ToListAsync();
 
         foreach (var genre in updatedGenres)
         {

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.EntityFrameworkCore;
 using TeamPiZAZCPW211TeamProject.Database;
 using TeamPiZAZCPW211TeamProject.Models;
 using TeamPiZAZCPW211TeamProject.Services;

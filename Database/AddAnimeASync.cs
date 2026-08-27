@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TeamPiZAZCPW211TeamProject.Models;
+﻿using TeamPiZAZCPW211TeamProject.Models;
 
 namespace TeamPiZAZCPW211TeamProject.Database;
 

@@ -39,9 +39,7 @@ The application demonstrates robust database design and data management, interfa
 *   **Comprehensive Data Display:** View detailed information about various anime, including Title, Synopsis, Release Year, Publication Year, TV Rating, Episode Count, Studio, and assigned Genres.
 *   **Full CRUD Capabilities:** Add new anime, update existing entries, and delete records seamlessly.
 *   **Complex Relationships:** Supports Many-to-Many relationships (e.g., assigning multiple Genres to a single Anime) and One-to-Many relationships (e.g., Studios to Anime).
-*   **Advanced Data Handling:** Includes built-in support for filtering, paginating, and sorting data collections.
 *   **Automated Database Migrations:** The application uses EF Core Code-First migrations and automatically applies pending migrations to build the SQL database upon startup.
-
 ---
 
 ## Technologies & Frameworks

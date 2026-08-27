@@ -7,9 +7,7 @@ using TeamPiZAZCPW211TeamProject.Services;
 
 namespace TeamPiZAZCPW211TeamProject;
 
-/// <summary>
-/// The main entry point for the application.
-/// </summary>
+
 internal static class Program
 {
     /// <summary>
@@ -21,18 +19,18 @@ internal static class Program
 
     [STAThread]
 
-   
+
     static void Main()
     {
         ApplicationConfiguration.Initialize();
 
-        // 1. Build configuration from appsettings.json
+        // Build configuration from appsettings.json
         var configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .Build();
 
-        // 2. Setup Dependency Injection
+        // Setup Dependency Injection
         var services = new ServiceCollection();
 
         services.AddDbContext<AnimeDbContext>(options =>
@@ -46,14 +44,14 @@ internal static class Program
 
         ServiceProvider = services.BuildServiceProvider();
 
-        // 3. Automatically apply pending migrations & build DB on startup
+        // Automatically apply pending migrations & build DB on startup
         using (var scope = ServiceProvider.CreateScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<AnimeDbContext>();
             dbContext.Database.Migrate();
         }
 
-        // 4. Run application
+        // Run application
         var mainForm = ServiceProvider.GetRequiredService<AnimeListForm>();
         Application.Run(mainForm);
     }

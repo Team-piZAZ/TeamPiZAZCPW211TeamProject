@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TeamPiZAZCPW211TeamProject.Models;
+﻿namespace TeamPiZAZCPW211TeamProject.Models;
 
 /// <summary>
 /// Represents a Studio entity in the database, 

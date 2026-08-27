@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-
-namespace TeamPiZAZCPW211TeamProject.Forms;
+﻿namespace TeamPiZAZCPW211TeamProject.Forms;
 
 /// <summary>
 /// A custom UserControl that combines a dropdown with a CheckedListBox, allowing multiple selections.
@@ -83,6 +77,12 @@ public partial class MultiCheckDropdown<T> : UserControl
         popupForm.Deactivate += (s, e) => popupForm.Hide();
     }
 
+
+    /// <summary>
+    /// Opens the dropdown by calculating its height, setting its size and position, and displaying it on the screen.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
     private void OpenDropdown(object sender, EventArgs e)
     {
         AdjustDropdownHeight();   // calculate correct height first
@@ -110,6 +110,10 @@ public partial class MultiCheckDropdown<T> : UserControl
         AdjustDropdownHeight();
     }
 
+    /// <summary>
+    /// Adjusts the height of the dropdown based on the number of items 
+    /// and their height, ensuring it does not exceed a maximum height for usability.
+    /// </summary>
     private void AdjustDropdownHeight()
     {
         int itemCount = clb.Items.Count;
@@ -125,6 +129,11 @@ public partial class MultiCheckDropdown<T> : UserControl
 
     }
 
+
+    /// <summary>
+    /// Updates the display label text to show the
+    /// currently selected items in the CheckedListBox.
+    /// </summary>
     private void UpdateDisplayText()
     {
         var items = clb.CheckedItems.Cast<T>().ToList();

@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Data;
 using TeamPiZAZCPW211TeamProject.Models;
-using System.Windows.Forms;
 
 namespace TeamPiZAZCPW211TeamProject.Forms;
 
