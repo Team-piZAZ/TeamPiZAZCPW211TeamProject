@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.IO;
-using System.Windows.Forms;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TeamPiZAZCPW211TeamProject.Database;
 using TeamPiZAZCPW211TeamProject.Models;
 
@@ -25,6 +21,12 @@ public partial class AnimeDeleteControl : UserControl
         btnCancel.Click += btnCancel_Click;
     }
 
+
+    /// <summary>
+    /// Handles the Load event of the AnimeDeleteControl.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     private async void AnimeDeleteControl_Load(object sender, EventArgs e)
     {
         // Set up predictive text so you don't have to guess the spelling
@@ -42,6 +44,12 @@ public partial class AnimeDeleteControl : UserControl
         lblPreviewRating.Text = "";
     }
 
+
+    /// <summary>
+    /// Handles the Click event of the btnSearch control. Searches for an anime by title and populates the preview card if found.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     private async void btnSearch_Click(object sender, EventArgs e)
     {
         string searchTitle = txtDeleteSearch.Text.Trim();
@@ -86,6 +94,12 @@ public partial class AnimeDeleteControl : UserControl
         btnDelete.Enabled = true;
     }
 
+
+    /// <summary>
+    /// Handles the Click event of the btnDelete control. Deletes the selected anime from the database after user confirmation.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     private async void btnDelete_Click(object sender, EventArgs e)
     {
         if (_animeToDelete == null) return;
@@ -115,6 +129,12 @@ public partial class AnimeDeleteControl : UserControl
         }
     }
 
+
+    /// <summary>
+    /// Handles the Click event of the btnCancel control. Closes the delete control without making any changes.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     private void btnCancel_Click(object sender, EventArgs e)
     {
         this.Parent?.Controls.Remove(this);

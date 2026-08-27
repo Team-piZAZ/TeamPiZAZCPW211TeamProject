@@ -1,9 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Windows.Forms;
 using TeamPiZAZCPW211TeamProject.Database;
 using TeamPiZAZCPW211TeamProject.Forms;
 using TeamPiZAZCPW211TeamProject.Models;
@@ -26,10 +22,16 @@ public partial class AnimeListForm : Form
         _context = context;
     }
 
-    private void AnimeListForm_Load(object sender, EventArgs e)
+
+    /// <summary>
+    /// Handles the Load event of the AnimeListForm.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
+    private async void AnimeListForm_Load(object sender, EventArgs e)
     {
         // Setup Predictive Text 
-        var titles = _context.Animes.Select(a => a.Title).ToArray(); // Sync
+        var titles = await _context.Animes.Select(a => a.Title).ToArrayAsync(); // Sync
         var autoCompleteData = new AutoCompleteStringCollection();
         autoCompleteData.AddRange(titles);
 
@@ -38,7 +40,7 @@ public partial class AnimeListForm : Form
         txtAnimeName.AutoCompleteCustomSource = autoCompleteData;
 
         // Populate the Studio Dropdown
-        var studios = _context.Studios.OrderBy(s => s.Name).ToList(); // Sync
+        var studios = await _context.Studios.OrderBy(s => s.Name).ToListAsync(); // Sync
         studios.Insert(0, new Studio { Id = 0, Name = "All Studios" });
 
         cmbStudio.DataSource = studios;
@@ -46,7 +48,7 @@ public partial class AnimeListForm : Form
         cmbStudio.ValueMember = "Id";
 
         // Populate the Genre Dropdown
-        var genres = _context.Genres.OrderBy(g => g.Name).ToList(); // Sync
+        var genres = await _context.Genres.OrderBy(g => g.Name).ToListAsync(); // Sync
         genres.Insert(0, new Genre { Id = 0, Name = "All Genres" });
 
         cmbGenre.DataSource = genres;
@@ -112,13 +114,7 @@ public partial class AnimeListForm : Form
         var searchResults = await query.ToListAsync();
 
         // Generate the small cards
-        foreach (var anime in searchResults)
-        {
-            var newCard = new SmallAnimeCard();
-            newCard.SetupCard(anime);
-            newCard.OnCardClicked += SmallCard_Clicked;
-            flpAnimeList.Controls.Add(newCard);
-        }
+        DisplayAnime(searchResults);
 
         // Auto-load the first result if we found anything
         if (searchResults.Any())
@@ -148,6 +144,11 @@ public partial class AnimeListForm : Form
         }
     }
 
+
+    /// <summary>
+    /// Displays a list of anime in the FlowLayoutPanel as small cards.
+    /// </summary>
+    /// <param name="animeList">The list of anime to display.</param>
     private void DisplayAnime(List<Anime> animeList)
     {
         flpAnimeList.Controls.Clear();

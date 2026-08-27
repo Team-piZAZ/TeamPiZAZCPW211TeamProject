@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.EntityFrameworkCore;
 using TeamPiZAZCPW211TeamProject.Database;
 using TeamPiZAZCPW211TeamProject.Models;
 
@@ -86,7 +80,7 @@ public partial class AnimeEditControl : UserControl
         _hasLoaded = true;
 
         // Setup predictive search synchronously
-        var titles = _context.Animes.Select(a => a.Title).Distinct().ToArray(); 
+        var titles = _context.Animes.Select(a => a.Title).Distinct().ToArray();
         var autoCompleteData = new AutoCompleteStringCollection();
         autoCompleteData.AddRange(titles);
 
@@ -94,7 +88,7 @@ public partial class AnimeEditControl : UserControl
         txtEditSearch.AutoCompleteSource = AutoCompleteSource.CustomSource;
         txtEditSearch.AutoCompleteCustomSource = autoCompleteData;
 
-        var availableGenres = _context.Genres.OrderBy(g => g.Name).ToList(); 
+        var availableGenres = _context.Genres.OrderBy(g => g.Name).ToList();
         clbEditGenres.DataSource = availableGenres;
         clbEditGenres.DisplayMember = "Name";
         clbEditGenres.ValueMember = "Id";

@@ -1,181 +1,180 @@
-﻿namespace TeamPiZAZCPW211TeamProject.Forms
+﻿namespace TeamPiZAZCPW211TeamProject.Forms;
+
+partial class mainLargeCard
 {
-    partial class mainLargeCard
+    /// <summary> 
+    /// Required designer variable.
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;
+
+    /// <summary> 
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(bool disposing)
     {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
+        if (disposing && (components != null))
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
+            components.Dispose();
         }
-
-        #region Component Designer generated code
-
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            lblTitle = new Label();
-            lblGenre = new Label();
-            lblTvRating = new Label();
-            lblEpisodes = new Label();
-            lblPublicationYear = new Label();
-            lblReleaseYear = new Label();
-            picLargeCover = new PictureBox();
-            txtSynopsis = new TextBox();
-            label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)picLargeCover).BeginInit();
-            SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblTitle.ForeColor = Color.DarkTurquoise;
-            lblTitle.Location = new Point(35, 20);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(86, 42);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "Title";
-            // 
-            // lblGenre
-            // 
-            lblGenre.AllowDrop = false;
-            lblGenre.AutoSize = true;
-            lblGenre.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblGenre.ForeColor = Color.DarkTurquoise;
-            lblGenre.Location = new Point(35, 89);
-            lblGenre.Name = "lblGenre";
-            lblGenre.Size = new Size(102, 42);
-            lblGenre.TabIndex = 1;
-            lblGenre.Text = "Genre";
-            lblGenre.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblTvRating
-            // 
-            lblTvRating.AutoSize = true;
-            lblTvRating.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblTvRating.ForeColor = Color.DarkTurquoise;
-            lblTvRating.Location = new Point(35, 175);
-            lblTvRating.Name = "lblTvRating";
-            lblTvRating.Size = new Size(157, 42);
-            lblTvRating.TabIndex = 2;
-            lblTvRating.Text = "Tv Rating";
-            // 
-            // lblEpisodes
-            // 
-            lblEpisodes.AutoSize = true;
-            lblEpisodes.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblEpisodes.ForeColor = Color.DarkTurquoise;
-            lblEpisodes.Location = new Point(35, 260);
-            lblEpisodes.Name = "lblEpisodes";
-            lblEpisodes.Size = new Size(142, 42);
-            lblEpisodes.TabIndex = 3;
-            lblEpisodes.Text = "Episodes";
-            // 
-            // lblPublicationYear
-            // 
-            lblPublicationYear.AutoSize = true;
-            lblPublicationYear.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblPublicationYear.ForeColor = Color.DarkTurquoise;
-            lblPublicationYear.Location = new Point(35, 348);
-            lblPublicationYear.Name = "lblPublicationYear";
-            lblPublicationYear.Size = new Size(250, 42);
-            lblPublicationYear.TabIndex = 4;
-            lblPublicationYear.Text = "Publication Year";
-            // 
-            // lblReleaseYear
-            // 
-            lblReleaseYear.AutoSize = true;
-            lblReleaseYear.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblReleaseYear.ForeColor = Color.DarkTurquoise;
-            lblReleaseYear.Location = new Point(35, 431);
-            lblReleaseYear.Name = "lblReleaseYear";
-            lblReleaseYear.Size = new Size(208, 42);
-            lblReleaseYear.TabIndex = 5;
-            lblReleaseYear.Text = "Release Year";
-            lblReleaseYear.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // picLargeCover
-            // 
-            picLargeCover.Location = new Point(397, 20);
-            picLargeCover.Margin = new Padding(3, 4, 3, 4);
-            picLargeCover.Name = "picLargeCover";
-            picLargeCover.Size = new Size(307, 468);
-            picLargeCover.SizeMode = PictureBoxSizeMode.Zoom;
-            picLargeCover.TabIndex = 6;
-            picLargeCover.TabStop = false;
-            // 
-            // txtSynopsis
-            // 
-            txtSynopsis.BackColor = Color.FromArgb(30, 30, 30);
-            txtSynopsis.BorderStyle = BorderStyle.None;
-            txtSynopsis.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSynopsis.ForeColor = Color.DarkTurquoise;
-            txtSynopsis.Location = new Point(35, 553);
-            txtSynopsis.Multiline = true;
-            txtSynopsis.Name = "txtSynopsis";
-            txtSynopsis.Size = new Size(669, 183);
-            txtSynopsis.TabIndex = 7;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Comic Sans MS", 13.8F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.DarkTurquoise;
-            label1.Location = new Point(35, 507);
-            label1.Name = "label1";
-            label1.Size = new Size(107, 32);
-            label1.TabIndex = 8;
-            label1.Text = "Synopsis";
-            // 
-            // mainLargeCard
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 30);
-            BorderStyle = BorderStyle.Fixed3D;
-            Controls.Add(label1);
-            Controls.Add(txtSynopsis);
-            Controls.Add(picLargeCover);
-            Controls.Add(lblReleaseYear);
-            Controls.Add(lblPublicationYear);
-            Controls.Add(lblEpisodes);
-            Controls.Add(lblTvRating);
-            Controls.Add(lblGenre);
-            Controls.Add(lblTitle);
-            ForeColor = SystemColors.Menu;
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "mainLargeCard";
-            Size = new Size(768, 783);
-            ((System.ComponentModel.ISupportInitialize)picLargeCover).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
-        }
-
-        #endregion
-
-        private Label lblTitle;
-        private Label lblGenre;
-        private Label lblTvRating;
-        private Label lblEpisodes;
-        private Label lblPublicationYear;
-        private Label lblReleaseYear;
-        private PictureBox picLargeCover;
-        private TextBox txtSynopsis;
-        private Label label1;
+        base.Dispose(disposing);
     }
+
+    #region Component Designer generated code
+
+    /// <summary> 
+    /// Required method for Designer support - do not modify 
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
+        lblTitle = new Label();
+        lblGenre = new Label();
+        lblTvRating = new Label();
+        lblEpisodes = new Label();
+        lblPublicationYear = new Label();
+        lblReleaseYear = new Label();
+        picLargeCover = new PictureBox();
+        txtSynopsis = new TextBox();
+        label1 = new Label();
+        ((System.ComponentModel.ISupportInitialize)picLargeCover).BeginInit();
+        SuspendLayout();
+        // 
+        // lblTitle
+        // 
+        lblTitle.AutoSize = true;
+        lblTitle.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+        lblTitle.ForeColor = Color.DarkTurquoise;
+        lblTitle.Location = new Point(35, 20);
+        lblTitle.Name = "lblTitle";
+        lblTitle.Size = new Size(86, 42);
+        lblTitle.TabIndex = 0;
+        lblTitle.Text = "Title";
+        // 
+        // lblGenre
+        // 
+        lblGenre.AllowDrop = false;
+        lblGenre.AutoSize = true;
+        lblGenre.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+        lblGenre.ForeColor = Color.DarkTurquoise;
+        lblGenre.Location = new Point(35, 89);
+        lblGenre.Name = "lblGenre";
+        lblGenre.Size = new Size(102, 42);
+        lblGenre.TabIndex = 1;
+        lblGenre.Text = "Genre";
+        lblGenre.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // lblTvRating
+        // 
+        lblTvRating.AutoSize = true;
+        lblTvRating.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+        lblTvRating.ForeColor = Color.DarkTurquoise;
+        lblTvRating.Location = new Point(35, 175);
+        lblTvRating.Name = "lblTvRating";
+        lblTvRating.Size = new Size(157, 42);
+        lblTvRating.TabIndex = 2;
+        lblTvRating.Text = "Tv Rating";
+        // 
+        // lblEpisodes
+        // 
+        lblEpisodes.AutoSize = true;
+        lblEpisodes.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+        lblEpisodes.ForeColor = Color.DarkTurquoise;
+        lblEpisodes.Location = new Point(35, 260);
+        lblEpisodes.Name = "lblEpisodes";
+        lblEpisodes.Size = new Size(142, 42);
+        lblEpisodes.TabIndex = 3;
+        lblEpisodes.Text = "Episodes";
+        // 
+        // lblPublicationYear
+        // 
+        lblPublicationYear.AutoSize = true;
+        lblPublicationYear.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+        lblPublicationYear.ForeColor = Color.DarkTurquoise;
+        lblPublicationYear.Location = new Point(35, 348);
+        lblPublicationYear.Name = "lblPublicationYear";
+        lblPublicationYear.Size = new Size(250, 42);
+        lblPublicationYear.TabIndex = 4;
+        lblPublicationYear.Text = "Publication Year";
+        // 
+        // lblReleaseYear
+        // 
+        lblReleaseYear.AutoSize = true;
+        lblReleaseYear.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+        lblReleaseYear.ForeColor = Color.DarkTurquoise;
+        lblReleaseYear.Location = new Point(35, 431);
+        lblReleaseYear.Name = "lblReleaseYear";
+        lblReleaseYear.Size = new Size(208, 42);
+        lblReleaseYear.TabIndex = 5;
+        lblReleaseYear.Text = "Release Year";
+        lblReleaseYear.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // picLargeCover
+        // 
+        picLargeCover.Location = new Point(397, 20);
+        picLargeCover.Margin = new Padding(3, 4, 3, 4);
+        picLargeCover.Name = "picLargeCover";
+        picLargeCover.Size = new Size(307, 468);
+        picLargeCover.SizeMode = PictureBoxSizeMode.Zoom;
+        picLargeCover.TabIndex = 6;
+        picLargeCover.TabStop = false;
+        // 
+        // txtSynopsis
+        // 
+        txtSynopsis.BackColor = Color.FromArgb(30, 30, 30);
+        txtSynopsis.BorderStyle = BorderStyle.None;
+        txtSynopsis.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        txtSynopsis.ForeColor = Color.DarkTurquoise;
+        txtSynopsis.Location = new Point(35, 553);
+        txtSynopsis.Multiline = true;
+        txtSynopsis.Name = "txtSynopsis";
+        txtSynopsis.Size = new Size(669, 183);
+        txtSynopsis.TabIndex = 7;
+        // 
+        // label1
+        // 
+        label1.AutoSize = true;
+        label1.Font = new Font("Comic Sans MS", 13.8F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+        label1.ForeColor = Color.DarkTurquoise;
+        label1.Location = new Point(35, 507);
+        label1.Name = "label1";
+        label1.Size = new Size(107, 32);
+        label1.TabIndex = 8;
+        label1.Text = "Synopsis";
+        // 
+        // mainLargeCard
+        // 
+        AutoScaleDimensions = new SizeF(8F, 20F);
+        AutoScaleMode = AutoScaleMode.Font;
+        BackColor = Color.FromArgb(30, 30, 30);
+        BorderStyle = BorderStyle.Fixed3D;
+        Controls.Add(label1);
+        Controls.Add(txtSynopsis);
+        Controls.Add(picLargeCover);
+        Controls.Add(lblReleaseYear);
+        Controls.Add(lblPublicationYear);
+        Controls.Add(lblEpisodes);
+        Controls.Add(lblTvRating);
+        Controls.Add(lblGenre);
+        Controls.Add(lblTitle);
+        ForeColor = SystemColors.Menu;
+        Margin = new Padding(3, 4, 3, 4);
+        Name = "mainLargeCard";
+        Size = new Size(768, 783);
+        ((System.ComponentModel.ISupportInitialize)picLargeCover).EndInit();
+        ResumeLayout(false);
+        PerformLayout();
+    }
+
+    #endregion
+
+    private Label lblTitle;
+    private Label lblGenre;
+    private Label lblTvRating;
+    private Label lblEpisodes;
+    private Label lblPublicationYear;
+    private Label lblReleaseYear;
+    private PictureBox picLargeCover;
+    private TextBox txtSynopsis;
+    private Label label1;
 }
