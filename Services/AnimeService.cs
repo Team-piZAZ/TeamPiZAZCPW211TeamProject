@@ -188,7 +188,7 @@ public class AnimeService : IAnimeService
 
     public async Task<List<Anime>> GetFilteredAnimeAsync(string titleSearch, int studioId, int genreId)
     {
-        var query = _context.Animes.AsQueryable();
+        var query = _context.Animes.Include(a => a.Studio).Include(a => a.Genres).AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(titleSearch))
         {
