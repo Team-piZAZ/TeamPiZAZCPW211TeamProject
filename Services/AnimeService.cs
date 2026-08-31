@@ -80,6 +80,16 @@ public class AnimeService : IAnimeService
     /// </returns>
     public async Task AddAnimeAsync(Anime anime, List<int> selectedGenreIds)
     {
+        if (string.IsNullOrWhiteSpace(anime.Title))
+        {
+            throw new ArgumentException("Anime title cannot be blank.");
+        }
+
+        if (anime.Episodes < 0)
+        {
+            throw new ArgumentException("Episode count cannot be negative.");
+        }
+
         if (selectedGenreIds.Count != 0)
         {
             var genres = await _context.Genres.Where(g => selectedGenreIds.Contains(g.Id)).ToListAsync();
@@ -106,13 +116,27 @@ public class AnimeService : IAnimeService
     /// </returns>
     public async Task UpdateAnimeAsync(Anime anime, List<int> selectedGenreIds)
     {
+        // NEW GATEKEEPERS: Put these at the very top so you fail fast before hitting the database
+        if (string.IsNullOrWhiteSpace(anime.Title))
+        {
+            throw new ArgumentException("Anime title cannot be blank.");
+        }
+
+        if (anime.Episodes < 0)
+        {
+            throw new ArgumentException("Episode count cannot be negative.");
+        }
+
         // Retrieve the existing anime from the database, including its associated genres
         var existingAnime = await _context.Animes.Include(a => a.Studio).Include(a => a.Genres).FirstOrDefaultAsync(a => a.Id == anime.Id);
 
-        // If the anime does not exist, exit the method
-        if (existingAnime == null) return;
+        // REPLACE THE RETURN WITH A THROW: This makes your test pass and stops silent failures
+        if (existingAnime == null)
+        {
+            throw new KeyNotFoundException($"Anime with ID {anime.Id} does not exist in the database.");
+        }
 
-        // Update scalar properties
+        // Update scalar properties (Everything below this line stays exactly how you wrote it)
         existingAnime.Title = anime.Title;
         existingAnime.Synopsis = anime.Synopsis;
         existingAnime.ReleaseYear = anime.ReleaseYear;
@@ -152,5 +176,35 @@ public class AnimeService : IAnimeService
             _context.Animes.Remove(anime);
             await _context.SaveChangesAsync();
         }
+    }
+
+    /// <summary>
+    /// Filters Anime records based on the provided title search, studio ID, and genre ID.
+    /// </summary>
+    /// <param name="titleSearch">The title to search for.</param>
+    /// <param name="studioId">The ID of the studio to filter by.</param>
+    /// <param name="genreId">The ID of the genre to filter by.</param>
+    /// <returns>A list of filtered Anime records.</returns>
+
+    public async Task<List<Anime>> GetFilteredAnimeAsync(string titleSearch, int studioId, int genreId)
+    {
+        var query = _context.Animes.Include(a => a.Studio).Include(a => a.Genres).AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(titleSearch))
+        {
+            query = query.Where(a => a.Title.Contains(titleSearch));
+        }
+
+        if (studioId > 0)
+        {
+            query = query.Where(a => a.StudioId == studioId);
+        }
+
+        if (genreId > 0)
+        {
+            query = query.Where(a => a.Genres.Any(g => g.Id == genreId));
+        }
+
+        return await query.ToListAsync();
     }
 }

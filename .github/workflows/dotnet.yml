@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore -p:EnableWindowsTargeting=true
     - name: Test
-      run: dotnet test -p:TestingPlatformDotnetTestSupport=true
+      run: dotnet run --project TeamPiZAZ.Tests/TeamPiZAZ.Tests.csproj

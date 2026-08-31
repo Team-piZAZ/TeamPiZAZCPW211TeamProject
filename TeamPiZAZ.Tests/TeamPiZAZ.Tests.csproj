@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
+		<UseWindowsForms>true</UseWindowsForms>
+		<TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+		<UseMicrosoftTestingPlatform>true</UseMicrosoftTestingPlatform>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.11" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.9.0" />
+
+		<PackageReference Include="xunit.analyzers" Version="2.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+		<PackageReference Include="xunit.v3" Version="4.0.0" />
+		<PackageReference Include="xunit.v3.assert" Version="4.0.0" />
+		<PackageReference Include="xunit.v3.common" Version="4.0.0" />
+		<PackageReference Include="xunit.v3.runner.common" Version="4.0.0" />
+		<PackageReference Include="xunit.v3.runner.inproc.console" Version="4.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Testing.Platform" Version="2.3.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\TeamPiZAZCPW211TeamProject.csproj" />
+	</ItemGroup>
+
+</Project>
