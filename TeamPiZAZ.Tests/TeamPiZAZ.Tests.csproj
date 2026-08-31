@@ -8,6 +8,7 @@
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
 		<UseWindowsForms>true</UseWindowsForms>
+		<TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
 	</PropertyGroup>
 
 	<ItemGroup>
