@@ -6,8 +6,15 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+	<DefaultItemExclude>$(DefaultItemExcludes);TeamPiZAZ.Tests\**</DefaultItemExclude>
   </PropertyGroup>
 
+  <ItemGroup>
+	  <Compile Remove="TeamPiZAZ.Tests\**" />
+	  <EmbeddedResource Remove="TeamPiZAZ.Tests\**" />
+	  <None Remove="TeamPiZAZ.Tests\**" />
+  </ItemGroup>
+	
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
