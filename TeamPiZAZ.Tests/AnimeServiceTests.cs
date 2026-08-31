@@ -284,6 +284,12 @@ public class AnimeServiceTests
         await Assert.ThrowsAsync<ArgumentException>(() => service.AddAnimeAsync(badAnime, genreIds));
     }
 
+
+    /// <summary>
+    /// Tests the UpdateAnimeAsync method of AnimeService to ensure
+    /// that it successfully updates an existing Anime record in the database.
+    /// </summary>
+    /// <returns>A task representing the asynchronous operation</returns>
     [Fact]
     public async Task UpdateAnimeAsync_ExistingAnime_SuccessfullyUpdates()
     {
@@ -315,6 +321,12 @@ public class AnimeServiceTests
         Assert.Equal(24, result.Episodes);
     }
 
+
+    /// <summary>
+    /// Tests the UpdateAnimeAsync method of AnimeService to ensure that it throws
+    /// a KeyNotFoundException when attempting to update a non-existent Anime.
+    /// </summary>
+    /// <returns>A task representing the asynchronous operation</returns>
     [Fact]
     public async Task UpdateAnimeAsync_NonExistentAnime_ThrowsKeyNotFoundException()
     {
